@@ -28,6 +28,7 @@
     text-align: center
   & button
     margin-top: 25px
+    font-size: 18px
   &-ico-scrolldown
     display: inline-block
     width: 39px
@@ -63,6 +64,17 @@
         transform: translateY(0)
   &-visible
     position: relative
+  & .pic
+    margin: 0 auto 45px
+  &-name
+    margin-bottom: 15px
+    font-family: 'rubik-b', sans-serif
+    font-weight: bold
+    text-transform: uppercase
+  &-list
+    font-family: 'rubik-l', sans-serif
+    font-weight: 100
+    font-size: 16px
   &-hidden
     position: absolute
     z-index: 2
@@ -96,19 +108,7 @@
       transition: .3s ease
       &:hover, &:focus
         text-decoration: underline
-  &-pic
-    width: 80px
-    height: 80px
-    margin: 0 auto 45px
-  &-name
-    margin-bottom: 15px
-    font-family: 'rubik-b', sans-serif
-    font-weight: bold
-    text-transform: uppercase
-  &-list
-    font-family: 'rubik-l', sans-serif
-    font-weight: 100
-    font-size: 16px
+
 
 .pic-rent
   background: url(../img/pic-rent.png)no-repeat center/100%
@@ -118,3 +118,52 @@
   background: url(../img/pic-valuation.png)no-repeat center/100%
 .pic-owners
   background: url(../img/pic-owners.png)no-repeat center/100%
+
+//advantages section
+
+.advantages
+  padding-bottom: 70px
+  &-list
+    margin: 0
+    padding: 0
+    list-style: none
+    & p
+      margin:
+        top: 10px
+        bottom: 0
+      font-family: 'rubik-l', sans-serif
+      font-size: 14px
+      font-weight: 100
+    & > li.container
+      padding:
+        top: 40px
+        bottom: 40px
+        left: 30px
+        right: 30px
+    & .pic
+      display: block
+      margin: 0 30px
+    & .left
+      float: left
+    & .right
+      float: right
+  &-name
+    font-weight: bold
+
+
+.pic-rangeofservices
+    background: url(../img/pic-rangeofservices.png)no-repeat center/100%
+.pic-experience
+    background: url(../img/pic-experience.png)no-repeat center/100%
+.pic-security
+    background: url(../img/pic-security.png)no-repeat center/100%
+.pic-individualapproach
+    background: url(../img/pic-individualapproach.png)no-repeat center/100%
+.pic-innovation
+    background: url(../img/pic-innovation.png)no-repeat center/100%
+
+.divider
+  width: 100%
+  height: 1px
+  overflow: hidden
+  background-color: #bdc3d5

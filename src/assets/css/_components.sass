@@ -16,6 +16,9 @@
     display: block
     text-align: center
     font-family: 'rubik-l', sans-serif
+  &-title.white, &-subtitle.white
+    text-align: left
+    color: $body-bg
 
 //backgrounds colors
 .brand-bg
@@ -36,7 +39,7 @@
   background-image: none // Reset unusual Firefox-on-Android default style see https://github.com/necolas/normalize.css/issues/214
   border: 1px solid transparent
   white-space: nowrap
-  @include button-size($padding-base-vertical, $padding-base-horizontal, $font-size-base, $line-height-base, $btn-border-radius-base)
+  @include button-size($padding-base-vertical, $padding-base-horizontal, 14px, $line-height-base, $btn-border-radius-base)
   @include user-select(none)
   &,
   &:active,
@@ -75,9 +78,6 @@ a.btn
   border-radius: 20px
   letter-spacing: 1px
   transition: .3s ease
-  //&:hover
-  //  color: $gray-base
-  //  border-color: $gray-base
   &:hover, &.btn-transparent
     background-color: transparent
     border-color: $body-bg
@@ -85,3 +85,17 @@ a.btn
 .btn-transparent:hover
   background-color: $btn-default-bg
   border-color: $btn-default-bg
+
+
+// section with do action button
+.call-form-section
+  padding:
+    top: 65px
+    bottom: 65px
+  & button
+    margin-bottom: 20px
+
+//icons & pictures
+.pic
+  width: 80px
+  height: 80px
