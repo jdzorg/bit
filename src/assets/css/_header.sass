@@ -1,0 +1,38 @@
+.header
+  padding: 23px 0 25px
+  &-logo
+    float: left
+    display: block
+    margin-top: 11px
+    & > img
+      display: block
+  &-nav
+    & ul.nav
+      margin:
+        top: 20px
+        left: 15px
+      & > li > a
+        font-family: 'rubik-l', sans-serif
+        font-size: 16px
+        color: $body-bg
+        text-transform: uppercase
+        &:hover, &:focus
+          background-color: transparent
+          font-weight: bold
+      & > li.active .nav-caret
+        transform: scale(1, -1)
+  &-contacts
+    float: right
+    .phone
+      margin-bottom: 3px
+      text-align: center
+      color: #88caec
+  & button
+    font-size: 14px
+
+.nav-caret
+  display: inline-block
+  width: 12px
+  height: 10px
+  margin-left: 2px
+  background: url('../img/ico-nav-caret.png')no-repeat center/100%

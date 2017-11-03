@@ -1,0 +1,120 @@
+@import "bootstrap"
+@import "header"
+@import "footer"
+
+//page index
+// home screen - full screen image
+
+.homescreen
+  position: relative
+  width: 100%
+  height: auto
+  color: $body-bg
+  & > img
+    width: 100%
+    height: auto
+  & h1
+    margin-bottom: 25px
+    text-transform: uppercase
+  & small
+    font-family: 'rubik-l', sans-serif
+    font-size: $font-size-base
+  &-content
+    position: absolute
+    width: 710px
+    top: 50%
+    left: 50%
+    transform: translateX(-50%) translateY(-50%)
+    text-align: center
+  & button
+    margin-top: 25px
+  &-ico-scrolldown
+    display: inline-block
+    width: 39px
+    height: 74px
+    margin-top: 75px
+    background: url(../img/ico-scroll.png)no-repeat center/100%
+
+//services section
+
+.services
+  &-wrapper
+    margin-top: 40px
+  &-service:nth-child(even) &-box
+    margin-right: -15px
+  &-service:nth-child(odd) &-box
+    margin-left: -15px
+  &-box
+    position: relative
+    margin:
+      top: 13px
+      bottom: 13px
+    padding:
+      top: 50px
+      bottom: 50px
+    text-align: center
+    box-shadow: 0 0 80px #e8e8e8
+    overflow: hidden
+    &_bg
+      background-color: #f6f8fd
+    &:hover .services-hidden
+      opacity: 1
+      & a
+        transform: translateY(0)
+  &-visible
+    position: relative
+  &-hidden
+    position: absolute
+    z-index: 2
+    width: 100%
+    height: 100%
+    top: 0
+    left: 0
+    opacity: 0
+    background-color: rgba(24, 45, 59, 0.9)
+    color: $body-bg
+    transition: .3s cubic-bezier(0.25, 0.16, 0.62, 0.26)
+    & ul
+      display: flex
+      flex-direction: column
+      justify-content: center
+      height: 100%
+      margin: 0
+      padding: 0
+      list-style: none
+    & a
+      display: inline-block
+      padding:
+        top: 15px
+        bottom: 15px
+      font-family: 'rubik-l', sans-serif
+      font-size: 20px
+      font-weight: 100
+      text-transform: uppercase
+      color: $body-bg
+      transform: translateY(-300px)
+      transition: .3s ease
+      &:hover, &:focus
+        text-decoration: underline
+  &-pic
+    width: 80px
+    height: 80px
+    margin: 0 auto 45px
+  &-name
+    margin-bottom: 15px
+    font-family: 'rubik-b', sans-serif
+    font-weight: bold
+    text-transform: uppercase
+  &-list
+    font-family: 'rubik-l', sans-serif
+    font-weight: 100
+    font-size: 16px
+
+.pic-rent
+  background: url(../img/pic-rent.png)no-repeat center/100%
+.pic-selling
+  background: url(../img/pic-selling.png)no-repeat center/100%
+.pic-valuation
+  background: url(../img/pic-valuation.png)no-repeat center/100%
+.pic-owners
+  background: url(../img/pic-owners.png)no-repeat center/100%
