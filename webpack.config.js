@@ -61,7 +61,7 @@ const config = {
               fallback: 'style-loader'
             }))
             // pug: ['pug-html-loader'].concat(ExtractTextPlugin.extract({
-            //     // use: ['html-loader'],
+            //     use: ['html-loader'],
             //     fallback: 'html-loader'
             // })),
           }
@@ -86,10 +86,14 @@ const config = {
           fallback: 'style-loader'
         }))
       },
-      // {
-      //   test: /\.pug$/,
-      //     loaders:['html-loader', 'pug-html-loader']
-      // },
+      {
+        test: /\.pug$/,
+        use: [
+            {loader: 'html-loader'},
+            {
+              loader: 'pug-html-loader'}
+        ]
+      },
       {
         test: /\.html$/,
         use: [{
@@ -122,7 +126,12 @@ const config = {
       minChunks: chunks.length
     }),
     extractSASS,
-    extractCSS
+    extractCSS,
+    new HtmlWebpackPlugin({
+        filename: 'index.html',
+        chunks: 'index',
+        template: './src/pages/index/app.pug'
+    })
   ],
   devServer: {
     host: '127.0.0.1',
@@ -138,6 +147,8 @@ const config = {
     },
     open: true,
     openPage: 'index.html'
+      // contentBase: [ PathToTheFolderWhereYourHTMLsLives ],
+      // watchContentBase: true
   },
   devtool: '#eval-source-map'
 }
