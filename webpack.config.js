@@ -34,7 +34,7 @@ const config = {
     publicPath: '/'
   },
   resolve: {
-    extensions: ['.js', '.vue'],
+    extensions: ['.js', '.vue', '.json'],
     alias: {
       assets: join(__dirname, '/src/assets'),
       components: join(__dirname, '/src/components'),
@@ -43,6 +43,15 @@ const config = {
   },
   module: {
     rules: [
+      {
+        test: /\.(js|vue)$/,
+        loader: 'eslint-loader',
+        enforce: 'pre',
+        include: [resolve(__dirname, 'src'), resolve(__dirname, 'test')],
+        options: {
+          formatter: require('eslint-friendly-formatter')
+        }
+      },
       {
         test: /\.vue$/,
         loader: 'vue-loader',
@@ -90,8 +99,7 @@ const config = {
         test: /\.pug$/,
         use: [
             {loader: 'html-loader'},
-            {
-              loader: 'pug-html-loader'}
+            {loader: 'pug-html-loader'}
         ]
       },
       {
@@ -105,7 +113,7 @@ const config = {
         }]
       },
       {
-        test: /\.(png|jpg|jpeg|gif|eot|ttf|woff|woff2|svg|svgz)(\?.+)?$/,
+        test: /\.(png|jpe?g|gif|svg|svgz)(\?.+)?$/,
         exclude: /favicon\.png$/,
         use: [{
           loader: 'url-loader',
@@ -113,7 +121,33 @@ const config = {
             limit: 10000,
             name: 'assets/img/[name].[hash:7].[ext]'
           }
+        },
+        {
+          loader: 'img-loader'
         }]
+      },
+      // {
+      //   test: /\.(jpe?g|png|gif|svg|svgz)$/i,
+      //   use: [
+      //     'url-loader?limit=10000',
+      //     'img-loader'
+      //   ]
+      // },
+      {
+        test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+          name: 'assets/font/[name].[hash:7].[ext]'
+        }
+      },
+      {
+        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+          name: 'assets/fonts/[name].[hash:7].[ext]'
+        }
       }
     ]
   },
