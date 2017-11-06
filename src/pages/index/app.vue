@@ -1,19 +1,15 @@
 <template lang="pug">
     div(v-cloak)
         .col-lg-12.reviews-wrapper(v-loading.body="loading")
-            .reviews-control
-                .control.prev(@click="prevReview")
-                .control.next(@click="nextReview")
-            .reviews-container(
+            sControl(
+                @next="nextReview",
+                @prev="prevReview"
+            )
+            sItem(
                 v-for="(review, index) in setTwoReviews",
                 :key="review.id",
-                v-show="index < 2"
-                )
-                .reviews-avatar
-                    img(:src="review.author_avatar_urls['96']")
-                .reviews-content
-                    span.reviews-author {{ review.author_name }}
-                    p.reviews-review {{ review.content.rendered }}
+                :review="review"
+            )
 
 </template>
 
@@ -27,8 +23,9 @@
       },
       data () {
         return {
+          prev: 0,
+          next: 0,
           loading: true,
-          tworevs: [],
           reviews: [
             {
               'id': 1,
@@ -73,14 +70,18 @@
         setTwoReviews() {
           const arr = []
             for(let i = 0; i < 2; i++) {
-              arr.push(this.reviews)
+              arr.push(this.reviews[i])
             }
+            this.prev = arr[0].id
+            this.next = arr[1].id
             return arr
         },
       },
       methods: {
         prevReview: function() {
+          if(this.prev < 0) {
 
+          }
         },
         nextReview: function() {
 
