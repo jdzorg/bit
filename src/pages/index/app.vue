@@ -1,17 +1,43 @@
 <template lang="pug">
-    div(v-cloak)
-        .col-lg-12.reviews-wrapper(v-loading.body="loading")
+    div
+        //(v-cloak)
+        .col-lg-12.reviews-wrapper
+            //(v-loading.body="loading")
             sControl(
                 @next="nextReview",
                 @prev="prevReview"
+                v-show="reviews.length > 2"
             )
-            sItem(
-                v-for="(review, index) in setTwoReviews",
-                :key="review.id",
-                :review="review"
+            transition-group(
+                class="reviews-trans"
+                tag="div"
+                name="trans-slider"
+                mode="in-out"
             )
+                sItem(
+                    v-for="(review, index) in curReviews",
+                    :key="review.id",
+                    :review="review"
+                )
+        .col-lg-12.text-center.reviews-btn
+            button.btn.btn-default.btn-transparent Оставте и Вы свой отклик!
 
 </template>
+
+<style lang="sass">
+    /*.reviews-trans*/
+    .trans-slider
+        &-item, &-move
+            background-color: #fff
+            transition: .6s ease
+        &-leave-active
+            transition: .3s ease
+            position: absolute
+        &-enter, &-leave-to
+            opacity: 0
+            transform: translateY(100px)
+            position: absolute
+</style>
 
 <script>
     import sControl from '../../components/vue/review-slider/slider-control'
@@ -26,6 +52,7 @@
           prev: 0,
           next: 0,
           loading: true,
+          curReviews: [],
           reviews: [
             {
               'id': 1,
@@ -53,7 +80,7 @@
             },
             {
               'id': 3,
-              'author_name': 'A WordPress Commenter 11113',
+              'author_name': 'A WordPress Commenter 11112',
               'content': {
                 'rendered': 'Hi, this is a comment.To get started with moderating, editing, and deleting comments, please visit the Comments screen in the dashboard.Commenter avatars come from'
               },
@@ -66,26 +93,32 @@
           ]
         }
       },
-      computed: {
-        setTwoReviews() {
-          const arr = []
-            for(let i = 0; i < 2; i++) {
-              arr.push(this.reviews[i])
-            }
-            this.prev = arr[0].id
-            this.next = arr[1].id
-            return arr
-        },
-      },
       methods: {
-        prevReview: function() {
-          if(this.prev < 0) {
-
+        setTwoReviews() {
+          let i = 0;
+          for(i; i < 2; i++) {
+            this.curReviews.push(this.reviews[i])
           }
+          this.prev = 0;
+          this.next = 1
+        },
+        prevReview: function() {
+          this.next = this.prev;
+          this.prev = this.prev <= 0 ? this.reviews.length - 1 : this.prev - 1;
+//          debugger
+          this.curReviews.pop();
+          this.curReviews.unshift(this.reviews[this.prev])
         },
         nextReview: function() {
-
+//          debugger
+          this.prev = this.next;
+          this.next = this.next >= (this.reviews.length - 1) ? 0 : this.next + 1;
+          this.curReviews.shift();
+          this.curReviews.push(this.reviews[this.next])
         }
+      },
+      mounted() {
+        this.setTwoReviews()
       }
     }
 </script>
@@ -95,14 +128,18 @@
     .reviews
         &-wrapper
             position: relative
-            display: flex
-            flex-direction: row
-            justify-content: space-between
             width: 100%
             margin-top: 50px
+        &-trans
+            position: relative
+            display: flex
+            flex-direction: row
+            justify-content: center
+            width: 100%
         /*overflow: hidden*/
         &-control
             position: absolute
+            z-index: 2
             width: 100%
             height: 42px
             top: 50%
@@ -125,18 +162,19 @@
                     background-color: #88caec
             .next
                 right: 0
-                transform: scale(-1, 1) translateX(-150%)
+                transform: scale(-1, 1)
             .prev
                 left: 0
-                transform: translateX(-150%)
 
         &-container
             display: flex
             flex-direction: row
             align-items: center
-            width: 49%
+            width: 45%
             padding: 30px 25px
             box-shadow: 0 0 20px 14px #fbfbfb
+            &:first-child
+                margin-right: 20px
         &-avatar
             display: block
             overflow: hidden
@@ -162,5 +200,9 @@
                 family: 'rubik-l', sans-serif
                 weight: 100
                 size: 14px
+        &-btn > button.btn
+            margin-top: 50px
+            color: #000
+            border-color: #000
 
 </style>

@@ -1,5 +1,5 @@
 <template lang="pug">
-    .reviews-container
+    .reviews-container.trans-slider-item
         .reviews-avatar
             img(:src="review.author_avatar_urls['96']")
         .reviews-content
@@ -10,10 +10,11 @@
 <script>
     export default {
       props: {
-        review: {
-          type: Object,
-          required: true
-        }
+        review: {}
+//          {
+//          type: Object,
+//          required: true
+//        }
       }
     }
 </script>
