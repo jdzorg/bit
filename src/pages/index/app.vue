@@ -20,35 +20,30 @@
                     :review="review"
                 )
         .col-lg-12.text-center.reviews-btn
-            button.btn.btn-default.btn-transparent Оставте и Вы свой отклик!
+            button.btn.btn-default.btn-transparent(@click="openPopUp") Оставте и Вы свой отклик!
+        pReview(
+          v-show="showPop",
+          @close="closePopUp"
+        )
 
 </template>
 
 <style lang="sass">
-    /*.reviews-trans*/
-    .trans-slider
-        &-item, &-move
-            background-color: #fff
-            transition: .6s ease
-        &-leave-active
-            transition: .3s ease
-            position: absolute
-        &-enter, &-leave-to
-            opacity: 0
-            transform: translateY(100px)
-            position: absolute
+
 </style>
 
 <script>
     import sControl from '../../components/vue/review-slider/slider-control'
     import sItem from '../../components/vue/review-slider/slider-item'
+    import pReview from '../../components/vue/popups/pop-review.vue'
 
     export default {
       components: {
-        sControl, sItem
+        sControl, sItem, pReview
       },
       data () {
         return {
+          showPop: false,
           prev: 0,
           next: 0,
           loading: true,
@@ -102,19 +97,23 @@
           this.prev = 0;
           this.next = 1
         },
-        prevReview: function() {
+        prevReview() {
           this.next = this.prev;
           this.prev = this.prev <= 0 ? this.reviews.length - 1 : this.prev - 1;
-//          debugger
           this.curReviews.pop();
           this.curReviews.unshift(this.reviews[this.prev])
         },
-        nextReview: function() {
-//          debugger
+        nextReview() {
           this.prev = this.next;
           this.next = this.next >= (this.reviews.length - 1) ? 0 : this.next + 1;
           this.curReviews.shift();
           this.curReviews.push(this.reviews[this.next])
+        },
+        openPopUp() {
+          this.showPop = true;
+        },
+        closePopUp() {
+          this.showPop = false;
         }
       },
       mounted() {
@@ -123,8 +122,9 @@
     }
 </script>
 
-<style src="../../assets/css/index.sass" lang="sass"></style>
+<!--<style src="../../assets/css/index.sass" lang="sass"></style>-->
 <style lang="sass">
+
     .reviews
         &-wrapper
             position: relative
@@ -204,5 +204,18 @@
             margin-top: 50px
             color: #000
             border-color: #000
+
+    /*.reviews-trans*/
+    .trans-slider
+        &-item, &-move
+            background-color: #fff
+            transition: .6s ease
+        &-leave-active
+            transition: .3s ease
+            position: absolute
+        &-enter, &-leave-to
+            opacity: 0
+            transform: translateY(100px)
+            position: absolute
 
 </style>

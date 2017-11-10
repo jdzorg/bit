@@ -1,5 +1,5 @@
 import Vue from 'vue'
-// import Axios from 'axios'
+import '../../assets/css/index.sass'
 import ElementUI from 'element-ui'
 import App from './app.vue'
 
@@ -7,9 +7,12 @@ setTimeout(setHeight, 1000)
 
 function setHeight () {
   const setHeight = document.querySelectorAll('.setHeight')
-  setHeight.forEach(el => {
-    el.style.height = `${el.offsetHeight}px`
-  })
+  for (let i = 0; i < setHeight.length; i++) {
+    setHeight[i].style.height = setHeight[i].offsetHeight + 'px'
+  }
+  // setHeight.forEach(el => {
+  //   el.style.height = `${el.offsetHeight}px`
+  // })
 }
 
 Vue.use(ElementUI)

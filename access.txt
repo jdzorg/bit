@@ -1,0 +1,21 @@
+wp
+l: bit_admin
+p: iQzOCyNZGGM9HTZbP3picAY#
+comments
+l: bitcom
+p: D337#4$MYyhSIn0kx2xlYVyc
+e: comments@bitrealt.com.ua
+
+bd
+l: gospod07_bit
+p: ejusl9h6
+h: gospod07.mysql.tools
+
+ftp
+l: gospod07_ftp
+p: bXvWJXNQ
+h: gospod07.ftp.tools
+
+host
+l: respyblikanez@gmail.com
+p: bumer566

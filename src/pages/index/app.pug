@@ -1,206 +1,208 @@
 doctype html
-html(lang='en')
+html(lang='ru')
     include ../../components/pug/head
     body
-        include ../../components/pug/header
-        main.content
-            section.brand-bg.homescreen
-                img(src='../../assets/img/front-page-main.png', alt='bitrealty', title='Агенство недвижимости цифрового века')
-                .homescreen-content
-                    h1
-                        |«Агенство недвижимости
-                        br
-                        |цифрового века»
-                    small.sub-title
-                        |Мы объединили все самые нужные услуги
-                        br
-                        |в одном месте.
-                    .clearfix
-                    button.btn.btn-default Заказать бесплатную консультацию
-                    .clearfix
-                    span.homescreen-ico-scrolldown
-            section.section-padding.services
-                .container
-                    .row
-                        .col-lg-12
-                            span.section-title Услуги
-                            span.section-subtitle
-                                |Все услуги сервиса делятся на четыре основных подразделения
+        .container-fluid
+            .row
+                include ../../components/pug/header
+                main.content
+                    section.brand-bg.homescreen
+                        img(src='../../assets/img/front-page-main.png', alt='bitrealty', title='Агенство недвижимости цифрового века')
+                        .homescreen-content
+                            h1
+                                |«Агенство недвижимости
                                 br
-                                |(кликните на интересующий вас раздел)
-                .services-wrapper
-                    .col-lg-6.services-service.rent
-                        .services-box
-                            .services-visible
-                                .pic.pic-rent
-                                .services-name аренда
-                                .services-list
-                                    |Квартира, Дом, Коммерческая
+                                |цифрового века»
+                            small.sub-title
+                                |Мы объединили все самые нужные услуги
+                                br
+                                |в одном месте.
+                            .clearfix
+                            button.btn.btn-default Заказать бесплатную консультацию
+                            .clearfix
+                            span.homescreen-ico-scrolldown
+                    section.section-padding.services
+                        .container
+                            .row
+                                .col-lg-12
+                                    span.section-title Услуги
+                                    span.section-subtitle
+                                        |Все услуги сервиса делятся на четыре основных подразделения
+                                        br
+                                        |(кликните на интересующий вас раздел)
+                        .services-wrapper
+                            .col-lg-6.services-service.rent
+                                .services-box
+                                    .services-visible
+                                        .pic.pic-rent
+                                        .services-name аренда
+                                        .services-list
+                                            |Квартира, Дом, Коммерческая
+                                            br
+                                            |недвижимость
+                                    .services-hidden
+                                        ul
+                                            li
+                                                a(href='#', style='transition-delay: .3s') Квартира
+                                            li
+                                                a(href='#', style='transition-delay: .2s') Дом
+                                            li
+                                                a(href='#', style='transition-delay: .1s') Коммерческая недвижимость
+                            .col-lg-6.services-service.selling
+                                .services-box.services-box_bg
+                                    .services-visible
+                                        .pic.pic-selling
+                                        .services-name продажа
+                                        .services-list
+                                            |Квартиры, Дом, Коммерческая недвижимость,
+                                            br
+                                            |Земельный участок
+                                    .services-hidden
+                                        ul
+                                            li
+                                                a(href='#', style='transition-delay: .4s') Квартиры
+                                            li
+                                                a(href='#', style='transition-delay: .3s') Дом
+                                            li
+                                                a(href='#', style='transition-delay: .2s') Коммерческая недвижимость
+                                            li
+                                                a(href='#', style='transition-delay: .1s') Земельный участок
+                            // <div class="clearfix"></div>
+                            .col-lg-6.services-service.valuation
+                                .services-box.services-box_bg
+                                    .services-visible
+                                        .pic.pic-valuation
+                                        .services-name оценка недвижимости
+                                        .services-list
+                                            |Мы предоставляем нашим Клиентам комплекс
+                                            br
+                                            |услуг по оценке
+                                    .services-hidden
+                                        ul
+                                            li
+                                                a(href='#', style='transition-delay: .1s') Экспертаня оценка недвижимости
+                            .col-lg-6.services-service.owners
+                                .services-box
+                                    .services-visible
+                                        .pic.pic-owners
+                                        .services-name владельцам
+                                        .services-list
+                                            |Продажа и сдача в аренду недвижимости
+                                            br
+                                            |в кратчайшие сроки
+                                    .services-hidden
+                                        ul
+                                            li
+                                                a(href='#', style='transition-delay: .2s') Продать недвижимость
+                                            li
+                                                a(href='#', style='transition-delay: .1s') Сдать недвижимость в аренду
+                            .clearfix
+
+
+                    - var sectionTitle = 'ИЩЕТЕ ЧТО ЕЩЕ МОЖНО КУПИТЬ ЗА КРИПТОВАЛЮТУ?'
+                    - var subTitle = 'Мы собрали для Вас большой перечень возможных вариантов'
+                    - var btnName = 'Посмотреть варианты'
+                    include ../../components/pug/callform
+
+                    section.section-padding.list.advantages
+                        .container
+                            .row
+                                .col-lg-12
+                                    span.section-title Преймущества
+                                    span.section-subtitle
+                                        |Наш опыт и репутация — это самое главное, но есть еще
+                                        br
+                                        |несколько очень важных моментов
+                        ul.list-wrapper
+                            li.container
+                                span.pic.pic-rangeofservices.pull-left
+                                .advantages-wrapper.pull-left
+                                    span.advantages-name 1. Полный спектр услуг
+                                    p
+                                        |Предоставляем полный спектр профессиональных услуг: от поступления
+                                        br
+                                        |заявки до заключения сделки
+                            li.list-divider
+                            li.container
+                                span.pic.pic-experience.pull-right
+                                .advantages-wrapper.pull-right
+                                    span.advantages-name 2. Многолетний опыт
+                                    p
+                                        |За более чем 15 лет работы на этом рынке мы досконально изучили все возможные
+                                        br
+                                        |нюансы в этой сфере и гарантируем Вам свою надежность как партнера.
+                            li.list-divider
+                            li.container
+                                span.pic.pic-security.pull-left
+                                .advantages-wrapper.pull-left
+                                    span.advantages-name 3. Юридическая безопасность
+                                    p
+                                        |Проверим юридическую чистоту объекта и участников, подготовим
+                                        br
+                                        |документацию, поможем зарегистрировать права собственности
+                            li.list-divider
+                            li.container
+                                span.pic.pic-individualapproach.pull-right
+                                .advantages-wrapper.pull-right
+                                    span.advantages-name 4. Индивидуальный подход
+                                    p
+                                        |Можете быть уверены, здесь Вам предложат именно то, что нужно. Наши стандарты
+                                        br
+                                        |обслуживания соответствуют самому высокому уровню. В формировании доверия
+                                        br
+                                        |и лояльности клиентов не бывает мелочей
+                            li.list-divider
+                            li.container
+                                span.pic.pic-innovation.pull-left
+                                .advantages-wrapper.pull-left
+                                    span.advantages-name 5. Инновационность
+                                    p
+                                        |Мы всегда идем в ногу со временем. Поэтому мы первое агентство на рынке
+                                        br
+                                        |Украины, работающее как с традиционной, так и с крипто валютой (Bitcoin,
+                                        br
+                                        |Ethereum, Litecoin и другие)
+
+
+                    - var sectionTitle = 'Приглашаем вас на встречу в наш офис'
+                    - var subTitle = 'Мы пришлем за вами личного водителя на автомобиле бизнес-класса'
+                    - var btnName = 'Записаться на встречу'
+                    include ../../components/pug/callform
+                    include ../../components/pug/innumbers
+
+                    section.section-padding.reviews
+                        .container
+                            .row
+                                .col-lg-12
+                                    span.section-title Отзывы наших клиентов
+                                    span.section-subtitle
+                                        |Наш опыт и репутация — это самое главное, в подтверждение
+                                        br
+                                        |почитайте отзывы о нас
+                                #app
+                    section.setHeight.about
+                        .col-lg-6.img-box
+                            img(src='../../assets/img/about.png', alt='about company' title='об компании bitrealty')
+                        .col-lg-6.center-box
+                            .center-box-wrapper
+                                span.section-title О компании
+                                p.about-description
+                                    |Мы команда профессионалов, работающая в интересах
                                     br
-                                    |недвижимость
-                            .services-hidden
-                                ul
-                                    li
-                                        a(href='#', style='transition-delay: .3s') Квартира
-                                    li
-                                        a(href='#', style='transition-delay: .2s') Дом
-                                    li
-                                        a(href='#', style='transition-delay: .1s') Коммерческая недвижимость
-                    .col-lg-6.services-service.selling
-                        .services-box.services-box_bg
-                            .services-visible
-                                .pic.pic-selling
-                                .services-name продажа
-                                .services-list
-                                    |Квартиры, Дом, Коммерческая недвижимость,
+                                    |собственника. Ваша квартира будет гарантированно
                                     br
-                                    |Земельный участок
-                            .services-hidden
-                                ul
-                                    li
-                                        a(href='#', style='transition-delay: .4s') Квартиры
-                                    li
-                                        a(href='#', style='transition-delay: .3s') Дом
-                                    li
-                                        a(href='#', style='transition-delay: .2s') Коммерческая недвижимость
-                                    li
-                                        a(href='#', style='transition-delay: .1s') Земельный участок
-                    // <div class="clearfix"></div>
-                    .col-lg-6.services-service.valuation
-                        .services-box.services-box_bg
-                            .services-visible
-                                .pic.pic-valuation
-                                .services-name оценка недвижимости
-                                .services-list
-                                    |Мы предоставляем нашим Клиентам комплекс
+                                    |продана в срок от 12 дней до 37 дней по цене выше
                                     br
-                                    |услуг по оценке
-                            .services-hidden
-                                ul
-                                    li
-                                        a(href='#', style='transition-delay: .1s') Экспертаня оценка недвижимости
-                    .col-lg-6.services-service.owners
-                        .services-box
-                            .services-visible
-                                .pic.pic-owners
-                                .services-name владельцам
-                                .services-list
-                                    |Продажа и сдача в аренду недвижимости
+                                    |рыночной. Мы провели более 870 сделок, поэтому наш опыт
                                     br
-                                    |в кратчайшие сроки
-                            .services-hidden
-                                ul
-                                    li
-                                        a(href='#', style='transition-delay: .2s') Продать недвижимость
-                                    li
-                                        a(href='#', style='transition-delay: .1s') Сдать недвижимость в аренду
-                    .clearfix
+                                    |позволит продать Ваш квартиру гладко и безопасно!
+                        .clearfix
 
 
-            - var sectionTitle = 'ИЩЕТЕ ЧТО ЕЩЕ МОЖНО КУПИТЬ ЗА КРИПТОВАЛЮТУ?'
-            - var subTitle = 'Мы собрали для Вас большой перечень возможных вариантов'
-            - var btnName = 'Посмотреть варианты'
-            include ../../components/pug/callform
+                    - var formTitle = 'Обратная связь'
+                    - var formSubTitleF = 'Будем рады стать Вам полезными от первого звонка'
+                    - var formSubTitleS = 'в агентство до полного оформления сделки.'
+                    - var formBtnName = 'Записаться на встречу'
+                    include  ../../components/pug/footer-form
 
-            section.section-padding.list.advantages
-                .container
-                    .row
-                        .col-lg-12
-                            span.section-title Преймущества
-                            span.section-subtitle
-                                |Наш опыт и репутация — это самое главное, но есть еще
-                                br
-                                |несколько очень важных моментов
-                ul.list-wrapper
-                    li.container
-                        span.pic.pic-rangeofservices.pull-left
-                        .advantages-wrapper.pull-left
-                            span.advantages-name 1. Полный спектр услуг
-                            p
-                                |Предоставляем полный спектр профессиональных услуг: от поступления
-                                br
-                                |заявки до заключения сделки
-                    li.list-divider
-                    li.container
-                        span.pic.pic-experience.pull-right
-                        .advantages-wrapper.pull-right
-                            span.advantages-name 2. Многолетний опыт
-                            p
-                                |За более чем 15 лет работы на этом рынке мы досконально изучили все возможные
-                                br
-                                |нюансы в этой сфере и гарантируем Вам свою надежность как партнера.
-                    li.list-divider
-                    li.container
-                        span.pic.pic-security.pull-left
-                        .advantages-wrapper.pull-left
-                            span.advantages-name 3. Юридическая безопасность
-                            p
-                                |Проверим юридическую чистоту объекта и участников, подготовим
-                                br
-                                |документацию, поможем зарегистрировать права собственности
-                    li.list-divider
-                    li.container
-                        span.pic.pic-individualapproach.pull-right
-                        .advantages-wrapper.pull-right
-                            span.advantages-name 4. Индивидуальный подход
-                            p
-                                |Можете быть уверены, здесь Вам предложат именно то, что нужно. Наши стандарты
-                                br
-                                |обслуживания соответствуют самому высокому уровню. В формировании доверия
-                                br
-                                |и лояльности клиентов не бывает мелочей
-                    li.list-divider
-                    li.container
-                        span.pic.pic-innovation.pull-left
-                        .advantages-wrapper.pull-left
-                            span.advantages-name 5. Инновационность
-                            p
-                                |Мы всегда идем в ногу со временем. Поэтому мы первое агентство на рынке
-                                br
-                                |Украины, работающее как с традиционной, так и с крипто валютой (Bitcoin,
-                                br
-                                |Ethereum, Litecoin и другие)
-
-
-            - var sectionTitle = 'Приглашаем вас на встречу в наш офис'
-            - var subTitle = 'Мы пришлем за вами личного водителя на автомобиле бизнес-класса'
-            - var btnName = 'Записаться на встречу'
-            include ../../components/pug/callform
-            include ../../components/pug/innumbers
-
-            section.section-padding.reviews
-                .container
-                    .row
-                        .col-lg-12
-                            span.section-title Отзывы наших клиентов
-                            span.section-subtitle
-                                |Наш опыт и репутация — это самое главное, в подтверждение
-                                br
-                                |почитайте отзывы о нас
-                        #app
-            section.setHeight.about
-                .col-lg-6.img-box
-                    img(src='../../assets/img/about.png', alt='about company' title='об компании bitrealty')
-                .col-lg-6.center-box
-                    .center-box-wrapper
-                        span.section-title О компании
-                        p.about-description
-                            |Мы команда профессионалов, работающая в интересах
-                            br
-                            |собственника. Ваша квартира будет гарантированно
-                            br
-                            |продана в срок от 12 дней до 37 дней по цене выше
-                            br
-                            |рыночной. Мы провели более 870 сделок, поэтому наш опыт
-                            br
-                            |позволит продать Ваш квартиру гладко и безопасно!
-                .clearfix
-
-
-            - var formTitle = 'Обратная связь'
-            - var formSubTitleF = 'Будем рады стать Вам полезными от первого звонка'
-            - var formSubTitleS = 'в агентство до полного оформления сделки.'
-            - var formBtnName = 'Записаться на встречу'
-            include  ../../components/pug/footer-form
-
-            include ../../components/pug/footer
+                include ../../components/pug/footer
