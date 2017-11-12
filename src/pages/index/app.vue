@@ -111,9 +111,11 @@
         },
         openPopUp() {
           this.showPop = true;
+          document.body.style.overflow = 'hidden';
         },
         closePopUp() {
           this.showPop = false;
+          document.body.style.overflow = '';
         }
       },
       mounted() {

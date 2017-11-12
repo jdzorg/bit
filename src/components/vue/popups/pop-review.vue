@@ -3,7 +3,7 @@
       name="popup-trans"
     )
         .popup(:style="setPopUppHeight")
-            .feedback
+            .review-send
                 .container
                     .row
                         .col-lg-12
@@ -13,9 +13,9 @@
                                 br
                                 | при сотруднечестве с нашей компанией.
                         .col-lg-12
-                            form.feedback-form(
+                            form.form.review-form(
                               @submit.prevent="createComment",
-                              @change="validation($event.target)"
+                              @change="validation($event)"
                             )
                                 .close(@click="$emit('close')")
                                     span
@@ -26,114 +26,128 @@
                                       placeholder='Имя *',
                                       required="required",
                                       data-type="name",
-                                      v-model="userData.name"
+                                      v-model.trim="userData.name"
                                     )
                                     input.pull-right(
                                       type='tel',
                                       placeholder='Телефон *',
                                       required="required",
                                       data-type="phone",
-                                      v-model="userData.phone"
+                                      v-model.trim="userData.phone"
                                     )
                                 .input-group
-                                    input.feedback-full-width(
+                                    input.form-full-width(
                                       type='email',
                                       placeholder='Email *',
                                       required="required",
                                       data-type="email",
-                                      v-model="userData.email"
+                                      v-model.trim="userData.email"
                                     )
                                 .input-group
-                                    textarea.feedback-full-width(
+                                    textarea.form-full-width(
                                       name='',
                                       id='',
                                       cols='30',
                                       rows='10',
                                       placeholder='Ваш отклик',
-                                      v-model="userData.text",
+                                      data-type="text",
+                                      v-model.trim="userData.text",
                                     )
                                 .input-group.text-center
                                     button.btn.btn-default Отправить
-                                transition(name="error")
-                                    p.errorMSG(v-show="onOffErrorMSG") Некоторые из полей незаполнены или неверно заполнены
+            transition(
+              name="error-trans",
+              mode="in-out"
+            )
+                span.errorMSG(
+                  v-show="isValid || isEmpty",
+                  :key="0"
+                ) {{ Некоторые из полей неверно заполнены
+                span.errorMSG(
+                  v-show="isEmpty",
+                  :key="1"
+                ) Некоторые из полей неверно заполнены
 </template>
 
 <script>
-//    import errorMsg from './error-message.vue';
-  //    import Wpapi from '../../../node_modules/wpapi'
-  //
-  //    var wp = new Wpapi({
-  ////      endpoint: 'http://bitrealt.com.ua/wp-json',
-  ////      username: 'bitcom',
-  ////      password: 'D337#4$MYyhSIn0kx2xlYVyc'
-  //      endpoint: window.WP_API_Settings.root,
-  //      nonce: window.WP_API_Settings.nonce
-  //    });
+    //Некоторые из полей не заполнены или неверно заполнены
+//      import Wpapi from '../../../../node_modules/wpapi'
+//
+//      var wp = new Wpapi({
+//  //      endpoint: 'http://bitrealt.com.ua/wp-json/wp/v2/posts',
+//  //      username: 'bitcom',
+//  //      password: 'D337#4$MYyhSIn0kx2xlYVyc'
+//        endpoint: window.WP_API_Settings.root,
+//        nonce: window.WP_API_Settings.nonce
+//      });
 
   const regTemp = {
     name: /^[а-яА-Яa-zA-Z\sёЁїЇіІЄє]{2,20}$/,
     email: /^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$/,
     phone: /^(\+3)?(8)?(0)?[\-\(\)\d]{9,13}$/,
-    text: /^[a-zA-Z0-9ёЁїЇіІЄє\.\,'"\-\+\?\!\s]{0,}$/
+    text: /^[а-яА-Яa-zA-Z0-9ёЁїЇіІЄє\.\,'"\-\+\?\!\s]{0,}$/
   };
 
     export default {
       data() {
         return{
-          hasError: false,
+          isValid: false,
+          isEmpty: false,
           userData: {
-            name: false,
-            email: false,
-            phone: false,
-            text: false
+            name: '',
+            email: '',
+            phone: '',
+            text: ''
           }
-        }
-      },
-      watch: {
-        userData(val, oldVal) {
-
         }
       },
       methods: {
-//        createComment() {
+        createComment() {
+          let count = 0;
 
-          //          wp.comments().create({
-//            author_email: 'test@mail.ua',
-//            author_name: 'test',
-//            content: 'test comment'
-//          })
-//            .then(createdComment => {console.log('ok')})
-//            .catch(error => {console.log(error)})
-//        },
-        validation(el) {
-          let val = el.value.trim(),
-              type = el.dataset.type;
+          for(let i in this.userData) {
+            count += this.userData[i].replace(/\s/g, '').length > 0 ? 0 : 1;
+          }
 
-          this.userData[type] = regTemp[type].test(val);
+          if(count === 0) {
+            this.isEmpty = false;
+            console.log('ok');
+//            wp.comments().create({
+//              author_email: this.userData.email,
+//              author_name: this.userData.name,
+//              content: this.userData.text
+//            })
+//              .then(resp => {console.log(resp)})
+//              .catch(error => {console.log(error)});
 
-          if(this.userData[type]) {
-            this.userData[type] = valid;
-            if(el.contains('error'))
-            el.classList.remove('error');
+           } else {
+            this.isEmpty = true;
+
+            return false;
+           }
+        },
+        validation(e) {
+          const el = e.target,
+            val = el.value,
+            type = el.dataset.type;
+          if(regTemp[type].test(val)) {
+            if(el.classList.contains('error'))
+              el.classList.remove('error');
           } else {
-            if(!el.contains('error'))
+            if(!el.classList.contains('error'))
               el.classList.add('error');
           }
+          this.onOffErrorMSG(e.currentTarget);
+        },
+        onOffErrorMSG(form) {
+          this.isValid = Array.from(form).some(el => {
+            return el.classList.contains('error')
+          });
         }
       },
       computed: {
         setPopUppHeight() {
           return `height: ${document.documentElement.clientHeight}px`;
-        },
-        onOffErrorMSG() {
-          let user = this.userData,
-            rez = user.length;
-          for(let i in user) {
-            if(user.hasOwnProperty(i) && user[i]){
-              rez--;
-            }
-          }
-          return rez === 0;
         }
       }
     }
@@ -158,8 +172,15 @@
             background-image: none
         & form
             position: relative
-        & .error
-            outline-color: red
+        & input.error
+            outline-color: rgba(255, 0, 0, 0.62)
+            border-bottom: 2px solid rgba(255, 0, 0, 0.62)
+        & textarea.error
+            border: 2px solid rgba(255, 0, 0, 0.62)
+        & .errorMSG
+            margin-top: 10px
+            text-align: center
+            color: red
         & .close
             position: absolute
             width: 40px
@@ -167,7 +188,8 @@
             top: 0
             right: 0
             opacity: 1
-            transform: translate(100%, -450%)
+            transform: translate(100%, -400%)
+            //wp-content/themes/bitrealty-theme/
             & > span
                 position: absolute
                 display: block
@@ -187,5 +209,12 @@
                 transition: .5s ease
             &-enter, &-leave-to
                 opacity: 0
+        & .error-trans
+            &-enter-active, &-leave-active
+                transition: .3s ease
+            &-enter, &-leave-to
+                opacity: 0
+                transform: translateY(60px)
+
 
 </style>
