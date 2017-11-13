@@ -20,26 +20,29 @@
                     :review="review"
                 )
         .col-lg-12.text-center.reviews-btn
-            button.btn.btn-default.btn-transparent(@click="openPopUp") Оставте и Вы свой отклик!
-        pReview(
+            button.btn.btn-default.btn-transparent(@click="handlerPopUp") Оставте и Вы свой отклик!
+        bitPopup(
           v-show="showPop",
-          @close="closePopUp"
+          @close="handlerPopUp"
         )
 
 </template>
 
-<style lang="sass">
-
-</style>
-
 <script>
     import sControl from '../../components/vue/review-slider/slider-control'
     import sItem from '../../components/vue/review-slider/slider-item'
-    import pReview from '../../components/vue/popups/pop-review.vue'
+    import bitPopup from '../../components/vue/popups/popup.vue'
+
+    import Wpapi from '../../../node_modules/wpapi'
+
+    const wp = new Wpapi({
+//      endpoint: window.WP_API_Settings.root
+      endpoint: 'http://bitrealt.com.ua/wp-json'
+    });
 
     export default {
       components: {
-        sControl, sItem, pReview
+        sControl, sItem, bitPopup
       },
       data () {
         return {
@@ -48,47 +51,22 @@
           next: 0,
           loading: true,
           curReviews: [],
-          reviews: [
-            {
-              'id': 1,
-              'author_name': 'A WordPress Commenter',
-              'content': {
-                'rendered': 'Hi,adadaSDASDACaDCfsafsgsdhdjlsalfdkna slkfn sdallkfs lsaknsaf  this is a comment.To get started with moderating, editing, and deleting comments, please visit the Comments screen in the dashboard.Commenter avatars come from'
-              },
-              'author_avatar_urls': {
-                '24': 'http://1.gravatar.com/avatar/d7a973c7dab26985da5f961be7b74480?s=24&d=mm&r=g',
-                '48': 'http://1.gravatar.com/avatar/d7a973c7dab26985da5f961be7b74480?s=48&d=mm&r=g',
-                '96': 'http://1.gravatar.com/avatar/d7a973c7dab26985da5f961be7b74480?s=96&d=mm&r=g'
-              }
-            },
-            {
-              'id': 2,
-              'author_name': 'A WordPress Commenter 1111',
-              'content': {
-                'rendered': 'Hi, this is a comment.To get started with moderating, editing, and deleting comments, please visit the Comments screen in the dashboard.Commenter avatars come from'
-              },
-              'author_avatar_urls': {
-                '24': 'http://2.gravatar.com/avatar/d7a973c7dab26985da5f961be7b74480?s=24&d=mm&r=g',
-                '48': 'http://2.gravatar.com/avatar/d7a973c7dab26985da5f961be7b74480?s=48&d=mm&r=g',
-                '96': 'http://2.gravatar.com/avatar/d7a973c7dab26985da5f961be7b74480?s=96&d=mm&r=g'
-              }
-            },
-            {
-              'id': 3,
-              'author_name': 'A WordPress Commenter 11112',
-              'content': {
-                'rendered': 'Hi, this is a comment.To get started with moderating, editing, and deleting comments, please visit the Comments screen in the dashboard.Commenter avatars come from'
-              },
-              'author_avatar_urls': {
-                '24': 'http://3.gravatar.com/avatar/d7a973c7dab26985da5f961be7b74480?s=24&d=mm&r=g',
-                '48': 'http://3.gravatar.com/avatar/d7a973c7dab26985da5f961be7b74480?s=48&d=mm&r=g',
-                '96': 'http://3.gravatar.com/avatar/d7a973c7dab26985da5f961be7b74480?s=96&d=mm&r=g'
-              }
-            }
-          ]
+          reviews: []
         }
       },
       methods: {
+        getReviews() {
+          wp.comments().get({
+            post: 2,
+            order: 'DESC',
+            orderby: 'date'
+          })
+            .then(resp => {
+              this.reviews = resp;
+            })
+            .then(() => {this.setTwoReviews()})
+            .catch(er => {console.log(er)});
+        },
         setTwoReviews() {
           let i = 0;
           for(i; i < 2; i++) {
@@ -109,19 +87,16 @@
           this.curReviews.shift();
           this.curReviews.push(this.reviews[this.next])
         },
-        openPopUp() {
-          this.showPop = true;
-          document.body.style.overflow = 'hidden';
-        },
-        closePopUp() {
-          this.showPop = false;
-          document.body.style.overflow = '';
+        handlerPopUp() {
+          this.showPop = !this.showPop;
+            document.body.style.overflow = this.showPop ? 'hidden' : '';
         }
       },
       mounted() {
-        this.setTwoReviews()
+        this.getReviews();
       }
     }
+
 </script>
 
 <!--<style src="../../assets/css/index.sass" lang="sass"></style>-->
@@ -172,11 +147,11 @@
             display: flex
             flex-direction: row
             align-items: center
-            width: 45%
+            width: 40%
             padding: 30px 25px
             box-shadow: 0 0 20px 14px #fbfbfb
             &:first-child
-                margin-right: 20px
+                margin-right: 30px
         &-avatar
             display: block
             overflow: hidden

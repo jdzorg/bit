@@ -1,10 +1,10 @@
 <template lang="pug">
     .reviews-container.trans-slider-item
-        .reviews-avatar
-            img(:src="review.author_avatar_urls['96']")
+        <!--.reviews-avatar-->
+            <!--img(:src="review.author_avatar_urls['96']")-->
         .reviews-content
-            span.reviews-author {{ review.author_name }}
-            p.reviews-review {{ review.content.rendered }}
+            span.reviews-author {{ review.author_name.replace(/<[^>]+>/g,'') }}
+            p.reviews-review {{ review.content.rendered.replace(/<[^>]+>/g,'') }}
 </template>
 
 <script>

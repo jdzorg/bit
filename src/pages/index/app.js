@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import '../../assets/css/index.sass'
-import ElementUI from 'element-ui'
+// import ElementUI from 'element-ui'
 import App from './app.vue'
 
 setTimeout(setHeight, 1000)
@@ -15,7 +15,7 @@ function setHeight () {
   // })
 }
 
-Vue.use(ElementUI)
+// Vue.use(ElementUI)
 
 new Vue({
   el: '#app',
