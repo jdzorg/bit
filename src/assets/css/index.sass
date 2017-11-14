@@ -146,6 +146,89 @@
   background-color: $barnd-light
 
 //reviews section
+.reviews
+  &-wrapper
+    position: relative
+    width: 100%
+    margin-top: 50px
+  &-trans
+    position: relative
+    display: flex
+    flex-direction: row
+    justify-content: center
+    width: 100%
+  /*overflow: hidden*/
+  &-control
+    position: absolute
+    z-index: 2
+    width: 100%
+    height: 42px
+    top: 50%
+    left: 0
+    transform: translateY(-50%)
+    .control
+      position: absolute
+      top: 0
+      width: 42px
+      height: 42px
+      background:
+        color: transparent
+        image: url(../../assets/img/ico-controll-arrow-left.png)
+        repeat: no-repeat
+        size: 100% 100%
+        position: center
+      cursor: pointer
+      transition: .3s ease
+      &:hover
+        background-color: #88caec
+    .next
+      right: 0
+      transform: scale(-1, 1)
+    .prev
+      left: 0
+
+  &-container
+    display: flex
+    flex-direction: row
+    align-items: center
+    width: 40%
+    padding: 30px 25px
+    box-shadow: 0 0 20px 14px #fbfbfb
+    background-color: #fff
+    &:first-child
+      margin-right: 15px
+    &:last-child
+      margin-left: 15px
+  &-author
+    padding-left: 3px
+    font:
+      family: 'rubik-b', sans-serif
+      weight: bold
+      size: 16px
+    color: #88caec
+  &-review
+    margin-top: 10px
+    font:
+      family: 'rubik-l', sans-serif
+      weight: 100
+      size: 14px
+  &-btn > button.btn
+    margin-top: 50px
+    color: #000
+    border-color: #000
+
+  /*.reviews-trans*/
+  .trans-slider
+    &-item, &-move
+      transition: .6s ease
+    &-leave-active
+      position: absolute
+    &-enter-active
+      transition-delay: .3s
+    &-enter, &-leave-to
+      opacity: 0
+
+//feedback section
 .feedback
   background:
     image: url(../img/feedback.png)

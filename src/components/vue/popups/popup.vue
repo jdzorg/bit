@@ -9,50 +9,47 @@
                         .close(@click="$emit('close')")
                             span
                             span
-                        bitForm(v-if="isSent")
-                        pMSG(
-                          v-else,
-                          :finalMSG="msg"
+                        transition(
+                          name="thxmsg",
+                          mode="out-in"
                         )
-            transition-group(
-              tag="p"
-              name="error-trans",
-              mode="in-out"
-            )
-                span.errorMSG(
-                  v-show="isValid",
-                  :key="0"
-                ) Некоторые из полей неверно заполнены
-                span.errorMSG(
-                  v-show="isEmpty",
-                  :key="1"
-                ) Некоторые из полей неверно заполнены
+                            bitForm(
+                              v-if="!isSent",
+                              key="form",
+                              :title="formHead.title",
+                              :subTitle="formHead.subTitle",
+                              :btnName="formHead.btn"
+                            )
+                            fMSG(
+                              v-else,
+                              :finalMSG="msg",
+                              key="msg"
+                            )
+
 </template>
 
 <script>
-  import bitForm from '../form.vue'
-  import pMSG from '../popups/popup-thxmsg.vue'
+
+    //TODO-popup make slot
+    import fMSG from '../form/form-thxmsg.vue'
+    import bitForm from '../form/form.vue'
 
   export default {
     components: {
-      bitForm, pMSG
+      bitForm, fMSG
     },
     data() {
       return{
+        isSent: false,
+        formHead: {
+          title: 'Оставте свой отклик',
+          subTitle: 'Напишите отклик, поделитесь мнением которое сложилось у<br> Вас при сотруднечестве с нашей компанией.',
+          btn: 'Отправить'
+        },
         msg: {
           title: '',
           msg: ''
         },
-        isSent: false,
-        isValid: false,
-        isEmpty: false,
-      }
-    },
-    methods: {
-      onOffErrorMSG(form) {
-        this.isValid = Array.from(form).some(el => {
-          return el.classList.contains('error')
-        });
       }
     },
     computed: {
@@ -80,17 +77,7 @@
             size: 100% 100%
         &-container, & .row
             position: relative
-        & form
-            position: relative
-        & input.error
-            outline-color: rgba(255, 0, 0, 0.62)
-            border-bottom: 2px solid rgba(255, 0, 0, 0.62)
-        & textarea.error
-            border: 2px solid rgba(255, 0, 0, 0.62)
-        & .errorMSG
-            margin-top: 10px
-            text-align: center
-            color: red
+            height: 454px
         & .close
             position: absolute
             width: 40px
@@ -113,20 +100,11 @@
                     transform: rotate(-40deg)
             &:hover > span
                 height: 3px
+
         &-trans
             &-enter-active, &-leave-active
                 transition: .5s ease
             &-enter, &-leave-to
                 opacity: 0
-        & p
-            margin-top: 10px
-            text-align: center
-        & .error-trans
-            &-enter-active, &-leave-active
-                transition: .3s ease
-            &-enter, &-leave-to
-                opacity: 0
-                transform: translateY(60px)
-
 
 </style>

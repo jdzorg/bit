@@ -41,6 +41,16 @@
     height: 1px
     overflow: hidden
     background-color: #bdc3d5
+  & .animate
+    opacity: 0
+    transition: .4s ease
+    &-left
+      transform: translateX(-200px)
+    &-right
+      transform: translateX(200px)
+    &.active
+      opacity: 1
+      transform: translateX(0)
 
 //company in numbers section
 
@@ -96,6 +106,9 @@
       left: none
       right: none
       bottom-width: 1px
+    &.error
+      outline-color: rgba(255, 0, 0, 0.62)
+      border-bottom: 2px solid rgba(255, 0, 0, 0.62)
   & textarea
     height: 110px
     margin:
@@ -104,5 +117,14 @@
     padding: 10px
     border: 1px solid $body-bg
     resize: none
+    &.error
+      border: 2px solid rgba(255, 0, 0, 0.62)
   & .input-group
     width: 100%
+  & .errorMSG
+    margin-top: 10px
+    text-align: center
+    color: red
+  & p
+    margin-top: 10px
+    text-align: center

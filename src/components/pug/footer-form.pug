@@ -4,19 +4,4 @@
 section.section-padding.feedback
     .container
         .row
-            .col-lg-12
-                span.section-title.white= formTitle
-                span.section-subtitle.white= formSubTitleF
-                    br
-                    = formSubTitleS
-            .col-lg-12
-                form.form.feedback-form
-                    .input-group
-                        input.pull-left(type='text' placeholder='Имя *')
-                        input.pull-right(type='text' placeholder='Телефон *')
-                    .input-group
-                        input.form-full-width(type='text' placeholder='Email *')
-                    .input-group
-                        textarea.form-full-width(name='', id='', cols='30', rows='10' placeholder='Ваш вопрос')
-                    .input-group.text-center
-                        button.btn.btn-default= formBtnName
+            #appform
