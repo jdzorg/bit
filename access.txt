@@ -19,3 +19,18 @@ h: gospod07.ftp.tools
 host
 l: respyblikanez@gmail.com
 p: bumer566
+
+bitrealty email
+l: info@bitrealt.com.ua
+p: Ue0f2c82zBYP
+
+
+//{
+//  "presets": [
+//    ["env", {
+//      "targets": {
+//        "browsers": ["> 5%"]
+//      }
+//    }]
+//  ]
+//}

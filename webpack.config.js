@@ -31,7 +31,7 @@ const config = {
   output: {
     path: resolve(__dirname, './dist'),
     filename: 'assets/js/[name].js',
-    publicPath: '/'
+    publicPath: ''
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],

@@ -4,22 +4,22 @@ import '../../assets/css/index.sass'
 import App from './app.vue'
 import Feedback from './feedback-form.vue'
 
-setTimeout(() => {
+setTimeout(function () {
   setHeight()
   scrollListening()
 }, 1000)
 
 function setHeight () {
-  const setHeight = document.querySelectorAll('.setHeight')
-  for (let i = 0; i < setHeight.length; i++) {
+  var setHeight = document.querySelectorAll('.setHeight')
+  for (var i = 0; i < setHeight.length; i++) {
     setHeight[i].style.height = setHeight[i].offsetHeight + 'px'
   }
   // setHeight.forEach(el => {
   //   el.style.height = `${el.offsetHeight}px`
   // })
 }
-const elements = document.querySelectorAll('.animate')
-let isScrolling = false
+var elements = document.querySelectorAll('.animate')
+var isScrolling = false
 
 function scrollListening () {
   document.addEventListener('scroll', scrollHandler)
@@ -27,7 +27,7 @@ function scrollListening () {
 }
 function scrollHandler (e) {
   if (!isScrolling) {
-    window.requestAnimationFrame(() => {
+    window.requestAnimationFrame(function () {
       scrolling(e)
       isScrolling = false
     })
@@ -36,8 +36,8 @@ function scrollHandler (e) {
 }
 
 function scrolling (e) {
-  for (let i = 0; i < elements.length; i++) {
-    const listItem = elements[i]
+  for (var i = 0; i < elements.length; i++) {
+    var listItem = elements[i]
 
     if (isFullyVisible(listItem)) {
       listItem.classList.add('active')
@@ -58,9 +58,9 @@ function scrolling (e) {
 // }
 
 function isFullyVisible (el) {
-  const elementBoundary = el.getBoundingClientRect()
-  const top = elementBoundary.top
-  const bottom = elementBoundary.bottom
+  var elementBoundary = el.getBoundingClientRect()
+  var top = elementBoundary.top
+  var bottom = elementBoundary.bottom
   return ((top >= 0) && (bottom <= window.innerHeight))
 }
 

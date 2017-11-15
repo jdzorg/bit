@@ -8,7 +8,8 @@
           key="form",
           :title="formHead.title",
           :subTitle="formHead.subTitle",
-          :btnName="formHead.btn"
+          :btnName="formHead.btn",
+          :sendArgs="args"
         )
         fMSG(
           v-else,
@@ -26,6 +27,11 @@
     },
     data() {
       return{
+        args: {
+          formName: 'Форма обратной связи(главная)',
+          meth: 'nFeedback',
+          type: 'POST'
+        },
         isSent: false,
         formHead: {
           title: 'Обратная связь',

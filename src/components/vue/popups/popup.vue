@@ -18,7 +18,8 @@
                               key="form",
                               :title="formHead.title",
                               :subTitle="formHead.subTitle",
-                              :btnName="formHead.btn"
+                              :btnName="formHead.btn",
+                              :sendArgs="args"
                             )
                             fMSG(
                               v-else,
@@ -40,6 +41,11 @@
     },
     data() {
       return{
+        args: {
+          meth: 'nComment',
+          type: 'create',
+          endpoint: 'comments'
+        },
         isSent: false,
         formHead: {
           title: 'Оставте свой отклик',

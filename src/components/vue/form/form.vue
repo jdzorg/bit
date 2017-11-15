@@ -60,42 +60,106 @@
 <script>
   import Wpapi from '../../../../node_modules/wpapi'
 
-  const wp = new Wpapi({
+  const sendMethods = {
+    type: 'GET',
+    wpEndPoint: 'posts',
+    wp: new Wpapi({
 //      endpoint: window.WP_API_Settings.root
-    endpoint: 'http://bitrealt.com.ua/wp-json'
-  });
+      endpoint: 'http://bitrealt.com.ua/wp-json'
+    }),
+    url: 'http://bitrealt.com.ua/wp-content/themes/bitrealty-theme/form-handler.php',
+    errormsg: {
+      title: 'Произошла ошибка',
+      msg: 'При отправке произошла ошибка. Перезагрузить страницу и еще раз попробуйте отправить или обратитесь в администрацию сайта.'
+    },
+    nPromise(method) {
+      return new Promise((resolve, reject) => {
+        resolve(method);
+        reject(console.log(errors))
+      })
+    },
+    serialize(obj) {
+      return Object.keys(obj).map(function(prop) {
+        return [prop, obj[prop]].map(encodeURIComponent).join("=");
+      }).join("&");
+    },
+    nComment(args) {
+      /*
+      * wpargs = {
+      *   type: get/create,
+      *   endpoint: comments/posts/,
+      *   data: data to post/data to search(filter)
+      * }
+      */
+      const type = args.type || this.type;
+      const meth = args.endpoint || this.wpEndPoint;
+      const {email, name, text, phone} = args.data;
 
-  async function createComment(userData) {
-    const obj = {};
-    try {
-      const response = wp.comments().create({
+      return this.wp[meth]()[type]({
         post: 2,
-        author_email: userData.email,
-        author_name: userData.name,
-        content: userData.text,
-        author_url: userData.phone.replace(/\s/g, '')
-      });
-      obj.title = 'Ваш отзыв отправлен';
-      obj.msg = 'Ваш отзыв появится на сайте как\n только его одобрит модератор';
-      return obj;
+        author_email: email,
+        author_name: name,
+        content: text,
+        author_url: phone.replace(/\s/g, '')
+      })
+        .then(res => {
+          return {
+            title: 'Ваш отзыв отправлен',
+            msg: 'Ваш отзыв появится на сайте как только его одобрит модератор'
+          }
+        })
+        .catch(rej => {
+          console.log(rej);
+          return this.errormsg;
+        });
+    },
+    nFeedback(args) {
+      /*
+       * mailargs = {
+       *    url: ...,
+       *    type: POST
+       *   formName: like feedback,
+       *   data: data to send by mail
+       * }
+       */
+      const self = this;
+      const url = args.url || this.url;
+      const data = args.userData;
+      data.formName = args.formName;
+      const options = {
+        method: args.type || self.type,
+        body: self.serialize(data),
+        mode: 'cors'
+      };
+
+      return fetch(url, options)
+        .then(res => {
+          return {
+            title: 'Ваша заявка принята',
+            msg: 'В скором времени наш менеджер свяжется с Вами.'
+          }
+        })
+        .catch(rej => {
+          console.log(rej);
+          return this.errormsg;
+        });
     }
-    catch(er) {
-      obj.title = 'Произошла ошибка';
-      obj.msg = 'При отправке произошла ошибка. Перезагрузить страницу и еще раз попробуйте отправить или обратитесь в администрацию сайта.';
-      console.log(er);
-      return await obj;
-    }
-  }
+  };
+
 
   const regTemp = {
     name: /^[а-яА-Яa-zA-Z\sёЁїЇіІЄє]{2,20}$/,
     email: /^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$/,
-    phone: /^(\+3)?(8\s)?(\(?0)?[\-\(\)\d\s]{9,13}$/,
+    phone: /^(\+3)?(8\s?)?(\(?0)?[\-\(\)\d\s]{9,13}$/,
     text: /^[а-яА-Яa-zA-Z0-9ёЁїЇіІЄє\.\,'"\-\+\?\!\s]{0,}$/
   };
 
   export default {
     props: {
+      sendArgs: {
+        type: Object,
+        required: true
+      },
       title: {
         type: String,
         required: true
@@ -124,6 +188,7 @@
     methods: {
       sendForm() {
         let count = 0;
+        const sm = sendMethods;
 
         for(let i in this.userData) {
           count += this.userData[i].replace(/\s/g, '').length > 0 ? 0 : 1;
@@ -133,16 +198,14 @@
           this.$parent.isEmpty = true;
           return false;
         }
-        const pr = new Promise((res, rej) => {
-          res(createComment(this.userData));
-        });
-        pr.then((rez) => {
-          this.$parent.msg.title = rez.title;
-          this.$parent.msg.msg = rez.msg;
+        this.sendArgs.userData = this.userData;
+        const response = sm.nPromise(sm[this.sendArgs.meth](this.sendArgs));
+        response.then((res) => {
+          this.$parent.msg.title = res.title;
+          this.$parent.msg.msg = res.msg;
           this.$parent.isEmpty = false;
           this.$parent.isSent = true;
-        })
-
+        });
       },
 
       validation(e) {
