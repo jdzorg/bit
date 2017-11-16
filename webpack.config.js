@@ -31,7 +31,7 @@ const config = {
   output: {
     path: resolve(__dirname, './dist'),
     filename: 'assets/js/[name].js',
-    publicPath: ''
+    publicPath: '/'
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],
@@ -165,6 +165,11 @@ const config = {
         filename: 'index.html',
         chunks: 'index',
         template: './src/pages/index/app.pug'
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'rent-home.html',
+      chunks: 'rent-home',
+      template: './src/pages/rent-home/app.pug'
     })
   ],
   devServer: {

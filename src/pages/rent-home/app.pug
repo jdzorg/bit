@@ -1,0 +1,26 @@
+doctype html
+html(lang='ru')
+    include ../../components/pug/head
+    body
+        .container-fluid
+            .row
+                include ../../components/pug/header
+                main.content
+                    section.bitcrumb
+                        .container
+                            .row
+                                h1.section-title Аренда дома
+                                ol.bitcrumb-crumbs
+                                    li
+                                        a(href="/index.html") Главная
+                                    li.active Аренда дома
+                    section.rentunite
+                        .container
+                            .row
+                                #appRent
+                    - var sectionTitle = 'Не нашли что искали?'
+                    - var subTitle = 'Раскажите нам, наши специалисты помогут вам'
+                    - var btnName = 'Заказать консультацию'
+                    include ../../components/pug/callform
+                    include ../../components/pug/text-box
+                include ../../components/pug/footer
