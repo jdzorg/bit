@@ -1,5 +1,5 @@
 <template lang="pug">
-    rent-filter()
+    rentFilter
 </template>
 <style lang="sass"></style>
 <script>

@@ -185,7 +185,7 @@ const config = {
       }
     },
     open: true,
-    openPage: 'index.html'
+    openPage: 'rent-home.html'
       // contentBase: [ PathToTheFolderWhereYourHTMLsLives ],
       // watchContentBase: true
   },
