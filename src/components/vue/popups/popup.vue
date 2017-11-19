@@ -32,7 +32,7 @@
 <script>
 
     //TODO-popup make slot
-    import fMSG from '../form/form-thxmsg.vue'
+    import fMSG from '../form/msg.vue'
     import bitForm from '../form/form.vue'
 
   export default {

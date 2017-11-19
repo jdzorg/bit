@@ -45,11 +45,11 @@
     &:focus,
     &.focus
       //box-shadow: 0 4px 9px #F6F8FD
-      @include tab-focus
+      //@include tab-focus
   &:hover,
   &:focus,
   &.focus
-    color: $btn-default-color
+    //color: $btn-default-color
     text-decoration: none
   &:active,
   &.active
@@ -62,29 +62,35 @@
     cursor: $cursor-disabled
     @include opacity(.65)
     @include box-shadow(none)
+  & > span
+    padding-right: 5px
+  &-simple
+    background-color: transparent
+    text-decoration: underline
+    &:hover
+      color: $brand-color
+      font-weight: bold
+  &-default
+    color: #fff
+    background-color: #ff551a
+    padding: 8px 30px
+    border-color: $btn-default-bg
+    border-radius: 20px
+    letter-spacing: 1px
+    transition: .3s ease
+    &:hover, &.btn-transparent
+      background-color: transparent
+      border-color: $body-bg
+  &-transparent:hover
+    background-color: $btn-default-bg !important
+    border-color: $btn-default-bg !important
+    color: #fff !important
 
 a.btn
   &.disabled,
   fieldset[disabled] &
     pointer-events: none // Future-proof disabling of clicks on `<a>` elements
 
-
-.btn-default
-  color: #fff
-  background-color: #ff551a
-  padding: 8px 30px
-  border-color: $btn-default-bg
-  border-radius: 20px
-  letter-spacing: 1px
-  transition: .3s ease
-  &:hover, &.btn-transparent
-    background-color: transparent
-    border-color: $body-bg
-
-.btn-transparent:hover
-  background-color: $btn-default-bg !important
-  border-color: $btn-default-bg !important
-  color: #fff !important
 
 //icons & pictures
 .pic

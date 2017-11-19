@@ -1,71 +1,110 @@
 <template lang="pug">
-    section.filter
-        form
-            fieldset
-                .group-attr.btn-radio
-                    span.desc-fields Комнаты:
-                    input(id="room_1" type="radio" name="room" value="1")
-                    label(for="room_1")
-                        span 1
-                    input(id="room_2" type="radio" name="room" value="2")
-                    label(for="room_2")
-                        span 2
-                    input(id="room_3" type="radio" name="room" value="3")
-                    label(for="room_3")
-                        span 3
-                    input(id="room_4" type="radio" name="room" value="4")
-                    label(for="room_4")
-                        span 4
-                    input(id="room_5" type="radio" name="room" value="5+")
-                    label(for="room_5")
-                        span 5+
-                .group-attr
-                    input(type="number" name="price_from" placeholder="Цена от")
-                    span.desc-fields -
-                    input(type="number" name="price_to" placeholder="Цена до")
-                .group-attr.btn-radio
-                    input(id="cur_1" type="radio" name="currency" value="uah")
-                    label(for="cur_1")
-                        span грн
-                    input(id="cur_2" type="radio" name="currency" value="usd")
-                    label(for="cur_2")
-                        span usd
-                .group-attr
-                    input(type="number" name="area_from" placeholder="Площадь от")
-                    span.desc-fields -
-                    input(type="number" name="area_to" placeholder="Площадь до")
-                    span.desc-fields км.м
-            fieldset
-                .group-attr
-                    span.desc-fields Область:
-                    label
-                        | Киев
-                        input(type="radio" name="region" value="Киев")
-                    label
-                        | Киевская область
-                        input(type="radio" name="region" value="Киевская область")
-            fieldset
-                .group-attr
-                    select
-                        option(value="Святошино")
-                        option(value="Печерский")
-                        option(value="Дарницкий")
-                .group-attr
-                    input(placeholder="Улица")
-                .group-attr
-                    input(placeholder="Этажей в доме")
-                .group-attr
-                    input(placeholder="Площадь участка")
-                    span.desc-fields сот.
-            fieldset
-                button.btn.btn-default Подобрать
+    section.row.filter
+        form.col-lg-12
+            .filter-col-1
+                fieldset
+                    .group-attr.btn-radio
+                        span.desc-fields Комнаты:
+                        input(id="room_1" type="radio" name="room" value="1" checked="checked")
+                        label(for="room_1") 1
+                        input(id="room_2" type="radio" name="room" value="2")
+                        label(for="room_2") 2
+                        input(id="room_3" type="radio" name="room" value="3")
+                        label(for="room_3") 3
+                        input(id="room_4" type="radio" name="room" value="4")
+                        label(for="room_4") 4
+                        input(id="room_5" type="radio" name="room" value="5+")
+                        label(for="room_5") 5+
+                    .group-attr
+                        input(type="number" name="price_from" placeholder="Цена от")
+                        span.desc-fields -
+                        input(type="number" name="price_to" placeholder="Цена до")
+                    .group-attr.btn-radio
+                        input(id="cur_1" type="radio" name="currency" value="uah" checked="checked")
+                        label(for="cur_1")
+                            span грн
+                        input(id="cur_2" type="radio" name="currency" value="usd")
+                        label(for="cur_2")
+                            span usd
+                    .group-attr
+                        input(type="number" name="area_from" placeholder="Площадь от")
+                        span.desc-fields -
+                        input(type="number" name="area_to" placeholder="Площадь до")
+                        span.desc-fields км.м
+                transition(name="filter-advanced" mode="in-out")
+                    .filter-hidden(v-show="isFilterMore")
+                        fieldset
+                            .group-attr.radio
+                                span.desc-fields Область:
+                                input(id="region_1" type="radio" name="region" value="Киев" checked="checked")
+                                label(for="region_1") Киев
+                                input(id="region_2" type="radio" name="region" value="Киевская область")
+                                label(for="region_2") Киевская область
+                        fieldset
+                            .group-attr
+                                select(name="district")
+                                    option() Район
+                                    option(value="Святошино") Святошино
+                                    option(value="Печерский") Печерский
+                                    option(value="Дарницкий") Дарницкий
+                            .group-attr
+                                input(type="text" placeholder="Улица" style="width:300px")
+                            .group-attr
+                                input(type="number" placeholder="Этажей в доме")
+                            .group-attr
+                                input(type="text" placeholder="Площадь участка")
+                                span.desc-fields сот.
+            .filter-col-2
+                fieldset.text-right
+                    button.btn.btn-default Подобрать
+            .clearfix
+        .col-lg-12.text-center.filter-add-toggle
+            hr
+            button.btn.btn-simple(@click="toggleAddFilter")
+                span {{ isFilterMore ? '&#8593;' : '&#8595' }}
+                | {{ isFilterMore ? 'Скрыть расширеный фильтр' : 'Расширеный фильтр' }}
+
 </template>
+
+<script>
+
+export default {
+    data () {
+      return {
+        isFilterMore: false
+      }
+    },
+    methods: {
+      toggleAddFilter() {
+        this.isFilterMore = !this.isFilterMore
+      }
+    }
+}
+
+</script>
+
 <style lang="sass">
     .filter
-        padding:
-            top: 57px
-            bottom: 30px
-        border-bottom: 1px solid #bdc3d5
+        padding-top: 57px
+        &-add-toggle
+            padding:
+                top: 10px
+                bottom: 20px
+            & hr
+                margin:
+                    top: -10px
+                    bottom: 0
+                border-bottom: 1px solid #bdc3d5
+        & form
+            & button.btn:hover
+                color: #000
+                border-color: #000
+        &-col-1, &-col-2
+            float: left
+        &-col-1
+            width: 87%
+        &-col-2
+            width: 13%
         & .desc-fields
             font-size: 16px
         & fieldset
@@ -73,8 +112,13 @@
             margin-bottom: 30px
         & .group-attr
             display: inline-block
+        & label
+            margin-bottom: 0
         & input[type="number"]
             width: 120px
+        & select
+            width: 280px
+        & input[type="number"], input[type="text"], & select
             height: 42px
             margin:
                 right: 4px
@@ -83,12 +127,12 @@
             border: 1px solid #7e858b
             color: #7e858b
             font-size: 14px
+        & input[type="radio"]
+            display: none
         & .btn-radio
-            & input[type="radio"]
-                display: none
-                &:checked + label
-                    background-color: #88caec
-                    color: #fff
+            & input[type="radio"]:checked + label
+                background-color: #88caec
+                color: #fff
             & label
                 display: inline-flex
                 justify-content: center
@@ -98,6 +142,7 @@
                 margin:
                     right: 4px
                     left: 4px
+                    bottom: 0
                 background-color: #eeeff0
                 font-weight: 500
                 cursor: pointer
@@ -105,16 +150,40 @@
                 &:hover
                     background-color: #88caec
                     color: #fff
-
+        & .radio
+            & label
+                position: relative
+                max-height: 17px
+                min-height: 17px
+                margin-left: 25px
+                padding-left: 25px
+                font:
+                    family: 'rubik-l', sans-serif
+                    weight: 100
+                    size: 14px
+                color: #7e858b
+                &:before
+                    content: ""
+                    position: absolute
+                    display: block
+                    height: 17px
+                    width: 17px
+                    top: 0
+                    left: 0
+                    border: 1px solid #393a3d
+                    border-radius: 50%
+                    background-color: transparent
+                    transition: 1s ease
+            & input[type="radio"]:checked + label
+                color: #393a3d
+                &:before
+                    background-color: #000
+        &-advanced
+            &-enter-active, &-leave-active
+                transition: .5s ease
+                height: 150px
+                overflow: hidden
+            &-enter, &-leave-to
+                height: 0
 
 </style>
-<script>
-
-  export default {
-    data () {
-      return {
-      }
-    }
-  }
-
-</script>

@@ -27,8 +27,8 @@
 </template>
 
 <script>
-    import sControl from '../../components/vue/review-slider/slider-control'
-    import sItem from '../../components/vue/review-slider/slider-item'
+    import sControl from '../../components/vue/review-slider/control'
+    import sItem from '../../components/vue/review-slider/item'
     import bitPopup from '../../components/vue/popups/popup.vue'
 
     import Wpapi from '../../../node_modules/wpapi'
