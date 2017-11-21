@@ -1,29 +1,29 @@
 <template lang="pug">
     .col-lg-4
-        a.miniatures-item(:href="min.href")
+        a.miniatures-item(:href="min.link", data-id="min.id")
             img(:src="min.img")
             .miniatures-caption
-                span.miniatures-addres {{ min.address }}
-                span.miniatures-district {{ min.district }}
-                span.miniatures-code {{ min.code }}
+                span.miniatures-addres {{ min.bit_address }}
+                //span.miniatures-district {{ min.district }}
+                span.miniatures-code {{ min.bit_code }}
                 .clearfix
-                span.miniatures-price {{ min.price }}
+                span.miniatures-price {{ min.bit_price_uah + ' грн. /  ' + min.bit_price_uah +' $'}}
                 button.btn.btn-simple узнать цену в криптовалюте
                 .miniatures-features
                     .rooms
                         i
                         P
-                            span {{ min.features.rooms }}
+                            span {{ min.bit_rooms }}
                             span комнат
                     .size-home
                         i
                         P
-                            span {{ min.features.sHome }}
+                            span {{ min.bit_size_house }}
                             span кв.м.
                     .size-area
                         i
                         P
-                            span {{ min.features.sArea }}
+                            span {{ min.bit_size_area }}
                             span сот. участок
 </template>
 <style lang="sass">
@@ -125,34 +125,8 @@
     export default {
       props: {
         min: {
-          href: {
-            type: String,
-            required: true
-          },
-          img: {
-            type: String,
-            required: true
-          },
-          address: {
-            type: String,
-            required: true
-          },
-          district: {
-            type: String,
-            required: true
-          },
-          code: {
-            type: String,
-            required: true
-          },
-          price: {
-            type: String,
-            required: true
-          },
-          features: {
-            type: Object,
-            required: true
-          },
+          type: Object,
+          required: true
         }
       }
     }
