@@ -1,10 +1,10 @@
 <template lang="pug">
     .col-lg-4
         a.miniatures-item(:href="min.link", data-id="min.id")
-            img(:src="min.img")
+            img(:src="min.bit_min_img")
             .miniatures-caption
                 span.miniatures-addres {{ min.bit_address }}
-                //span.miniatures-district {{ min.district }}
+                span.miniatures-district {{ min.house_attr }} район
                 span.miniatures-code {{ min.bit_code }}
                 .clearfix
                 span.miniatures-price {{ min.bit_price_uah + ' грн. /  ' + min.bit_price_uah +' $'}}
