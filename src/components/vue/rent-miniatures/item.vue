@@ -1,13 +1,13 @@
 <template lang="pug">
     .col-lg-4
         a.miniatures-item(:href="min.link", data-id="min.id")
-            img(:src="min.bit_min_img")
+            img(:src="min._embedded['wp:featuredmedia'][0].media_details.sizes.thumbnail.source_url")
             .miniatures-caption
                 span.miniatures-addres {{ min.bit_address }}
                 span.miniatures-district {{ min.house_attr }} район
                 span.miniatures-code {{ min.bit_code }}
                 .clearfix
-                span.miniatures-price {{ min.bit_price_uah + ' грн. /  ' + min.bit_price_uah +' $'}}
+                span.miniatures-price {{ min.bit_price_uah + ' грн. /  ' + min.bit_price_usd +' $'}}
                 button.btn.btn-simple узнать цену в криптовалюте
                 .miniatures-features
                     .rooms

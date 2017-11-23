@@ -1,16 +1,19 @@
 <template lang="pug">
-    section.row.miniatures
-        .col-lg-12
-            .row
-                transition-group(
-                  tag="div",
-                  name="miniature-trans"
-                )
-                    minItem(
-                      v-for="(item, index) in minData",
-                      :key="index",
-                      :min="item"
-                    )
+    section.rentunit
+        .container
+            rentFilter(@filterItems="getFilteredItems")
+            section.row.miniatures
+                .col-lg-12
+                    .row
+                        transition-group(
+                          tag="div",
+                          name="miniature-trans"
+                        )
+                            minItem(
+                              v-for="(item, index) in minData",
+                              :key="index",
+                              :min="item"
+                            )
 
 </template>
 
@@ -19,6 +22,8 @@
 
 <script>
     import minItem from './item.vue'
+    import rentFilter from '../filters/filter.vue'
+
     import Wpapi from '../../../../node_modules/wpapi'
 
     const wp = new Wpapi({
@@ -30,7 +35,7 @@
 
     export default {
       components: {
-        minItem
+        minItem, rentFilter
       },
       data() {
         return {
@@ -40,16 +45,103 @@
         }
       },
       methods: {
-        get_items() {
+        getItems() {
           return wp.house()
             .order('desc')
             .orderby('date')
+            .embed()
             .get()
             .then(resp => {
               return resp;
           });
         },
-        get_terms() {
+        getFilteredItems(filters) {
+          let {rooms, currency, price_from, price_to, area_from, area_to, region, district, size_area, address} = filters;
+          let ite = 0;
+          let compare = '=';
+          let queryStr = `?filter[meta_query][relation]=AND
+                          &filter[meta_query][${ite}][key]=_bit_rooms
+                          &filter[meta_query][${ite}][value]=${rooms}
+                          &filter[meta_query][${ite}][compare]=${compare}
+                          &filter[meta_query][${ite}][type]=NUMERIC`;
+          ite++;
+            debugger;
+          if(price_from !== '' || price_to !== '') {
+            queryStr += `&filter[meta_query][${ite}][key]=_bit_price_${currency}
+                         &filter[meta_query][${ite}][type]=NUMERIC`;
+
+              if (price_from !== '' && price_to === '') {
+                queryStr += `&filter[meta_query][${ite}][value]=${price_from}
+                             &filter[meta_query][${ite}][compare]=>=`;
+              } else if ((price_to !== '' && price_from === '') && price_from < price_to) {
+                queryStr += `&filter[meta_query][${ite}][value]=${price_to}
+                             &filter[meta_query][${ite}][compare]=<=`;
+              } else if((price_to !== '' && price_from === '') && price_from < price_to) {
+                queryStr += `&filter[meta_query][${ite}][value]=${price_to}`;
+              }else {
+                queryStr += `&filter[meta_query][${ite}][value][0]=${price_from}
+                             &filter[meta_query][${ite}][value][1]=${price_to}
+                             &filter[meta_query][${ite}][compare]=BETWEEN`
+              }
+
+
+
+            ite++;
+          }
+
+          if(area_from !== '' || area_to !== '') {
+            queryStr += `&filter[meta_query][${ite}][key]=_bit_size_house
+                         &filter[meta_query][${ite}][type]=NUMERIC`;
+            if(area_from < area_to) {
+              if (area_from !== '' && area_to === '') {
+                queryStr += `&filter[meta_query][${ite}][value]=${area_from}
+                             &filter[meta_query][${ite}][compare]=>=`;
+              } else if (area_to !== '' && area_from === '') {
+                queryStr += `&filter[meta_query][${ite}][value]=${area_to}
+                             &filter[meta_query][${ite}][compare]=<=`;
+              } else {
+                queryStr += `&filter[meta_query][${ite}][value][0]=${area_from}
+                             &filter[meta_query][${ite}][value][1]=${area_to}
+                             &filter[meta_query][${ite}][compare]=BETWEEN`
+              }
+            } else {
+              queryStr += `&filter[meta_query][${ite}][value]=${area_to}`;
+            }
+            ite++;
+          }
+
+          if(size_area !== '') {
+            queryStr += `&filter[meta_query][${ite}][key]=_bit_size_area
+                         &filter[meta_query][${ite}][value]=${size_area}
+                         &filter[meta_query][${ite}][type]=NUMERIC
+                         &filter[meta_query][${ite}][compare]=${compare}`;
+            ite++;
+          }
+
+          if(address !== '') {
+            queryStr += `&filter[meta_query][${ite}][key]=_bit_address
+                         &filter[meta_query][${ite}][value]=${address}
+                         &filter[meta_query][${ite}][compare]=${compare}`;
+            ite++;
+          }
+
+            debugger;
+
+ //         debugger;
+//          Wpapi.discover('http://bitrealt.com.ua')
+//            .then(site => {
+//              wp.posts()
+//                .filter('meta_key', '_bit_rooms')
+//                .filter('meta_val', '2')
+//                .get()
+//                .then(resp => {
+//                  debugger;
+//                })
+//                .catch(er => {debugger;});
+//            }).catch(er => {debugger;});
+
+        },
+        getTerms() {
           const self = this;
           return wp.allTerms()
             .param('term', 'house_attr')
@@ -64,35 +156,7 @@
               }
             });
         },
-        get_images(posts) {
-          const self = this;
-          const cPosts = posts;
-          const allMedia = [];
-          for(let k in cPosts) {
-            if(cPosts.hasOwnProperty(k) && cPosts[k].hasOwnProperty('bit_min_img')) {
-              allMedia.push(wp.media()
-                .id(cPosts[k]['bit_min_img'])
-                .get()
-                .then(resp => {
-                  return resp;
-                }));
-            }
-          }
-          return Promise.all(allMedia)
-            .then(resp => {
-              let i = 0;
-              let k = 0;
-              for(i; i < resp.length; i++) {
-                for(k; k < cPosts.length; k++) {
-                  if(cPosts[k].hasOwnProperty('bit_min_img') && parseInt(cPosts[k]['bit_min_img']) === resp[i]['id']) {
-                    cPosts[k]['bit_min_img'] = resp[i].guid.rendered;
-                  }
-                }
-              }
-              return cPosts;
-            });
-        },
-        parse_post(posts) {
+        parseItems(posts) {
           const cPosts = posts;
           const self = this;
           for(let k = 0; k < cPosts.length; k++) {
@@ -107,44 +171,18 @@
             }
           }
           this.minData = cPosts;
-//          const p = new Promise((res, rej) => {
-//            for(let k in cPosts) {
-//              if(cPosts.hasOwnProperty(k) && cPosts[k].hasOwnProperty('house_attr')) {
-//                let termIds = cPosts[k]['house_attr'];
-//                for (let i = 0; i < termIds.length; i++) {
-//                  if (self.termsAttr.hasOwnProperty(termIds[i]))
-//                    cPosts[k]['house_attr'] = self.termsAttr[termIds[i]];
-//                }
-//              } else {
-//                delete cPosts[k];
-//              }
-//            }
-//            res('ok');
-//          });
-//          p.then(res => {
-//            for(let k in cPosts) {
-//              if(cPosts.hasOwnProperty(k) && cPosts[k].hasOwnProperty('bit_min_img')) {
-//                self.get_image(cPosts[k]['bit_min_img']);
-//              }
-//            }
-//            this.minData = cPosts;
-//          });
         }
       },
       mounted() {
         const p = new Promise((res, rej) => {
-          res(this.get_terms());
+          res(this.getTerms());
           rej(console.log(error));
         });
         p.then(resp => {
-            return this.get_items();
+            return this.getItems();
           })
           .then(resp => {
-            return this.get_images(resp);
-         })
-          .then(resp => {
-            debugger;
-            this.parse_post(resp)
+            this.parseItems(resp)
           });
       }
     }

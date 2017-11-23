@@ -1,58 +1,61 @@
 <template lang="pug">
     section.row.filter
-        form.col-lg-12
+        form.col-lg-12(
+          v-model="form",
+          @submit.prevent="$emit('filterItems', form)"
+        )
             .filter-col-1
                 fieldset
                     .group-attr.btn-radio
                         span.desc-fields Комнаты:
-                        input(id="room_1" type="radio" name="room" value="1" checked="checked")
+                        input(id="room_1" type="radio" v-model="form.rooms" value="1")
                         label(for="room_1") 1
-                        input(id="room_2" type="radio" name="room" value="2")
+                        input(id="room_2" type="radio" v-model="form.rooms" value="2")
                         label(for="room_2") 2
-                        input(id="room_3" type="radio" name="room" value="3")
+                        input(id="room_3" type="radio" v-model="form.rooms" value="3")
                         label(for="room_3") 3
-                        input(id="room_4" type="radio" name="room" value="4")
+                        input(id="room_4" type="radio" v-model="form.rooms" value="4")
                         label(for="room_4") 4
-                        input(id="room_5" type="radio" name="room" value="5+")
+                        input(id="room_5" type="radio" v-model="form.rooms" value="5+")
                         label(for="room_5") 5+
                     .group-attr
-                        input(type="number" name="price_from" placeholder="Цена от")
+                        input(type="number" v-model="form.price_from" placeholder="Цена от")
                         span.desc-fields -
-                        input(type="number" name="price_to" placeholder="Цена до")
+                        input(type="number" v-model="form.price_to" placeholder="Цена до")
                     .group-attr.btn-radio
-                        input(id="cur_1" type="radio" name="currency" value="uah" checked="checked")
+                        input(id="cur_1" type="radio" v-model="form.currency" value="uah")
                         label(for="cur_1")
                             span грн
-                        input(id="cur_2" type="radio" name="currency" value="usd")
+                        input(id="cur_2" type="radio" v-model="form.currency" value="usd")
                         label(for="cur_2")
                             span usd
                     .group-attr
-                        input(type="number" name="area_from" placeholder="Площадь от")
+                        input(type="number" v-model="form.area_from" placeholder="Площадь от")
                         span.desc-fields -
-                        input(type="number" name="area_to" placeholder="Площадь до")
+                        input(type="number" v-model="form.area_to" placeholder="Площадь до")
                         span.desc-fields км.м
                 transition(name="filter-advanced" mode="in-out")
                     .filter-hidden(v-show="isFilterMore")
                         fieldset
                             .group-attr.radio
                                 span.desc-fields Область:
-                                input(id="region_1" type="radio" name="region" value="Киев" checked="checked")
+                                input(id="region_1" type="radio" v-model="form.region" value="Киев")
                                 label(for="region_1") Киев
-                                input(id="region_2" type="radio" name="region" value="Киевская область")
+                                input(id="region_2" type="radio" v-model="form.region" value="Киевская область")
                                 label(for="region_2") Киевская область
                         fieldset
                             .group-attr
-                                select(name="district")
-                                    option() Район
+                                select(v-model="form.district")
+                                    option(disabled value="") Район
                                     option(value="Святошино") Святошино
                                     option(value="Печерский") Печерский
                                     option(value="Дарницкий") Дарницкий
                             .group-attr
-                                input(type="text" placeholder="Улица" style="width:300px")
+                                input(type="text" placeholder="Улица" style="width:300px" v-model="form.address")
                             .group-attr
-                                input(type="number" placeholder="Этажей в доме")
+                                input(type="number" placeholder="Этажей в доме" v-model="form.floors")
                             .group-attr
-                                input(type="text" placeholder="Площадь участка")
+                                input(type="text" placeholder="Площадь участка" v-model="form.size_area")
                                 span.desc-fields сот.
             .filter-col-2
                 fieldset.text-right
@@ -71,6 +74,19 @@
 export default {
     data () {
       return {
+        form: {
+          rooms: 1,
+          currency: 'uah',
+          price_from: '',
+          price_to: '',
+          area_from: '',
+          area_to: '',
+          region: 'Киев',
+          district: '',
+          address: '',
+          floors: '',
+          size_area: ''
+        },
         isFilterMore: false
       }
     },
