@@ -39,6 +39,17 @@
                         fieldset
                             .group-attr.radio
                                 span.desc-fields Область:
+                                <!--span.radio-wrapper(-->
+                                  <!--v-for="(item, index) in terms",-->
+                                  <!--v-if="item.parent === 3"-->
+                                <!--)-->
+                                    <!--inpur(-->
+                                    <!--:id="'region_'+item.term_id",-->
+                                    <!--type="radio",-->
+                                    <!--v-model="form.region[index]"-->
+                                    <!--)-->
+                                    <!--label(:for="'region_' + item.term_id") {{ item.name }}-->
+
                                 input(id="region_1" type="radio" v-model="form.region" value="Киев")
                                 label(for="region_1") Киев
                                 input(id="region_2" type="radio" v-model="form.region" value="Киевская область")
@@ -72,29 +83,34 @@
 <script>
 
 export default {
-    data () {
-      return {
-        form: {
-          rooms: 1,
-          currency: 'uah',
-          price_from: '',
-          price_to: '',
-          area_from: '',
-          area_to: '',
-          region: 'Киев',
-          district: '',
-          address: '',
-          floors: '',
-          size_area: ''
-        },
-        isFilterMore: false
-      }
-    },
-    methods: {
-      toggleAddFilter() {
-        this.isFilterMore = !this.isFilterMore
-      }
+  props: {
+    terms: {
+      type: Object,
+      required: true
     }
+  },
+  data () {
+    return {
+      form: {
+        rooms: 1,
+        currency: 'uah',
+        price_from: '',
+        price_to: '',
+        area_from: '',
+        area_to: '',
+        region: 'Киев',
+        district: '',
+        address: '',
+        floors: '',
+        size_area: ''
+      },
+    isFilterMore: false
+  }
+  },
+  methods: {toggleAddFilter() {
+    this.isFilterMore = !this.isFilterMore
+  }
+  }
 }
 
 </script>
