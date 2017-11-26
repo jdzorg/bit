@@ -1,26 +1,26 @@
 <template lang="pug">
-    .col-lg-4
+    .col-lg-4(:style="'transition-delay: .' + (trans * 3) + 's ease'")
         a.miniatures-item(:href="min.link", data-id="min.id")
-            img(:src="min._embedded['wp:featuredmedia'][0].media_details.sizes.thumbnail.source_url")
+            img(:src="min.featured_media")
             .miniatures-caption
-                span.miniatures-addres {{ min.bit_address }}
-                span.miniatures-district {{ min.house_attr }} район
-                span.miniatures-code {{ min.bit_code }}
+                span.miniatures-addres(v-if="min.bit_address") {{ min.bit_address }}
+                span.miniatures-district(v-if="typeof min.house_attr === 'string'") {{ min.house_attr }} район
+                span.miniatures-code(v-if="min.bit_code") {{ min.bit_code }}
                 .clearfix
-                span.miniatures-price {{ min.bit_price_uah + ' грн. /  ' + min.bit_price_usd +' $'}}
+                span.miniatures-price(v-if="min.bit_price_uah || min.bit_price_usd") {{ min.bit_price_uah + ' грн. /  ' + min.bit_price_usd +' $'}}
                 button.btn.btn-simple узнать цену в криптовалюте
                 .miniatures-features
-                    .rooms
+                    .rooms(v-if="min.bit_rooms")
                         i
                         P
                             span {{ min.bit_rooms }}
                             span комнат
-                    .size-home
+                    .size-home(v-if="min.bit_size_house")
                         i
                         P
                             span {{ min.bit_size_house }}
                             span кв.м.
-                    .size-area
+                    .size-area(v-if="min.bit_size_area")
                         i
                         P
                             span {{ min.bit_size_area }}
@@ -124,6 +124,7 @@
 <script>
     export default {
       props: {
+        trans: Number,
         min: {
           type: Object,
           required: true

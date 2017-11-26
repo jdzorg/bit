@@ -5,7 +5,7 @@
               :terms="termsAttr",
               @filterItems="getFilteredItems"
             )
-            section.row.miniatures
+            section.row.miniatures(:style="wrapperHeight")
                 .col-lg-12
                     .row
                         transition-group(
@@ -14,6 +14,7 @@
                         )
                             minItem(
                               v-for="(item, index) in minData",
+                              :trans="index",
                               :key="index",
                               :min="item"
                             )
@@ -21,6 +22,13 @@
 </template>
 
 <style lang="sass">
+    .miniature-trans
+        &-enter-active, &-leave-to
+            transition: .5s ease
+        &-enter, &-leave-to
+            opacity: 0
+        &-enter, &-leave-to
+            transform: translateY(30px)
 </style>
 
 <script>
@@ -34,7 +42,8 @@
       endpoint: 'http://bitrealt.com.ua/wp-json'
     });
     wp.house = wp.registerRoute('wp/v2', 'house');
-    wp.allTerms = wp.registerRoute('wp/v2', 'all-terms');
+//    wp.houseFilter = wp.registerRoute('wp/v2', 'house(?P<customQuery>)');
+    wp.allTerms = wp.registerRoute('wp/v2', 'filter-term');
 
     export default {
       components: {
@@ -44,28 +53,40 @@
         return {
           districts: [],
           termsAttr: {},
-          minData: [],
-          minImg: {}
+          minData: []
+        }
+      },
+      computed: {
+        wrapperHeight() {
+          let h = 450;
+          let itemCol = this.minData.length;
+          if(itemCol >= 4) {
+            return 'height:' + (h * 2) + 'px';
+          }
+          if(itemCol >= 7) {
+            return 'height:' + (h * 3) + 'px';
+          }
+
         }
       },
       methods: {
-        getItems() {
-          return wp.house()
+        getItems(str) {
+          return wp[typeof str === 'string' ? 'url' : 'house'](str)
             .order('desc')
             .orderby('date')
             .embed()
             .perPage(9)
-            .page()
-//            .get()
+            .page(1)
             .then(resp => {
-              return resp;
+              debugger;
+              this.parseItems(resp);
           });
         },
         getFilteredItems(filters) {
-          let {rooms, currency, price_from, price_to, area_from, area_to, region, district, size_area, address} = filters;
+          const {rooms, currency, price_from, price_to, area_from, area_to, region, district, size_area, address} = filters;
           let ite = 0;
           let compare = '=';
-          let queryStr = `?_embed=true&filter[meta_query][relation]=AND
+          let queryStr = `?filter[meta_query][relation]=AND
                           &filter[meta_query][${ite}][key]=_bit_rooms
                           &filter[meta_query][${ite}][value]=${rooms}
                           &filter[meta_query][${ite}][compare]=${compare}
@@ -121,17 +142,16 @@
             ite++;
           }
 
-          queryStr = queryStr.replace(/\s+|\n+|\r+/g, '');
-          let url = 'http://bitrealt.com.ua/wp-json/wp/v2/house' + queryStr;
-          fetch(url)
-            .then(resp => {
-              resp.json().then(data => {
-                this.parseItems(data)
-              })
-            })
-            .catch(er => {
-            });
+          if(district !== '') {
+              queryStr += `&filter[taxonomy]=house_attr
+                           &filter[term]=${district}`;
+            ite++;
+          }
 
+          queryStr = queryStr.replace(/\s+|\n+|\r+/g, '');
+          let url = 'http://bitrealt.com.ua/wp-json/wp/v2/house';
+
+          this.getItems(url+queryStr);
         },
         getTerms() {
           const self = this;
@@ -155,13 +175,17 @@
           for(let k = 0; k < cPosts.length; k++) {
             if(cPosts[k].hasOwnProperty('house_attr')) {
               let termIds = cPosts[k]['house_attr'];
-//              debugger;
               for (let i = 0; i < termIds.length; i++) {
                 if (self.districts.hasOwnProperty(termIds[i]))
                   cPosts[k]['house_attr'] = self.districts[termIds[i]];
               }
             } else {
               delete cPosts[k];
+            }
+            if(cPosts[k]._embedded.hasOwnProperty('wp:featuredmedia')) {
+              cPosts[k].featured_media = cPosts[k]._embedded['wp:featuredmedia'][0].media_details.sizes.thumbnail.source_url;
+            } else {
+              cPosts[k].featured_media = 'http://bitrealt.com.ua/wp-content/themes/bitrealty-theme/img/house-stub.png';
             }
           }
           this.minData = cPosts;
@@ -174,9 +198,6 @@
         });
         p.then(resp => {
             return this.getItems();
-          })
-          .then(resp => {
-            this.parseItems(resp)
           });
       }
     }

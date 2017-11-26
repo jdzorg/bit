@@ -39,30 +39,27 @@
                         fieldset
                             .group-attr.radio
                                 span.desc-fields Область:
-                                <!--span.radio-wrapper(-->
-                                  <!--v-for="(item, index) in terms",-->
-                                  <!--v-if="item.parent === 3"-->
-                                <!--)-->
-                                    <!--inpur(-->
-                                    <!--:id="'region_'+item.term_id",-->
-                                    <!--type="radio",-->
-                                    <!--v-model="form.region[index]"-->
-                                    <!--)-->
-                                    <!--label(:for="'region_' + item.term_id") {{ item.name }}-->
-
-                                input(id="region_1" type="radio" v-model="form.region" value="Киев")
-                                label(for="region_1") Киев
-                                input(id="region_2" type="radio" v-model="form.region" value="Киевская область")
-                                label(for="region_2") Киевская область
+                                span.radio-wrapper(
+                                  v-for="(item, index) in terms",
+                                  v-if="item.parent === 3"
+                                )
+                                    input(
+                                    :id="'region_' + item.term_id",
+                                    type="radio",
+                                    v-model="form.region",
+                                    :value="item.slug"
+                                    )
+                                    label(:for="'region_' + item.term_id") {{ item.name }}
                         fieldset
                             .group-attr
                                 select(v-model="form.district")
                                     option(disabled value="") Район
-                                    option(value="Святошино") Святошино
-                                    option(value="Печерский") Печерский
-                                    option(value="Дарницкий") Дарницкий
-                            .group-attr
-                                input(type="text" placeholder="Улица" style="width:300px" v-model="form.address")
+                                    option(
+                                    v-for="(item, i) in terms",
+                                    v-if="item.parent === 6",
+                                    :value="item.slug") {{ item.name }}
+                            <!--.group-attr-->
+                                <!--input(type="text" placeholder="Улица" style="width:300px" v-model="form.address")-->
                             .group-attr
                                 input(type="number" placeholder="Этажей в доме" v-model="form.floors")
                             .group-attr
@@ -92,24 +89,25 @@ export default {
   data () {
     return {
       form: {
-        rooms: 1,
+        rooms: 2,
         currency: 'uah',
         price_from: '',
         price_to: '',
         area_from: '',
         area_to: '',
-        region: 'Киев',
+        region: 'kiev',
         district: '',
         address: '',
         floors: '',
         size_area: ''
       },
-    isFilterMore: false
-  }
+      isFilterMore: false
+    }
   },
-  methods: {toggleAddFilter() {
-    this.isFilterMore = !this.isFilterMore
-  }
+  methods: {
+    toggleAddFilter() {
+      this.isFilterMore = !this.isFilterMore
+    }
   }
 }
 

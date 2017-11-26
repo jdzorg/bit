@@ -165,6 +165,23 @@
 
 // seo text box
 .seotext
+  & #textBox
+    position: relative
+    overflow: hidden
+    transition: .4s ease
+  &-fog
+    position: absolute
+    z-index: 1
+    width: 100%
+    height: 30px
+    bottom: 0
+    left: 0
+    background: linear-gradient(to top, #fff, transparent)
   &-btn > button.btn
+    margin-top: 50px
     color: #000
     border-color: #000
+    &.hideText > span:first-child, & > span:last-child
+      display: none
+    & > span:first-child, &.hideText > span:last-child
+      display: inline
