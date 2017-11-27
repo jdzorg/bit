@@ -3,7 +3,7 @@
         a.miniatures-item(:href="min.link", data-id="min.id")
             img(:src="min.featured_media")
             .miniatures-caption
-                span.miniatures-addres(v-if="min.bit_address") {{ min.bit_address }}
+                span.miniatures-addres(v-text="min.bit_address ? min.bit_address : `${min.bit_street}, дом ${min.bit_house_number}`")
                 span.miniatures-district(v-if="typeof min.house_attr === 'string'") {{ min.house_attr }} район
                 span.miniatures-code(v-if="min.bit_code") {{ min.bit_code }}
                 .clearfix

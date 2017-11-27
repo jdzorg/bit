@@ -60,7 +60,6 @@
       },
       methods: {
         getItems(str) {
-          debugger;
           return this.wpapi.wp[typeof str === 'string' ? 'url' : this.wpapi.wpEndpoint](str)
             .order('desc')
             .orderby('date')
@@ -145,7 +144,7 @@
         },
         getTerms() {
           const self = this;
-          return this.wp.allTerms()
+          return this.wpapi.wp.allTerms()
             .param('term', 'house_attr')
             .get()
             .then(resp => {
@@ -169,9 +168,8 @@
                 if (self.districts.hasOwnProperty(termIds[i]))
                   cPosts[k]['house_attr'] = self.districts[termIds[i]];
               }
-            } else {
-              delete cPosts[k];
             }
+            debugger;
             if(cPosts[k]._embedded.hasOwnProperty('wp:featuredmedia')) {
               cPosts[k].featured_media = cPosts[k]._embedded['wp:featuredmedia'][0].media_details.sizes.thumbnail.source_url;
             } else {
@@ -187,7 +185,6 @@
           rej(console.log(error));
         });
         p.then(resp => {
-            debugger;
             return this.getItems();
           });
       }

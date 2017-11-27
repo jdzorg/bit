@@ -9,6 +9,14 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 
+const entries = {}
+const chunks = []
+glob.sync('./src/pages/**/app.js').forEach(path => {
+  const chunk = path.split('./src/pages/')[1].split('/app.js')[0]
+  entries[chunk] = path
+  chunks.push(chunk)
+})
+
 const extractCSS = new ExtractTextPlugin({
   filename: 'assets/css/[name].css',
   allChunks: true
@@ -16,14 +24,6 @@ const extractCSS = new ExtractTextPlugin({
 const extractSASS = new ExtractTextPlugin({
   filename: 'assets/css/[name].css',
   allChunks: true
-})
-
-const entries = {}
-const chunks = []
-glob.sync('./src/pages/**/app.js').forEach(path => {
-  const chunk = path.split('./src/pages/')[1].split('/app.js')[0]
-  entries[chunk] = path
-  chunks.push(chunk)
 })
 
 const config = {
@@ -163,17 +163,18 @@ const config = {
     extractCSS,
     new HtmlWebpackPlugin({
         filename: 'index.html',
-        chunks: ['index'],
+        chunks: 'index',
         template: './src/pages/index/app.pug'
     }),
     new HtmlWebpackPlugin({
       filename: 'rent-home.html',
-      chunks: ['rent-home'],
+      chunks: 'rent-home',
       template: './src/pages/rent-home/app.pug'
     }),
     new HtmlWebpackPlugin({
       filename: 'rent-flat.html',
       chunks: 'rent-flat',
+      excludeChunks: ['rent-home', 'index'],
       template: './src/pages/rent-flat/app.pug'
     })
   ],
