@@ -153,7 +153,7 @@ const config = {
   },
   plugins: [
     new webpack.optimize.ModuleConcatenationPlugin(),
-    new CommonsChunkPlugin({
+    new webpack.optimize.CommonsChunkPlugin({
       name: 'vendors',
       filename: 'assets/js/vendors.js',
       chunks: chunks,
@@ -163,13 +163,18 @@ const config = {
     extractCSS,
     new HtmlWebpackPlugin({
         filename: 'index.html',
-        chunks: 'index',
+        chunks: ['index'],
         template: './src/pages/index/app.pug'
     }),
     new HtmlWebpackPlugin({
       filename: 'rent-home.html',
-      chunks: 'rent-home',
+      chunks: ['rent-home'],
       template: './src/pages/rent-home/app.pug'
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'rent-flat.html',
+      chunks: 'rent-flat',
+      template: './src/pages/rent-flat/app.pug'
     })
   ],
   devServer: {
@@ -185,7 +190,7 @@ const config = {
       }
     },
     open: true,
-    openPage: 'rent-home.html'
+    openPage: 'rent-flat.html'
       // contentBase: [ PathToTheFolderWhereYourHTMLsLives ],
       // watchContentBase: true
   },

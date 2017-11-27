@@ -6,15 +6,8 @@ html(lang='ru')
             .row
                 include ../../components/pug/header
                 main.content
-                    section.bitcrumb
-                        .container
-                            .row
-                                .col-lg-12
-                                    h1.section-title Аренда дома
-                                    ol.bitcrumb-crumbs
-                                        li
-                                            a(href="/index.html") Главная
-                                        li.active Аренда дома
+                    - var pageName = 'Аренда дома'
+                    include ../../components/pug/breadcrumbs
                     #appRent
                     - var sectionTitle = 'Не нашли что искали?'
                     - var subTitle = 'Раскажите нам, наши специалисты помогут вам'

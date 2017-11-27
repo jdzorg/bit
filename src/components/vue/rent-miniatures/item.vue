@@ -10,22 +10,41 @@
                 span.miniatures-price(v-if="min.bit_price_uah || min.bit_price_usd") {{ min.bit_price_uah + ' грн. /  ' + min.bit_price_usd +' $'}}
                 button.btn.btn-simple узнать цену в криптовалюте
                 .miniatures-features
-                    .rooms(v-if="min.bit_rooms")
+                    .rooms(v-if="sets.indexOf('rooms') !== -1 && min.bit_rooms")
                         i
                         P
                             span {{ min.bit_rooms }}
                             span комнат
-                    .size-home(v-if="min.bit_size_house")
+                    .size-home(v-if="sets.indexOf('apartmentSize') !== -1 && min.bit_size_house")
                         i
                         P
                             span {{ min.bit_size_house }}
                             span кв.м.
-                    .size-area(v-if="min.bit_size_area")
+                    .size-area(v-if="sets.indexOf('areaSize') !== -1 && min.bit_size_area")
                         i
                         P
                             span {{ min.bit_size_area }}
                             span сот. участок
+                    .floors(v-if="sets.indexOf('floors') !== -1 && min.bit_floors")
+                        i
+                        P
+                            span {{ min.bit_floors }}
+                            span этаж
 </template>
+
+<script>
+    export default {
+      props: {
+        sets: Array,
+        trans: Number,
+        min: {
+          type: Object,
+          required: true
+        }
+      }
+    }
+</script>
+
 <style lang="sass">
     .miniatures
         &-item
@@ -84,7 +103,7 @@
                 bottom: -15px
             padding: 10px 20px
             background-color: #f6f8fd
-            & .rooms, & .size-home, & .size-area
+            & .rooms, & .size-home, & .size-area, & .floors
                 display: flex
                 justify-content: space-between
                 align-items: center
@@ -100,7 +119,10 @@
                 margin-bottom: 0
             & span:first-child
                 display: block
-                font-size: 18px
+                font:
+                    family: 'rubik', sans-serif
+                    weight: 500
+                    size: 18px
             & .rooms
                 & i
                     width: 22px
@@ -116,19 +138,12 @@
                     width: 32px
                     height: 32px
                     background: url("../../../assets/img/ico-size-area.png")no-repeat center/100%
-
+            & .floors
+                & i
+                    width: 22px
+                    height: 28px
+                    background: url("../../../assets/img/ico-floors.png")no-repeat center/100%
 
 
 
 </style>
-<script>
-    export default {
-      props: {
-        trans: Number,
-        min: {
-          type: Object,
-          required: true
-        }
-      }
-    }
-</script>

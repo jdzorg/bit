@@ -3,6 +3,7 @@
         .container
             rentFilter(
               :terms="termsAttr",
+              :fields="settings.filterFields",
               @filterItems="getFilteredItems"
             )
             section.row.miniatures(:style="wrapperHeight")
@@ -10,44 +11,32 @@
                     .row
                         transition-group(
                           tag="div",
-                          name="miniature-trans"
+                          name="miniature-trans",
+                          appear
                         )
                             minItem(
                               v-for="(item, index) in minData",
                               :trans="index",
                               :key="index",
-                              :min="item"
+                              :min="item",
+                              :sets="settings.features"
                             )
 
 </template>
-
-<style lang="sass">
-    .miniature-trans
-        &-enter-active, &-leave-to
-            transition: .5s ease
-        &-enter, &-leave-to
-            opacity: 0
-        &-enter, &-leave-to
-            transform: translateY(30px)
-</style>
 
 <script>
     import minItem from './item.vue'
     import rentFilter from '../filters/filter.vue'
 
-    import Wpapi from '../../../../node_modules/wpapi'
 
-    const wp = new Wpapi({
-//      endpoint: window.WP_API_Settings.root
-      endpoint: 'http://bitrealt.com.ua/wp-json'
-    });
-    wp.house = wp.registerRoute('wp/v2', 'house');
-//    wp.houseFilter = wp.registerRoute('wp/v2', 'house(?P<customQuery>)');
-    wp.allTerms = wp.registerRoute('wp/v2', 'filter-term');
 
     export default {
       components: {
         minItem, rentFilter
+      },
+      props: {
+        wpapi: Object,
+        settings: Object
       },
       data() {
         return {
@@ -71,14 +60,15 @@
       },
       methods: {
         getItems(str) {
-          return wp[typeof str === 'string' ? 'url' : 'house'](str)
+          debugger;
+          return this.wpapi.wp[typeof str === 'string' ? 'url' : this.wpapi.wpEndpoint](str)
             .order('desc')
             .orderby('date')
             .embed()
             .perPage(9)
             .page(1)
             .then(resp => {
-              debugger;
+//              debugger;
               this.parseItems(resp);
           });
         },
@@ -155,7 +145,7 @@
         },
         getTerms() {
           const self = this;
-          return wp.allTerms()
+          return this.wp.allTerms()
             .param('term', 'house_attr')
             .get()
             .then(resp => {
@@ -197,8 +187,19 @@
           rej(console.log(error));
         });
         p.then(resp => {
+            debugger;
             return this.getItems();
           });
       }
     }
 </script>
+
+<style lang="sass">
+    .miniature-trans
+        &-enter-active, &-leave-to
+            transition: .5s ease
+        &-enter, &-leave-to
+            opacity: 0
+        &-enter, &-leave-to
+            transform: translateY(30px)
+</style>

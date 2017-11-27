@@ -6,7 +6,7 @@
         )
             .filter-col-1
                 fieldset
-                    .group-attr.btn-radio
+                    .group-attr.btn-radio(v-if="fields.indexOf('rooms') === -1")
                         span.desc-fields Комнаты:
                         input(id="room_1" type="radio" v-model="form.rooms" value="1")
                         label(for="room_1") 1
@@ -29,14 +29,18 @@
                         input(id="cur_2" type="radio" v-model="form.currency" value="usd")
                         label(for="cur_2")
                             span usd
-                    .group-attr
+                    .group-attr(v-if="fields.indexOf('area') === -1")
                         input(type="number" v-model="form.area_from" placeholder="Площадь от")
                         span.desc-fields -
                         input(type="number" v-model="form.area_to" placeholder="Площадь до")
                         span.desc-fields км.м
-                transition(name="filter-advanced" mode="in-out")
-                    .filter-hidden(v-show="isFilterMore")
-                        fieldset
+                transition(
+                  name="filter-advanced",
+                  mode="in-out",
+                  v-on:enter="adEnter"
+                )
+                    .filter-hidden(v-if="isFilterMore")
+                        fieldset(v-if="fields.indexOf('region') === -1")
                             .group-attr.radio
                                 span.desc-fields Область:
                                 span.radio-wrapper(
@@ -51,7 +55,7 @@
                                     )
                                     label(:for="'region_' + item.term_id") {{ item.name }}
                         fieldset
-                            .group-attr
+                            .group-attr(v-if="fields.indexOf('district') === -1")
                                 select(v-model="form.district")
                                     option(disabled value="") Район
                                     option(
@@ -60,9 +64,9 @@
                                     :value="item.slug") {{ item.name }}
                             <!--.group-attr-->
                                 <!--input(type="text" placeholder="Улица" style="width:300px" v-model="form.address")-->
-                            .group-attr
+                            .group-attr(v-if="fields.indexOf('floors') === -1")
                                 input(type="number" placeholder="Этажей в доме" v-model="form.floors")
-                            .group-attr
+                            .group-attr(v-if="fields.indexOf('houseArea') === -1")
                                 input(type="text" placeholder="Площадь участка" v-model="form.size_area")
                                 span.desc-fields сот.
             .filter-col-2
@@ -81,6 +85,7 @@
 
 export default {
   props: {
+    fields: Array,
     terms: {
       type: Object,
       required: true
@@ -101,10 +106,21 @@ export default {
         floors: '',
         size_area: ''
       },
-      isFilterMore: false
+      isFilterMore: false,
+      boxHeight: ''
     }
   },
   methods: {
+    adEnter(el, done) {
+      el.classList.remove('start');
+
+      if(this.fields.indexOf('district') === -1 && this.fields.indexOf('region') === -1) {
+        el.style.height = '150px';
+      } else if(this.fields.indexOf('district') === -1 || this.fields.indexOf('region') === -1) {
+        el.style.height = '75px';
+      }
+      done();
+    },
     toggleAddFilter() {
       this.isFilterMore = !this.isFilterMore
     }
@@ -210,8 +226,7 @@ export default {
                     background-color: #000
         &-advanced
             &-enter-active, &-leave-active
-                transition: .5s ease
-                height: 150px
+                /*transition: .5s ease*/
                 overflow: hidden
             &-enter, &-leave-to
                 height: 0

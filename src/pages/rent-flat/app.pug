@@ -1,3 +1,19 @@
-//
-   Created by jdzor on 26.11.2017.
-
+doctype html
+html(lang='ru')
+    include ../../components/pug/head
+    body
+        .container-fluid
+            .row
+                include ../../components/pug/header
+                main.content
+                    - var pageName = 'Аренда квартир'
+                    include ../../components/pug/breadcrumbs
+                    #appRentFlat
+                    - var sectionTitle = 'Не нашли что искали?'
+                    - var subTitle = 'Раскажите нам, наши специалисты помогут вам'
+                    - var btnName = 'Заказать консультацию'
+                    include ../../components/pug/callform
+                    - var textBoxTitle = 'Сдать недвижимость в аренду в Киеве на выгодных условиях'
+                    - var textBox = 'Надежное агентство недвижимости, с которым сотрудничает почти 400 опытных риелторов – АН Park Lane. Мы обладаем крупной в Киеве базой объектов. Наши риелторы помогут вам продать недвижимость на лучших условиях, проанализировав цены, предложения конкурентов, местоположение объекта и остальные важные данные. Почему важно доверить продажу специалисту Рынку недвижимости свойственны постоянные колебания, связанные с сезонностью, уровнем спроса на объекты, количеством предложений и общей экономической ситуацией в стране'
+                    include ../../components/pug/text-box
+                include ../../components/pug/footer
