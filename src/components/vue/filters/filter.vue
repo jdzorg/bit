@@ -6,7 +6,7 @@
         )
             .filter-col-1
                 fieldset
-                    .group-attr.btn-radio(v-if="fields.indexOf('rooms') === -1")
+                    .group-attr.btn-radio(v-if="page === 'flat' || page === 'house'")
                         span.desc-fields Комнаты:
                         input(id="room_1" type="radio" v-model="form.rooms" value="1")
                         label(for="room_1") 1
@@ -18,6 +18,26 @@
                         label(for="room_4") 4
                         input(id="room_5" type="radio" v-model="form.rooms" value="5+")
                         label(for="room_5") 5+
+                    .group-attr.btn-radio.type(v-else-if="page === 'com_prop'")
+                        span.desc-fields Тип:
+                        input(id="propType_1" type="radio" v-model="form.propType" value="жилой")
+                        label(for="propType_1") жилой
+                        input(id="propType_2" type="radio" v-model="form.propType" value="нежилой")
+                        label(for="propType_2") нежилой
+                        input(id="propType_3" type="radio" v-model="form.propType" value="админ.здание")
+                        label(for="propType_3")
+                            span
+                                | админ.
+                                br
+                                | здание
+                    .group-attr.btn-radio.use-for(v-else-if="page === 'stead'")
+                        span.desc-fields Назначение:
+                        input(id="useFor_1" type="radio" v-model="form.useFor" value="develop")
+                        label(for="useFor_1") Застройка
+                        input(id="useFor_2" type="radio" v-model="form.useFor" value="osg")
+                        label(for="useFor_2") ОСГ
+                        input(id="useFor_3" type="radio" v-model="form.useFor" value="garden")
+                        label(for="useFor_3") Садоводство
                     .group-attr
                         input(type="number" v-model="form.price_from" placeholder="Цена от")
                         span.desc-fields -
@@ -29,33 +49,37 @@
                         input(id="cur_2" type="radio" v-model="form.currency" value="usd")
                         label(for="cur_2")
                             span usd
-                    .group-attr(v-if="fields.indexOf('area') === -1")
+                    .group-attr
                         input(type="number" v-model="form.area_from" placeholder="Площадь от")
                         span.desc-fields -
                         input(type="number" v-model="form.area_to" placeholder="Площадь до")
                         span.desc-fields км.м
                 transition(
                   name="filter-advanced",
-                  mode="in-out",
-                  v-on:enter="adEnter"
+                  mode="in-out"
                 )
                     .filter-hidden(v-if="isFilterMore")
-                        fieldset(v-if="fields.indexOf('region') === -1")
-                            .group-attr.radio
-                                span.desc-fields Область:
-                                span.radio-wrapper(
-                                  v-for="(item, index) in terms",
-                                  v-if="item.parent === 3"
-                                )
-                                    input(
-                                    :id="'region_' + item.term_id",
-                                    type="radio",
-                                    v-model="form.region",
-                                    :value="item.slug"
-                                    )
-                                    label(:for="'region_' + item.term_id") {{ item.name }}
                         fieldset
-                            .group-attr(v-if="fields.indexOf('district') === -1")
+                            span(v-if="page === 'stead' || page === 'house' || page === 'com_prop'")
+                                .group-attr.radio(v-if="page === 'stead' || page === 'house'")
+                                    span.desc-fields Область:
+                                        input( id="region_1", type="radio", v-model="form.region", value="kiev")
+                                        label(for="region_1") Киев
+                                        input( id="region_2", type="radio", v-model="form.region", value="kievskaya-oblast")
+                                        label(for="region_2") Киевская область
+                                .group-attr.btn-radio(v-else-if="page === 'com_prop'")
+                                    span.desc-fields Комнаты:
+                                    input(id="cRoom_1" type="radio" v-model="form.rooms" value="1")
+                                    label(for="cRoom_1") 1
+                                    input(id="cRoom_2" type="radio" v-model="form.rooms" value="2")
+                                    label(for="cRoom_2") 2
+                                    input(id="cRoom_3" type="radio" v-model="form.rooms" value="3")
+                                    label(for="cRoom_3") 3
+                                    input(id="cRoom_4" type="radio" v-model="form.rooms" value="4")
+                                    label(for="cRoom_4") 4
+                                    input(id="cRoom_5" type="radio" v-model="form.rooms" value="5+")
+                                    label(for="cRoom_5") 5+
+                            .group-attr
                                 select(v-model="form.district")
                                     option(disabled value="") Район
                                     option(
@@ -64,11 +88,21 @@
                                     :value="item.slug") {{ item.name }}
                             <!--.group-attr-->
                                 <!--input(type="text" placeholder="Улица" style="width:300px" v-model="form.address")-->
-                            .group-attr(v-if="fields.indexOf('floors') === -1")
-                                input(type="number" placeholder="Этажей в доме" v-model="form.floors")
-                            .group-attr(v-if="fields.indexOf('houseArea') === -1")
+                            .group-attr(v-if="page === 'house' || page === 'com_prop'")
+                                input(type="number", :placeholder="page === 'house' ? 'Этажей в доме' : 'Этаж'", v-model="form.floors")
+                            .group-attr(v-if="page === 'house'")
                                 input(type="text" placeholder="Площадь участка" v-model="form.size_area")
                                 span.desc-fields сот.
+                            .group-attr(v-if="page === 'house'")
+                                input(type="text" placeholder="Этаж" v-model="form.size_area")
+                                span.desc-fields сот.
+                            .group-attr(v-if="page === 'flat' || page === 'com_prop'")
+                                select(v-model="form.subway")
+                                    option(disabled value="") Метро
+                                    option(
+                                    v-for="(item, i) in terms",
+                                    v-if="item.parent === 23",
+                                    :value="item.slug") {{ item.name }}
             .filter-col-2
                 fieldset.text-right
                     button.btn.btn-default Подобрать
@@ -85,7 +119,7 @@
 
 export default {
   props: {
-    fields: Array,
+    page: String,
     terms: {
       type: Object,
       required: true
@@ -94,7 +128,10 @@ export default {
   data () {
     return {
       form: {
+        subway: '',
         rooms: 2,
+        propType: 'нежилой',
+        useFor: 'osg',
         currency: 'uah',
         price_from: '',
         price_to: '',
@@ -111,16 +148,6 @@ export default {
     }
   },
   methods: {
-    adEnter(el, done) {
-      el.classList.remove('start');
-
-      if(this.fields.indexOf('district') === -1 && this.fields.indexOf('region') === -1) {
-        el.style.height = '150px';
-      } else if(this.fields.indexOf('district') === -1 || this.fields.indexOf('region') === -1) {
-        el.style.height = '75px';
-      }
-      done();
-    },
     toggleAddFilter() {
       this.isFilterMore = !this.isFilterMore
     }
@@ -152,18 +179,20 @@ export default {
         &-col-2
             width: 13%
         & .desc-fields
+            display: inline-flex
             font-size: 16px
         & fieldset
             display: block
             margin-bottom: 30px
         & .group-attr
-            display: inline-block
+            display: inline-flex
+            align-items: center
         & label
             margin-bottom: 0
         & input[type="number"]
             width: 120px
         & select
-            width: 280px
+            width: 255px
         & input[type="number"], input[type="text"], & select
             height: 42px
             margin:
@@ -176,6 +205,19 @@ export default {
         & input[type="radio"]
             display: none
         & .btn-radio
+            &.type label
+                width: 88px !important
+                font-size: 14px
+            &.use-for
+                position: relative
+                & label
+                    width: 100px !important
+                    font-size: 14px
+                & span
+                    position: absolute
+                    top: -25px
+                    left: 3px
+
             & input[type="radio"]:checked + label
                 background-color: #88caec
                 color: #fff
@@ -202,6 +244,7 @@ export default {
                 max-height: 17px
                 min-height: 17px
                 margin-left: 25px
+                margin-right: 4px
                 padding-left: 25px
                 font:
                     family: 'rubik-l', sans-serif

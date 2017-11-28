@@ -2,7 +2,7 @@ import Vue from 'vue'
 // import ElementUI from 'element-ui'
 import App from './app.vue'
 import Feedback from './feedback-form.vue'
-import '../../assets/css/index.sass'
+import 'assets/css/index.sass'
 
 setTimeout(function () {
   setHeight()

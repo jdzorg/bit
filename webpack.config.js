@@ -162,20 +162,35 @@ const config = {
     extractSASS,
     extractCSS,
     new HtmlWebpackPlugin({
-        filename: 'index.html',
-        chunks: 'index',
-        template: './src/pages/index/app.pug'
+      filename: 'main/index.html',
+      chunks: 'main/index',
+      excludeChunks: ['rent/house', 'rent/flat', 'rent/corp', 'sale/stead'],
+      template: './src/pages/main/index/app.pug'
     }),
     new HtmlWebpackPlugin({
-      filename: 'rent-home.html',
-      chunks: 'rent-home',
-      template: './src/pages/rent-home/app.pug'
+      filename: 'rent/house.html',
+      chunks: 'rent/house',
+      excludeChunks: ['rent/flat', 'main/index', 'rent/corp', 'sale/stead'],
+
+      template: './src/pages/rent/house/app.pug'
     }),
     new HtmlWebpackPlugin({
-      filename: 'rent-flat.html',
-      chunks: 'rent-flat',
-      excludeChunks: ['rent-home', 'index'],
-      template: './src/pages/rent-flat/app.pug'
+      filename: 'rent/flat.html',
+      chunks: 'rent/flat',
+      excludeChunks: ['rent/house', 'main/index', 'rent/corp', 'sale/stead'],
+      template: './src/pages/rent/flat/app.pug'
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'rent/corp.html',
+      chunks: 'rent/corp',
+      excludeChunks: ['rent/house', 'main/index', 'rent/flat', 'sale/stead'],
+      template: './src/pages/rent/corp/app.pug'
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'sale/stead.html',
+      chunks: 'sale/stead',
+      excludeChunks: ['rent/house', 'main/index', 'rent/flat', 'rent/corp'],
+      template: './src/pages/sale/stead/app.pug'
     })
   ],
   devServer: {
@@ -191,7 +206,7 @@ const config = {
       }
     },
     open: true,
-    openPage: 'rent-flat.html'
+    openPage: 'rent/corp.html'
       // contentBase: [ PathToTheFolderWhereYourHTMLsLives ],
       // watchContentBase: true
   },

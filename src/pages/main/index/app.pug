@@ -1,13 +1,13 @@
 doctype html
 html(lang='ru')
-    include ../../components/pug/head
+    include ../../../components/pug/main/head
     body
         .container-fluid
             .row
-                include ../../components/pug/header
+                include ../../../components/pug/main/header
                 main.content
                     section.brand-bg.homescreen
-                        img(src='../../assets/img/front-page-main.png', alt='bitrealty', title='Агенство недвижимости цифрового века')
+                        img(src='../../../assets/img/front-page-main.png', alt='bitrealty', title='Агенство недвижимости цифрового века')
                         .homescreen-content
                             h1
                                 |«Агенство недвижимости
@@ -102,7 +102,7 @@ html(lang='ru')
                     - var sectionTitle = 'ИЩЕТЕ ЧТО ЕЩЕ МОЖНО КУПИТЬ ЗА КРИПТОВАЛЮТУ?'
                     - var subTitle = 'Мы собрали для Вас большой перечень возможных вариантов'
                     - var btnName = 'Посмотреть варианты'
-                    include ../../components/pug/callform
+                    include ../../../components/pug/sections/callform
 
                     section.section-padding.list.advantages
                         .container
@@ -167,8 +167,8 @@ html(lang='ru')
                     - var sectionTitle = 'Приглашаем вас на встречу в наш офис'
                     - var subTitle = 'Мы пришлем за вами личного водителя на автомобиле бизнес-класса'
                     - var btnName = 'Записаться на встречу'
-                    include ../../components/pug/callform
-                    include ../../components/pug/innumbers
+                    include ../../../components/pug/sections/callform
+                    include ../../../components/pug/sections/innumbers
 
                     section.section-padding.reviews
                         .container
@@ -182,7 +182,7 @@ html(lang='ru')
                                 #app
                     section.setHeight.about
                         .col-lg-6.img-box
-                            img(src='../../assets/img/about.png', alt='about company' title='об компании bitrealty')
+                            img(src='../../../assets/img/about.png', alt='about company' title='об компании bitrealty')
                         .col-lg-6.center-box
                             .center-box-wrapper
                                 span.section-title О компании
@@ -203,6 +203,6 @@ html(lang='ru')
                     - var formSubTitleF = 'Будем рады стать Вам полезными от первого звонка'
                     - var formSubTitleS = 'в агентство до полного оформления сделки.'
                     - var formBtnName = 'Записаться на встречу'
-                    include  ../../components/pug/footer-form
+                    include  ../../../components/pug/sections/footer-form
 
-                include ../../components/pug/footer
+                include ../../../components/pug/main/footer

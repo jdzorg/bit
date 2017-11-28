@@ -3,9 +3,8 @@
 </template>
 <style lang="sass"></style>
 <script>
-  import rentMinView from '../../components/vue/rent-miniatures/wrapper.vue'
-
-  import Wpapi from '../../../node_modules/wpapi'
+  import rentMinView from 'components/vue/rent-miniatures/wrapper.vue'
+  import Wpapi from '../../../../node_modules/wpapi'
 
   const wp = new Wpapi({
 //      endpoint: window.WP_API_Settings.root
@@ -27,9 +26,7 @@
           wpEndpoint: 'flat'
         },
         settings: {
-          filterFields: [
-            'region',
-          ],
+          page: 'flat',
           features: [
             'rooms', 'apartmentSize', 'floors'
           ]

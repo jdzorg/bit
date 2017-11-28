@@ -3,7 +3,7 @@
  */
 import Vue from 'vue'
 import App from './app.vue'
-import '../../assets/css/rent.sass'
+import 'assets/css/rent.sass'
 const textParams = {
   text: '',
   btn: '',
@@ -34,6 +34,6 @@ const textParams = {
 textParams.init()
 
 new Vue({
-  el: '#appRentFlat',
+  el: '#appRentCorp',
   render: h => h(App)
 })

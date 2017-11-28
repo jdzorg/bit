@@ -3,8 +3,7 @@
         .container
             rentFilter(
               :terms="termsAttr",
-              :fields="settings.filterFields",
-              @filterItems="getFilteredItems"
+              :page="settings.page"
             )
             section.row.miniatures(:style="wrapperHeight")
                 .col-lg-12
@@ -27,8 +26,6 @@
 <script>
     import minItem from './item.vue'
     import rentFilter from '../filters/filter.vue'
-
-
 
     export default {
       components: {

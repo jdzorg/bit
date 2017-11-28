@@ -19,8 +19,9 @@
 </template>
 <style lang="sass"></style>
 <script>
-  import fMSG from '../../components/vue/form/msg.vue'
-  import bitForm from '../../components/vue/form/form.vue'
+  import fMSG from 'components/vue/form/msg.vue'
+  import bitForm from 'components/vue/form/form.vue'
+
   export default {
     components: {
       fMSG, bitForm
