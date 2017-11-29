@@ -31,6 +31,6 @@ const textParams = {
 textParams.init()
 
 new Vue({
-  el: '#appStead',
+  el: '#app',
   render: h => h(App)
 })

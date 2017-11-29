@@ -206,7 +206,7 @@ const config = {
       }
     },
     open: true,
-    openPage: 'rent/corp.html'
+    openPage: 'rent/house.html'
       // contentBase: [ PathToTheFolderWhereYourHTMLsLives ],
       // watchContentBase: true
   },

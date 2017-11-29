@@ -1,5 +1,5 @@
 <template lang="pug">
-    rentMinView
+    rentMinView(:settings="settings", :wpapi="wpapi")
 </template>
 <style lang="sass"></style>
 <script>

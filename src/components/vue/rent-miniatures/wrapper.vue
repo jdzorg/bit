@@ -3,7 +3,8 @@
         .container
             rentFilter(
               :terms="termsAttr",
-              :page="settings.page"
+              :page="settings.page",
+              @filterItems="getFilteredItems"
             )
             section.row.miniatures(:style="wrapperHeight")
                 .col-lg-12
@@ -69,15 +70,49 @@
           });
         },
         getFilteredItems(filters) {
-          const {rooms, currency, price_from, price_to, area_from, area_to, region, district, size_area, address} = filters;
+          /*
+          * subway: '',
+        propType: 'нежилой',
+        useFor: 'osg',
+        */
+          const {
+            rooms, currency,
+            price_from, price_to,
+            area_from, area_to,
+            size_area, floors,
+            propType, useFor, tax
+          } = filters;
+
           let ite = 0;
           let compare = '=';
-          let queryStr = `?filter[meta_query][relation]=AND
+          let queryStr = '?';
+          const page = this.settings.page;
+
+          if(page === 'stead') {
+            queryStr +=`filter[meta_query][relation]=AND
                           &filter[meta_query][${ite}][key]=_bit_rooms
-                          &filter[meta_query][${ite}][value]=${rooms}
+                          &filter[meta_query][${ite}][value]=${useFor}
                           &filter[meta_query][${ite}][compare]=${compare}
-                          &filter[meta_query][${ite}][type]=NUMERIC`;
-          ite++;
+                          &filter[meta_query][${ite}][type]=CHAR`;
+            ite++;
+          } else {
+            queryStr +=`filter[meta_query][relation]=AND
+                        &filter[meta_query][${ite}][key]=_bit_rooms
+                        &filter[meta_query][${ite}][value]=${rooms}
+                        &filter[meta_query][${ite}][compare]=${compare}
+                        &filter[meta_query][${ite}][type]=NUMERIC`;
+            ite++;
+          }
+
+          if(page === 'comProp') {
+            queryStr +=`&filter[meta_query][relation]=AND
+                          &filter[meta_query][${ite}][key]=_bit_apart_type
+                          &filter[meta_query][${ite}][value]=${propType}
+                          &filter[meta_query][${ite}][compare]=${compare}
+                          &filter[meta_query][${ite}][type]=CHAR`;
+            ite++;
+          }
+
           if(price_from !== '' || price_to !== '') {
             queryStr += `&filter[meta_query][${ite}][key]=_bit_price_${currency}
                          &filter[meta_query][${ite}][type]=NUMERIC`;
@@ -97,7 +132,8 @@
           }
 
           if(area_from !== '' || area_to !== '') {
-            queryStr += `&filter[meta_query][${ite}][key]=_bit_size_house
+            let metaKey = page === 'stead' ? '_bit_size_area': '_bit_size_house';
+            queryStr += `&filter[meta_query][${ite}][key]=${metaKey}
                          &filter[meta_query][${ite}][type]=NUMERIC`;
             if((area_from !== '' && area_to !== '') && area_from < area_to) {
               queryStr += `&filter[meta_query][${ite}][value][0]=${area_from}
@@ -121,22 +157,32 @@
             ite++;
           }
 
-          if(address !== '') {
-            queryStr += `&filter[meta_query][${ite}][key]=_bit_address
-                         &filter[meta_query][${ite}][value]=${address}
-                         &filter[meta_query][${ite}][compare]=${compare}`;
+          if(floors !== '') {
+            queryStr += `&filter[meta_query][${ite}][key]=_floors
+                         &filter[meta_query][${ite}][value]=${floors}
+                         &filter[meta_query][${ite}][type]=NUMERIC
+                         &filter[meta_query][${ite}][compare]=<=`;
             ite++;
           }
 
-          if(district !== '') {
-              queryStr += `&filter[taxonomy]=house_attr
-                           &filter[term]=${district}`;
-            ite++;
+          if(tax.subway !== '' || tax.district !== '') {
+            const taxSlug = [];
+            for (let k in tax) {
+              if (tax.hasOwnProperty(k) && tax[k] !== '') {
+                taxSlug.push(tax[k]);
+              }
+            }
+            if (taxSlug.length !== 0) {
+              queryStr += `&filter[tax_query][0][taxonomy]=house_attr
+                         &filter[tax_query][0][field]=slug
+                         &filter[tax_query][0][terms]=${taxSlug}
+                         &filter[tax_query][0][operator]=IN`;
+            }
           }
 
           queryStr = queryStr.replace(/\s+|\n+|\r+/g, '');
-          let url = 'http://bitrealt.com.ua/wp-json/wp/v2/house';
 
+          let url = `http://bitrealt.com.ua/wp-json/wp/v2/${this.wpapi.wpEndpoint}`;
           this.getItems(url+queryStr);
         },
         getTerms() {
@@ -148,9 +194,10 @@
               self.termsAttr = resp;
               for(let k in resp) {
                 if(resp.hasOwnProperty(k)) {
-                  const {term_id, name, count} = resp[k];
-                  if(count > 1) continue;
-                  self.districts[term_id] = name;
+                  const {term_id, name, parent} = resp[k];
+                  if(parent === 6) {
+                    self.districts[term_id] = name;
+                  }
                 }
               }
             });
@@ -166,7 +213,6 @@
                   cPosts[k]['house_attr'] = self.districts[termIds[i]];
               }
             }
-            debugger;
             if(cPosts[k]._embedded.hasOwnProperty('wp:featuredmedia')) {
               cPosts[k].featured_media = cPosts[k]._embedded['wp:featuredmedia'][0].media_details.sizes.thumbnail.source_url;
             } else {

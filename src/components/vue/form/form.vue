@@ -93,7 +93,7 @@
       */
       const type = args.type || this.type;
       const meth = args.endpoint || this.wpEndPoint;
-      const {email, name, text, phone} = args.data;
+      const {email, name, text, phone} = args.userData;
 
       return this.wp[meth]()[type]({
         post: 2,

@@ -1,0 +1,32 @@
+//section breadcrumbs
+.bitcrumb
+  padding:
+    top: 34px
+    bottom: 34px
+  background-color: $barnd-light
+  border-bottom: 1px solid #bdc3d5
+  & .section-title
+    float: left
+    margin:
+      top: 0
+      bottom: 0
+  &-crumbs
+    float: right
+    margin-bottom: 0
+    padding-left: 0
+    & > li+li:before
+      content: "/\00a0"
+      padding: 0 5px
+      color: #ccc
+    & > li
+      display: inline-block
+      font-size: 14px
+      & > a
+        font:
+          family: 'rubik', sans-serif
+          weight: 500
+        text-decoration: underline
+      &.active
+        font:
+          family: 'rubik-l', sans-serif
+          weight: 100
