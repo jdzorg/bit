@@ -1,66 +1,104 @@
 //
    Created by jdzor on 05.11.2017.
 
-header.brand-bg.header
+header.header
     h1.site-title.sr-only(itemprop='name') Site for trade realty for cryptocurrency.
-    .container
-        .row
-            a.header-logo
-                img(src='../../../assets/img/logo.png', alt='logo')
-            nav.header-nav(role='navigation')
-                ul.nav.navbar-nav
-                    li
-                        a(href='#')
-                            | аренда
-                            span.nav-caret
-                        ul.dropdown-menu
-                            li
-                                a(href='#') Квартира
-                            li
-                                a(href='#') Дом
-                            li
-                                a(href='#') Коммерческая недвижимость
-                            li.submenu-title Сдать в аренду
-                    li
-                        a(href='#')
-                            | продажа
-                            span.nav-caret
-                        ul.dropdown-menu
-                            li
-                                a(href='#') Квартира
-                            li
-                                a(href='#') Дом
-                            li
-                                a(href='#') Коммерческая недвижимость
-                            li
-                                a(href='#') Земельный участок
-                            li.submenu-title Продать недвижимость
-                    li
-                        a(href='#')
-                            | владельцам
-                            span.nav-caret
-                        .dropdown-menu
-                            ul
-                                li.submenu-title продажа
-                                li
-                                    a(href='#') Квартира
-                                li
-                                    a(href='#') Дом
-                                li
-                                    a(href='#') Коммерческая недвижимость
-                                li
-                                    a(href='#') Земельный участок
-                            ul
-                                li.submenu-title
-                                    a(href='') аренда
-                                li
-                                    a(href='#') Квартира
-                                li
-                                    a(href='#') Дом
-                                li
-                                    a(href='#') Коммерческая недвижимость
-                    li
-                        a(href='#') оценка недвижимости
-            .header-contacts
-                .phone +38 (067) 507-22-34
-                button.btn.btn-default.btn-transparent Заказать консультацию
+    .brand-bg.menu-wrapper
+        .container
+            .row
+                a.header-logo
+                    img(src='../../../assets/img/logo.png', alt='logo')
+                nav.header-nav(role='navigation')
+                    ul.nav.navbar-nav
+                        li
+                            a(href='#rent')
+                                | аренда
+                                span.nav-caret
+                        li
+                            a(href='#sale')
+                                | продажа
+                                span.nav-caret
+                        li
+                            a(href='#owners')
+                                | владельцам
+                                span.nav-caret
+                        li
+                            a(href='#') оценка недвижимости
+                .header-contacts
+                    .phone +38 (067) 507-22-34
+                    button.btn.btn-default.btn-transparent Заказать консультацию
+    .submenu-wrapper
+        #rent.bit-dropdown-menu
+            ul.container
+                li
+                    a(href='#')
+                        span.flat
+                        | Квартира
+                li.bit-dropdown-menu-devider
+                li
+                    a(href='#')
+                        span.house
+                        | Дом
+                li.bit-dropdown-menu-devider
+                li
+                    a(href='#')
+                        span.comm(style="margin-top:22px")
+                        | Коммерческая
+                        br
+                        | недвижимость
+                li.submenu-title
+                    span.ico-rent
+                    span Сдать в аренду
+                    span.bg
+        #sale.bit-dropdown-menu
+            ul.container
+                li
+                    a(href='#')
+                        span.flat
+                        | Квартира
+                li.bit-dropdown-menu-devider
+                li
+                    a(href='#')
+                        span.house
+                        | Дом
+                li.bit-dropdown-menu-devider
+                li
+                    a(href='#')
+                        span.comm
+                        | Коммерческая
+                        br
+                        | недвижимость
+                li.bit-dropdown-menu-devider
+                li
+                    a(href='#')
+                        span.stead
+                        | Земельный
+                        br
+                        | участок
+                li.submenu-title
+                    span.ico-sale
+                    span
+                        | Продать
+                        br
+                        | недвижимость
+                    span.bg
+        #owners.bit-dropdown-menu-usual
+            ul
+                li.submenu-title продажа
+                li
+                    a(href='#') Квартира
+                li
+                    a(href='#') Дом
+                li
+                    a(href='#') Коммерческая недвижимость
+                li
+                    a(href='#') Земельный участок
+            ul
+                li.submenu-title
+                    a(href='') аренда
+                li
+                    a(href='#') Квартира
+                li
+                    a(href='#') Дом
+                li
+                    a(href='#') Коммерческая недвижимость

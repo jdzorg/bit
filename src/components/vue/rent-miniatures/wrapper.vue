@@ -58,7 +58,7 @@
       },
       methods: {
         getItems(str) {
-          return this.wpapi.wp[typeof str === 'string' ? 'url' : this.wpapi.wpEndpoint](str)
+          return this.wpapi.wp[typeof str === 'string' ? 'url' : 'customPoint'](str)
             .order('desc')
             .orderby('date')
             .embed()
@@ -182,7 +182,7 @@
 
           queryStr = queryStr.replace(/\s+|\n+|\r+/g, '');
 
-          let url = `http://bitrealt.com.ua/wp-json/wp/v2/${this.wpapi.wpEndpoint}`;
+          let url = `http://bitrealt.com.ua/wp-json/wp/v2/${this.settings.page}`;
           this.getItems(url+queryStr);
         },
         getTerms() {

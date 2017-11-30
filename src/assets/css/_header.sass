@@ -1,5 +1,5 @@
 .header
-  padding: 23px 0 25px
+  position: relative
   &-logo
     float: left
     display: block
@@ -34,3 +34,124 @@
   height: 10px
   margin-left: 2px
   background: url('../img/ico-nav-caret.png')no-repeat center/100%
+
+.menu-wrapper
+  position: relative
+  z-index: 5
+  width: 100%
+  height: 100%
+  padding: 23px 0 25px
+.submenu-wrapper
+  position: absolute
+  z-index: 4
+  width: 100%
+  height: 100%
+  top: 0
+  left: 0
+
+.bit-dropdown-menu
+  position: absolute
+  top: 100%
+  width: 100%
+  left: 0
+  z-index: 1
+  opacity: 0
+  overflow: hidden
+  background-color: #f6f8fd
+  transition: .3s ease
+  transform: translateY(-100%)
+  & > ul
+    display: flex
+    justify-content: space-between
+    padding:
+      left: 0
+      right: 0
+      top: 33px
+      bottom: 33px
+    margin-bottom: 0
+    list-style: none
+    & > li
+      display: block
+      //width: 25%
+      height: 190px
+      &.submenu-title
+        position: relative
+        display: flex !important
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        width: 25%
+        height: 190px
+        & > span
+          position: relative
+          z-index: 2
+          color: #6ec0eb
+          text-decoration: underline
+        & > .ico-rent
+          position: relative
+          z-index: 2
+          display: block
+          width: 80px
+          height: 80px
+          margin-bottom: 23px
+        & > .bg
+          position: absolute
+          z-index: 1
+          display: block
+          width: 400%
+          height: 150%
+          top: -20%
+          left: 0
+          background-color: #e3e6ef
+      & > a
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        width: 100%
+        height: 100%
+        font:
+          family: 'rubik-l', sans-serif
+          weight: 100
+          size: 16px
+        & > span
+          display: block
+          width: 80px
+          height: 80px
+          margin-bottom: 23px
+  &-devider
+    width: 1px !important
+    height: 190px
+    overflow: hidden
+    background-color: #bdc3d5
+
+  &.active
+    opacity: 1
+    transform: translateY(0)
+.bit-dropdown-menu-usual
+  display: none
+
+.flat
+  background:
+    image: url(../img/pic-nav-flat.png)
+    size: 100%
+    position: center
+    repeat: no-repeat
+.house
+  background:
+    image: url(../img/pic-nav-house.png)
+    size: 100%
+    position: center
+    repeat: no-repeat
+.comm
+  background:
+    image: url(../img/pic-nav-comm.png)
+    size: 100%
+    position: center
+    repeat: no-repeat
+.ico-rent
+  background:
+    image: url(../img/pic-nav-rent.png)
+    size: 100%
+    position: center
+    repeat: no-repeat

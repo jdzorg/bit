@@ -11,7 +11,7 @@
 //      endpoint: window.WP_API_Settings.root
     endpoint: 'http://bitrealt.com.ua/wp-json'
   });
-  wp.comProp = wp.registerRoute('wp/v2', 'com_prop');
+  wp.com_prop = wp.registerRoute('wp/v2', 'com_prop');
   //    wp.houseFilter = wp.registerRoute('wp/v2', 'house(?P<customQuery>)');
   wp.allTerms = wp.registerRoute('wp/v2', 'filter-term');
 
@@ -23,7 +23,7 @@
       return {
         wpapi: {
           wp,
-          wpEndpoint: 'comProp'
+          wpEndpoint: 'com_prop'
         },
         settings: {
           page: 'com_prop',

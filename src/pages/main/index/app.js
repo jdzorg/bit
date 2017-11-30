@@ -4,6 +4,21 @@ import App from './app.vue'
 import Feedback from './feedback-form.vue'
 import 'assets/css/index.sass'
 
+const menu = document.querySelector('.navbar-nav')
+
+menu.addEventListener('click', menuHandler)
+
+function menuHandler (e) {
+  e.preventDefault()
+  const target = e.target
+  // debugger
+  if (target.nodeName === 'A') {
+    const subNavId = target.getAttribute('href')
+    const subNav = document.querySelector(subNavId)
+    subNav.classList.add('active')
+  }
+}
+
 setTimeout(function () {
   setHeight()
   scrollListening()

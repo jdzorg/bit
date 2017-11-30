@@ -167,31 +167,31 @@ const config = {
       excludeChunks: ['rent/house', 'rent/flat', 'rent/corp', 'sale/stead'],
       template: './src/pages/main/index/app.pug'
     }),
-    new HtmlWebpackPlugin({
-      filename: 'rent/house.html',
-      chunks: 'rent/house',
-      excludeChunks: ['rent/flat', 'main/index', 'rent/corp', 'sale/stead'],
-
-      template: './src/pages/rent/house/app.pug'
-    }),
-    new HtmlWebpackPlugin({
-      filename: 'rent/flat.html',
-      chunks: 'rent/flat',
-      excludeChunks: ['rent/house', 'main/index', 'rent/corp', 'sale/stead'],
-      template: './src/pages/rent/flat/app.pug'
-    }),
-    new HtmlWebpackPlugin({
-      filename: 'rent/corp.html',
-      chunks: 'rent/corp',
-      excludeChunks: ['rent/house', 'main/index', 'rent/flat', 'sale/stead'],
-      template: './src/pages/rent/corp/app.pug'
-    }),
-    new HtmlWebpackPlugin({
-      filename: 'sale/stead.html',
-      chunks: 'sale/stead',
-      excludeChunks: ['rent/house', 'main/index', 'rent/flat', 'rent/corp'],
-      template: './src/pages/sale/stead/app.pug'
-    })
+    // new HtmlWebpackPlugin({
+    //   filename: 'rent/house.html',
+    //   chunks: 'rent/house',
+    //   excludeChunks: ['rent/flat', 'main/index', 'rent/corp', 'sale/stead'],
+    //
+    //   template: './src/pages/rent/house/app.pug'
+    // }),
+    // new HtmlWebpackPlugin({
+    //   filename: 'rent/flat.html',
+    //   chunks: 'rent/flat',
+    //   excludeChunks: ['rent/house', 'main/index', 'rent/corp', 'sale/stead'],
+    //   template: './src/pages/rent/flat/app.pug'
+    // }),
+    // new HtmlWebpackPlugin({
+    //   filename: 'rent/corp.html',
+    //   chunks: 'rent/corp',
+    //   excludeChunks: ['rent/house', 'main/index', 'rent/flat', 'sale/stead'],
+    //   template: './src/pages/rent/corp/app.pug'
+    // }),
+    // new HtmlWebpackPlugin({
+    //   filename: 'sale/stead.html',
+    //   chunks: 'sale/stead',
+    //   excludeChunks: ['rent/house', 'main/index', 'rent/flat', 'rent/corp'],
+    //   template: './src/pages/sale/stead/app.pug'
+    // })
   ],
   devServer: {
     host: '127.0.0.1',
@@ -206,7 +206,7 @@ const config = {
       }
     },
     open: true,
-    openPage: 'rent/house.html'
+    openPage: 'main/index.html'
       // contentBase: [ PathToTheFolderWhereYourHTMLsLives ],
       // watchContentBase: true
   },
