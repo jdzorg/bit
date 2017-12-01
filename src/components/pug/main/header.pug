@@ -28,7 +28,7 @@ header.header
                     .phone +38 (067) 507-22-34
                     button.btn.btn-default.btn-transparent Заказать консультацию
     .submenu-wrapper
-        #rent.bit-dropdown-menu
+        #rent.hidden-nav.bit-dropdown-menu
             ul.container
                 li
                     a(href='#')
@@ -47,10 +47,10 @@ header.header
                         br
                         | недвижимость
                 li.submenu-title
-                    span.ico-rent
+                    span.ico.ico-rent
                     span Сдать в аренду
                     span.bg
-        #sale.bit-dropdown-menu
+        #sale.hidden-nav.bit-dropdown-menu
             ul.container
                 li
                     a(href='#')
@@ -64,41 +64,43 @@ header.header
                 li.bit-dropdown-menu-devider
                 li
                     a(href='#')
-                        span.comm
+                        span.comm(style="margin-top:22px")
                         | Коммерческая
                         br
                         | недвижимость
                 li.bit-dropdown-menu-devider
                 li
                     a(href='#')
-                        span.stead
+                        span.stead(style="margin-top:22px")
                         | Земельный
                         br
                         | участок
                 li.submenu-title
-                    span.ico-sale
+                    span.ico.ico-sale(style="margin-top:28px")
                     span
                         | Продать
                         br
                         | недвижимость
                     span.bg
-        #owners.bit-dropdown-menu-usual
-            ul
-                li.submenu-title продажа
-                li
-                    a(href='#') Квартира
-                li
-                    a(href='#') Дом
-                li
-                    a(href='#') Коммерческая недвижимость
-                li
-                    a(href='#') Земельный участок
-            ul
-                li.submenu-title
-                    a(href='') аренда
-                li
-                    a(href='#') Квартира
-                li
-                    a(href='#') Дом
-                li
-                    a(href='#') Коммерческая недвижимость
+        #owners.hidden-nav.bit-dropdown-menu-usual
+            .usual-wrapper.container
+                .row
+                    ul.col-lg-6
+                        li.submenu-title продажа
+                        li
+                            a(href='#') Квартира
+                        li
+                            a(href='#') Дом
+                        li
+                            a(href='#') Коммерческая недвижимость
+                        li
+                            a(href='#') Земельный участок
+                    ul.col-lg-6
+                        li.submenu-title аренда
+                        li
+                            a(href='#') Квартира
+                        li
+                            a(href='#') Дом
+                        li
+                            a(href='#') Коммерческая недвижимость
+                        li.bg

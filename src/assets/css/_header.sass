@@ -82,12 +82,13 @@
         align-items: center
         width: 25%
         height: 190px
+        text-align: center
         & > span
           position: relative
           z-index: 2
           color: #6ec0eb
           text-decoration: underline
-        & > .ico-rent
+        & > .ico
           position: relative
           z-index: 2
           display: block
@@ -110,10 +111,14 @@
         align-items: center
         width: 100%
         height: 100%
+        padding:
+          left: 20px
+          right: 20px
         font:
           family: 'rubik-l', sans-serif
           weight: 100
           size: 16px
+        text-align: center
         & > span
           display: block
           width: 80px
@@ -128,8 +133,6 @@
   &.active
     opacity: 1
     transform: translateY(0)
-.bit-dropdown-menu-usual
-  display: none
 
 .flat
   background:
@@ -155,3 +158,64 @@
     size: 100%
     position: center
     repeat: no-repeat
+.stead
+  background:
+    image: url(../img/pic-nav-stead.png)
+    size: 100%
+    position: center
+    repeat: no-repeat
+.ico-sale
+  background:
+    image: url(../img/pic-nav-sale.png)
+    size: 100%
+    position: center
+    repeat: no-repeat
+
+.bit-dropdown-menu-usual
+  position: absolute
+  top: 100%
+  width: 100%
+  left: 0
+  z-index: 1
+  opacity: 0
+  overflow: hidden
+  background-color: #f6f8fd
+  transition: .3s ease
+  transform: translateY(-100%)
+  & .usual-wrapper
+    padding:
+      top: 30px
+      bottom: 30px
+  & ul
+    list-style: none
+    padding: 0
+    margin: 0
+    &:last-child
+      padding-left: 50px
+    & > li
+      position: relative
+      z-index: 2
+      padding-bottom: 5px
+      font:
+        family: 'rubik-l', sans-serif
+        weight: 100
+        size: 16px
+      &.submenu-title
+        padding-bottom: 20px
+        font:
+          family: 'rubik', sans-serif
+          weight: 500
+          size: 18px
+        text-transform: uppercase
+    & > .bg
+      position: absolute
+      z-index: 1
+      display: block
+      width: 400%
+      height: 250%
+      top: -50%
+      left: 0
+      background-color: #e3e6ef
+  &.active
+    opacity: 1
+    transform: translateY(0)

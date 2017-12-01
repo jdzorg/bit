@@ -1,13 +1,11 @@
 import Vue from 'vue'
-// import ElementUI from 'element-ui'
 import App from './app.vue'
 import Feedback from './feedback-form.vue'
-import 'assets/css/index.sass'
-import { menu, setHeight, scrollAnimate } from '../../global'
+import 'assets/css/single.sass'
+import { menu, setHeight } from '../../global'
 
 menu.init()
 setHeight.set()
-scrollAnimate.init()
 
 new Vue({
   el: '#app',

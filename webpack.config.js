@@ -167,6 +167,12 @@ const config = {
       excludeChunks: ['rent/house', 'rent/flat', 'rent/corp', 'sale/stead'],
       template: './src/pages/main/index/app.pug'
     }),
+    new HtmlWebpackPlugin({
+      filename: 'main/single.html',
+      chunks: 'main/single',
+      excludeChunks: ['rent/house', 'rent/flat', 'rent/corp', 'sale/stead', 'main/index'],
+      template: './src/pages/main/single/app.pug'
+    }),
     // new HtmlWebpackPlugin({
     //   filename: 'rent/house.html',
     //   chunks: 'rent/house',
