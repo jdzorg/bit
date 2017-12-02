@@ -25,6 +25,14 @@ const extractSASS = new ExtractTextPlugin({
   filename: 'assets/css/[name].css',
   allChunks: true
 })
+console.log(chunks)
+function exceptChunk(exception) {
+  return chunks.map(chank => {
+    if (chank !== exception) {
+      return chank
+    }
+  })
+}
 
 const config = {
   entry: entries,
@@ -69,10 +77,7 @@ const config = {
               use: ['css-loader', 'postcss-loader'],
               fallback: 'style-loader'
             }))
-            // pug: ['pug-html-loader'].concat(ExtractTextPlugin.extract({
-            //     use: ['html-loader'],
-            //     fallback: 'html-loader'
-            // })),
+
           }
         }
       },
@@ -164,40 +169,39 @@ const config = {
     new HtmlWebpackPlugin({
       filename: 'main/index.html',
       chunks: 'main/index',
-      excludeChunks: ['rent/house', 'rent/flat', 'rent/corp', 'sale/stead'],
+      excludeChunks: exceptChunk('main/index'), // ['rent/house', 'rent/flat', 'rent/corp', 'sale/stead', 'main/single'],
       template: './src/pages/main/index/app.pug'
     }),
     new HtmlWebpackPlugin({
       filename: 'main/single.html',
       chunks: 'main/single',
-      excludeChunks: ['rent/house', 'rent/flat', 'rent/corp', 'sale/stead', 'main/index'],
+      excludeChunks: exceptChunk('main/single'), //['rent/house', 'rent/flat', 'rent/corp', 'sale/stead', 'main/index'],
       template: './src/pages/main/single/app.pug'
     }),
-    // new HtmlWebpackPlugin({
-    //   filename: 'rent/house.html',
-    //   chunks: 'rent/house',
-    //   excludeChunks: ['rent/flat', 'main/index', 'rent/corp', 'sale/stead'],
-    //
-    //   template: './src/pages/rent/house/app.pug'
-    // }),
-    // new HtmlWebpackPlugin({
-    //   filename: 'rent/flat.html',
-    //   chunks: 'rent/flat',
-    //   excludeChunks: ['rent/house', 'main/index', 'rent/corp', 'sale/stead'],
-    //   template: './src/pages/rent/flat/app.pug'
-    // }),
-    // new HtmlWebpackPlugin({
-    //   filename: 'rent/corp.html',
-    //   chunks: 'rent/corp',
-    //   excludeChunks: ['rent/house', 'main/index', 'rent/flat', 'sale/stead'],
-    //   template: './src/pages/rent/corp/app.pug'
-    // }),
-    // new HtmlWebpackPlugin({
-    //   filename: 'sale/stead.html',
-    //   chunks: 'sale/stead',
-    //   excludeChunks: ['rent/house', 'main/index', 'rent/flat', 'rent/corp'],
-    //   template: './src/pages/sale/stead/app.pug'
-    // })
+    new HtmlWebpackPlugin({
+      filename: 'rent/house.html',
+      chunks: 'rent/house',
+      excludeChunks: exceptChunk('rent/house'), //['rent/flat', 'main/index', 'rent/corp', 'sale/stead'],
+      template: './src/pages/rent/house/app.pug'
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'rent/flat.html',
+      chunks: 'rent/flat',
+      excludeChunks: exceptChunk('rent/flat'), //['rent/house', 'main/index', 'rent/corp', 'sale/stead'],
+      template: './src/pages/rent/flat/app.pug'
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'rent/corp.html',
+      chunks: 'rent/corp',
+      excludeChunks: exceptChunk('rent/corp'), //['rent/house', 'main/index', 'rent/flat', 'sale/stead'],
+      template: './src/pages/rent/corp/app.pug'
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'sale/stead.html',
+      chunks: 'sale/stead',
+      excludeChunks: exceptChunk('sale/stead'), //['rent/house', 'main/index', 'rent/flat', 'rent/corp'],
+      template: './src/pages/sale/stead/app.pug'
+    })
   ],
   devServer: {
     host: '127.0.0.1',

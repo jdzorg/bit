@@ -6,13 +6,16 @@
   import rentMinView from 'components/vue/rent-miniatures/wrapper.vue'
   import Wpapi from '../../../../node_modules/wpapi'
 
+  const endPoint = 'flat';
+  const features = ['rooms', 'apartmentSize', 'floors'];
+
   const wp = new Wpapi({
-//      endpoint: window.WP_API_Settings.root
+    // endpoint: root
     endpoint: 'http://bitrealt.com.ua/wp-json'
   });
-  wp.house = wp.registerRoute('wp/v2', 'house');
-  wp.flat = wp.registerRoute('wp/v2', 'flat');
+  wp.customPoint = wp.registerRoute('wp/v2', endPoint);
   //    wp.houseFilter = wp.registerRoute('wp/v2', 'house(?P<customQuery>)');
+
   wp.allTerms = wp.registerRoute('wp/v2', 'filter-term');
 
   export default {
@@ -22,14 +25,11 @@
     data() {
       return {
         wpapi: {
-          wp,
-          wpEndpoint: 'flat'
+          wp
         },
         settings: {
-          page: 'flat',
-          features: [
-            'rooms', 'apartmentSize', 'floors'
-          ]
+          page: endPoint,
+          features: features
         }
       }
     }

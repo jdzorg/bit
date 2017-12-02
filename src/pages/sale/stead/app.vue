@@ -7,12 +7,16 @@
 
   import Wpapi from '../../../../node_modules/wpapi'
 
+  const endPoint = 'com_prop';
+  const features = ['rooms', 'apartmentSize', 'floors'];
+
   const wp = new Wpapi({
-//      endpoint: window.WP_API_Settings.root
+    // endpoint: root
     endpoint: 'http://bitrealt.com.ua/wp-json'
   });
-  wp.stead = wp.registerRoute('wp/v2', 'stead');
+  wp.customPoint = wp.registerRoute('wp/v2', endPoint);
   //    wp.houseFilter = wp.registerRoute('wp/v2', 'house(?P<customQuery>)');
+
   wp.allTerms = wp.registerRoute('wp/v2', 'filter-term');
 
   export default {
@@ -22,14 +26,11 @@
     data() {
       return {
         wpapi: {
-          wp,
-          wpEndpoint: 'stead'
+          wp
         },
         settings: {
-          page: 'stead',
-          features: [
-            'areaSize'
-          ]
+          page: endPoint,
+          features: features
         }
       }
     }

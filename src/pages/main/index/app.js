@@ -3,7 +3,7 @@ import Vue from 'vue'
 import App from './app.vue'
 import Feedback from './feedback-form.vue'
 import 'assets/css/index.sass'
-import { menu, setHeight, scrollAnimate } from '../../global'
+import { menu, setHeight, scrollAnimate } from '../../../assets/js/global'
 
 menu.init()
 setHeight.set()

@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './app.vue'
 import Feedback from './feedback-form.vue'
 import 'assets/css/single.sass'
-import { menu, setHeight } from '../../global'
+import { menu, setHeight } from '../../../assets/js/global'
 
 menu.init()
 setHeight.set()
