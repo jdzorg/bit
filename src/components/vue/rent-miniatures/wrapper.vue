@@ -1,19 +1,24 @@
 <template lang="pug">
-    section.rentunit
+    section.searchrealty
         .container
             rentFilter(
               :terms="termsAttr",
               :page="settings.page",
               @filterItems="getFilteredItems"
             )
-            section.row.miniatures(:style="wrapperHeight")
+            section.row.miniatures(style="min-height:337px")
                 .col-lg-12
                     .row
                         transition-group(
                           tag="div",
                           name="miniature-trans",
+                          mode="out-in",
                           appear
                         )
+                            .msg(v-show="isMin", :key="111")
+                                span
+                                    | Извините по выбранным параметрам ничего не найдено
+                                <!--button.btn.btn-simple(@click="") Сбросить фильтр-->
                             minItem(
                               v-for="(item, index) in minData",
                               :trans="index",
@@ -21,6 +26,7 @@
                               :min="item",
                               :sets="settings.features"
                             )
+
 
 </template>
 
@@ -38,22 +44,10 @@
       },
       data() {
         return {
+          isMin: false,
           districts: [],
           termsAttr: {},
           minData: []
-        }
-      },
-      computed: {
-        wrapperHeight() {
-          let h = 450;
-          let itemCol = this.minData.length;
-          if(itemCol >= 4) {
-            return 'height:' + (h * 2) + 'px';
-          }
-          if(itemCol >= 7) {
-            return 'height:' + (h * 3) + 'px';
-          }
-
         }
       },
       methods: {
@@ -65,8 +59,14 @@
             .perPage(9)
             .page(1)
             .then(resp => {
-//              debugger;
-              this.parseItems(resp);
+              debugger;
+              if(resp.length > 0) {
+                this.isMin = false;
+                this.parseItems(resp);
+              } else {
+                this.isMin = true;
+                this.minData = [];
+             }
           });
         },
         getFilteredItems(filters) {
@@ -222,7 +222,7 @@
           this.minData = cPosts;
         }
       },
-      mounted() {
+      created() {
         const p = new Promise((res, rej) => {
           res(this.getTerms());
           rej(console.log(error));
@@ -242,4 +242,9 @@
             opacity: 0
         &-enter, &-leave-to
             transform: translateY(30px)
+    .msg
+        text-align: center
+        & > span
+            display: block
+            margin-top: 50px
 </style>

@@ -6,4 +6,126 @@
 @import "components/miniatures"
 @import "components/s-form"
 
+.single-head
+  padding:
+    top: 50px
+    bottom: 50px
+  &-district, &-code
+    font:
+      family: 'rubik-l', sans-serif
+      weight: 100
+      size: 14px
+  &-code
+    padding-left: 20px
+  &-price
+    font-size: 24px
+    color: #88caec
+  & .btn-default
+    width: 100%
+    &:hover
+      color: #000
+      border-color: #000
 
+.characteristics
+  padding:
+    top: 65px
+    bottom: 55px
+  background-color: #f6f8fd
+  & .wrapper
+    padding-left: 85px
+.params-main
+  display: flex
+  justify-content: space-between
+  align-items: center
+  flex-wrap: wrap
+  & .rooms, & .size-home,
+  & .size-area, & .floors, & .subway
+    display: flex
+    align-items: baseline
+    width: 50%
+    padding-bottom: 40px
+    font:
+      family: 'rubik', sans-serif
+      weight: 500
+      size: 30px
+    color: #7e858b
+    & i
+      display: block
+      margin-right: 10px
+    & span:last-child
+      padding-left: 10px
+      font:
+        family: 'rubik-l', sans-serif
+        weight: 100
+        size: 12px
+  & .rooms
+    & i
+      width: 22px
+      height: 32px
+      background: url("../../assets/img/ico-single-rooms.png")no-repeat center/100%
+  & .size-home
+    & i
+      width: 32px
+      height: 32px
+      background: url("../../assets/img/ico-single-size-home.png")no-repeat center/100%
+  & .size-area
+    & i
+      width: 32px
+      height: 32px
+      background: url("../../assets/img/ico-size-area.png")no-repeat center/100%
+  & .floors
+    & i
+      width: 22px
+      height: 28px
+      background: url("../../assets/img/ico-single-floors.png")no-repeat center/100%
+  & .subway
+    & i
+      width: 32px
+      height: 26px
+      background: url("../../assets/img/ico-single-subway.png")no-repeat center/100%
+
+.separatoe
+  width: 100%
+  height: 1px
+  background: #bdc3d5
+  margin-bottom: 40px
+
+.params-add
+  & table
+    font:
+      family: 'rubik-l', sans-serif
+      weight: 100
+    & td
+      padding:
+        right: 40px
+        top: 10px
+        bottom: 10px
+    & .name
+      color: #7e858b
+      & span
+        display: block
+        font-size: 9px
+    & .val
+      font-size: 16px
+
+.description
+  height: 450px
+  background-color: #f6f8fd
+  & .wrapper
+    display: flex
+    justify-content: center
+    align-items: center
+    width: 100%
+    height: 100%
+    & p
+      width: 80%
+      font:
+        family: 'rubik-l', sans-serif
+        weight: 100
+
+.feedback
+  background:
+    image: url(../img/feedback.png)
+    position: center
+    repeat: no-repeat
+    size: 100% 100%

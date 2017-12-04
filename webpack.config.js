@@ -25,7 +25,7 @@ const extractSASS = new ExtractTextPlugin({
   filename: 'assets/css/[name].css',
   allChunks: true
 })
-console.log(chunks)
+
 function exceptChunk(exception) {
   return chunks.map(chank => {
     if (chank !== exception) {

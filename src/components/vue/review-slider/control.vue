@@ -1,7 +1,7 @@
 <template lang="pug">
-    .reviews-control
-        .control.next(@click="$emit('next')")
-        .control.prev(@click="$emit('prev')")
+    .control
+        button.next(@click="$emit('next')")
+        button.prev(@click="$emit('prev')")
 </template>
 
 <script>

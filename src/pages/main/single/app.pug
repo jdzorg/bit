@@ -14,10 +14,10 @@ html(lang='ru')
                             .row
                                 .col-lg-6
                                     .single-head-title Аренда трехкомнатной квартиры Героев Сталинграда просп. 6а в Киеве
-                                    .district Оболонский район
-                                    .code К-25348
+                                    span.single-head-district Оболонский район
+                                    span.single-head-code К-25348
                                 .col-lg-3
-                                    .price
+                                    .single-head-price 45 400 грн. / 1700 $
                                     button.btn.btn-simple узнать цену в криптовалюте
                                 .col-lg-3
                                     button.btn.btn-default
@@ -25,8 +25,7 @@ html(lang='ru')
                                         br
                                         | РИЭЛТОРОМ
                     section.single-body
-                        .col-lg-6.slider
-                            #app
+                        #app
                         .col-lg-6.characteristics
                             .wrapper
                                 .params-main
@@ -48,28 +47,32 @@ html(lang='ru')
                                         span мин. до метро
                                 .separatoe
                                 .params-add
-                                    p
-                                        span.name Улица
-                                        span.value Героев Сталинграда просп., 6а
-                                    p
-                                        span.name
-                                            | Площадь
-                                            br
-                                            span (общая/жилая/кухня)
-                                        span.value 104/63,1/14 кв.м.
-                                    p
-                                        span.name Стены
-                                        span.value Кирпич
+                                    table
+                                        tbody
+                                            tr
+                                                td.name Улица
+                                                td.val Героев Сталинграда просп., 6а
+                                            tr
+                                                td.name
+                                                    | Площадь
+                                                    br
+                                                    span (общая/жилая/кухня)
+                                                td.val 104/63,1/14 кв.м.
+                                            tr
+                                                td.name Стены
+                                                td.val Кирпич
                         .clearfix
                         .col-lg-6.description
                             .wrapper
-                                | Элитная квартира, очень теплая и тихая, изысканный и качественный дизайнерский ремонт,
-                                | 2 спальни - меблируются под арендатора, кухня Италия, микроволновая печь, стиральная
-                                | и посудомоечная машина, посуда, 2 санузла, душевая кабина, ванна, сантехника Италия и
-                                | Германия. Большая гардеробная. В квартире дубовый паркет 22 мм, во всех комнатах
-                                | кондиционеры Мitsubishi, счетчики на воду и отопление. Натяжной потолок, вид центра и
-                                | озера Вербное, 3 лифта, место в подземном паркинге.
-                        .col-lg-6.map
+                                p
+                                    | Элитная квартира, очень теплая и тихая, изысканный и качественный дизайнерский ремонт,
+                                    | 2 спальни - меблируются под арендатора, кухня Италия, микроволновая печь, стиральная
+                                    | и посудомоечная машина, посуда, 2 санузла, душевая кабина, ванна, сантехника Италия и
+                                    | Германия. Большая гардеробная. В квартире дубовый паркет 22 мм, во всех комнатах
+                                    | кондиционеры Мitsubishi, счетчики на воду и отопление. Натяжной потолок, вид центра и
+                                    | озера Вербное, 3 лифта, место в подземном паркинге.
+                        .col-lg-6#map
+                        .clearfix
                     section.section-padding.similar
                         .container
                             .row
@@ -160,3 +163,4 @@ html(lang='ru')
                     - var formBtnName = 'Отправить сообщение'
                     include  ../../../components/pug/sections/footer-form
                 include ../../../components/pug/main/footer
+                //script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAditakykKP1N5H2dOHIUvcEINURyKgaJ0&callback=initMap')

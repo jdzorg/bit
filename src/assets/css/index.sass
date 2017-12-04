@@ -161,7 +161,7 @@
     justify-content: center
     width: 100%
   /*overflow: hidden*/
-  &-control
+  & .control
     position: absolute
     z-index: 2
     width: 100%
@@ -169,7 +169,7 @@
     top: 50%
     left: 0
     transform: translateY(-50%)
-    .control
+    & button
       position: absolute
       top: 0
       width: 42px
@@ -180,8 +180,8 @@
         repeat: no-repeat
         size: 100% 100%
         position: center
-      cursor: pointer
       transition: .3s ease
+      border: none
       &:hover
         background-color: #88caec
     .next

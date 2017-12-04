@@ -1,6 +1,7 @@
 wp
 l: bit_admin
-p: iQzOCyNZGGM9HTZbP3picAY#
+p: bitadmiN2017
+
 comments
 l: bitcom
 p: D337#4$MYyhSIn0kx2xlYVyc
