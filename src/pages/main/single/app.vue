@@ -32,7 +32,7 @@
       return {
         curImgId: '',
         curIMG: '',
-        gallery: singlePageGallery
+        gallery: singleProductParam.singlePageGallery
       }
     },
     methods: {

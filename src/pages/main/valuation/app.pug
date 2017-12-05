@@ -1,0 +1,84 @@
+doctype html
+html(lang='ru')
+    include ../../../components/pug/main/head
+    body
+        .container-fluid
+            .row
+                include ../../../components/pug/main/header
+                main.content
+                    - var pageName = 'оценка недвижимости'
+                    include ../../../components/pug/sections/breadcrumbs
+
+                    section.valuation
+                        .container
+                            .row
+                                .col-lg-7
+                                    .valuation-title
+                                        | Мы предоставляем нашим Клиентам
+                                        br
+                                        | комплекс услуг по оценке объекта недвижимости
+                                    .valuation-services
+                                        ul
+                                            li Консультирование по текущей стоимости разных типов объектов недвижимости с последующим оформлением необходимых документов
+                                            li Проведение комплексной оценки данного объекта
+                                            li Консультирование относительно целесообразности проведения операции с данным объектом недвижимости
+                                .col-lg-5
+                                    form(action="javascript://")
+                                        span Оставить заявку на оценку
+                                        iput(type="text" name="" placeholder="")
+                                        iput(type="tel" name="" placeholder="")
+                                        iput(type="email" name="" placeholder="")
+                                        textarea
+                                        button
+
+                    include ../../../components/pug/sections/innumbers
+
+                    section.section-padding.list.process
+                        .container
+                            .row
+                                .col-lg-12
+                                    span.section-title Как происходит процесс оценки
+                                    span.section-subtitle Наши клиенты доверяют нам и поэтому зарабатывают вместе с нами
+                        ul.list-wrapper
+                            li.container.animate.animate-left
+                                span.pic.pic-inspection.pull-left
+                                .advantages-wrapper.pull-left
+                                    span.advantages-name 1. Предварительный осмотр объекта недвижимостиг
+                                    p
+                                        | Vel nominavi molestie in. No est dolor mucius everti. Partem feugait vel cu. Solum
+                                        br
+                                        | elitr at vel.
+                            li.list-divider
+                            li.container.animate.animate-right
+                                span.pic.pic-dataanalise.pull-right
+                                .advantages-wrapper.pull-right
+                                    span.advantages-name 2. Сбор и анализ данных об объекте
+                                    p
+                                        | Lorem ipsum dolor sit amet, nam numquam appetere te. Eu vix wisi deterruisset, aliquid
+                                        br
+                                        | scripserit no duo. Autem antiopam no his. No cum dolorum laoreet.
+                            li.list-divider
+                            li.container.animate.animate-left
+                                span.pic.pic-compvaluation.pull-left
+                                .advantages-wrapper.pull-left
+                                    span.advantages-name 3. Комплексная оценка объекта по различным критериям
+                                    p
+                                        | Vim propriae erroribus similique eu, sit an illum dicam. Melius forensibus ad ius,
+                                        br
+                                        | alterum copiosae invenire vix ei.
+                            li.list-divider
+                            li.container.animate.animate-right
+                                span.pic.pic-result.pull-right
+                                .advantages-wrapper.pull-right
+                                    span.advantages-name 4. Составление общих результатов оценки
+                                    p
+                                        | Esse nonumes eam eu, dicta definitionem et eam. Sed mnesarchum reformidans ut. Verear
+                                        br
+                                        | facilisi tincidunt duo ut.
+
+                    - var formTitle = 'Оставить заявку на оценку'
+                    - var formSubTitleF = 'Будем рады стать Вам полезными от первого звонка в агентство'
+                    - var formSubTitleS = 'до полного оформления сделки.'
+                    - var formBtnName = 'Отправить сообщение'
+                    include  ../../../components/pug/sections/footer-form
+                include ../../../components/pug/main/footer

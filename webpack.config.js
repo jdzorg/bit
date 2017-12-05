@@ -169,38 +169,44 @@ const config = {
     new HtmlWebpackPlugin({
       filename: 'main/index.html',
       chunks: 'main/index',
-      excludeChunks: exceptChunk('main/index'), // ['rent/house', 'rent/flat', 'rent/corp', 'sale/stead', 'main/single'],
+      excludeChunks: exceptChunk('main/index'),
       template: './src/pages/main/index/app.pug'
     }),
     new HtmlWebpackPlugin({
       filename: 'main/single.html',
       chunks: 'main/single',
-      excludeChunks: exceptChunk('main/single'), //['rent/house', 'rent/flat', 'rent/corp', 'sale/stead', 'main/index'],
+      excludeChunks: exceptChunk('main/single'),
       template: './src/pages/main/single/app.pug'
     }),
     new HtmlWebpackPlugin({
       filename: 'rent/house.html',
       chunks: 'rent/house',
-      excludeChunks: exceptChunk('rent/house'), //['rent/flat', 'main/index', 'rent/corp', 'sale/stead'],
+      excludeChunks: exceptChunk('rent/house'),
       template: './src/pages/rent/house/app.pug'
     }),
     new HtmlWebpackPlugin({
       filename: 'rent/flat.html',
       chunks: 'rent/flat',
-      excludeChunks: exceptChunk('rent/flat'), //['rent/house', 'main/index', 'rent/corp', 'sale/stead'],
+      excludeChunks: exceptChunk('rent/flat'),
       template: './src/pages/rent/flat/app.pug'
     }),
     new HtmlWebpackPlugin({
       filename: 'rent/corp.html',
       chunks: 'rent/corp',
-      excludeChunks: exceptChunk('rent/corp'), //['rent/house', 'main/index', 'rent/flat', 'sale/stead'],
+      excludeChunks: exceptChunk('rent/corp'),
       template: './src/pages/rent/corp/app.pug'
     }),
     new HtmlWebpackPlugin({
       filename: 'sale/stead.html',
       chunks: 'sale/stead',
-      excludeChunks: exceptChunk('sale/stead'), //['rent/house', 'main/index', 'rent/flat', 'rent/corp'],
+      excludeChunks: exceptChunk('sale/stead'),
       template: './src/pages/sale/stead/app.pug'
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'main/valuation.html',
+      chunks: 'main/valuation',
+      excludeChunks: exceptChunk('main/valuation'),
+      template: './src/pages/main/valuation/app.pug'
     })
   ],
   devServer: {
@@ -216,7 +222,7 @@ const config = {
       }
     },
     open: true,
-    openPage: 'main/index.html'
+    openPage: 'main/valuation.html'
       // contentBase: [ PathToTheFolderWhereYourHTMLsLives ],
       // watchContentBase: true
   },
