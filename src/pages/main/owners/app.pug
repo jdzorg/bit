@@ -1,0 +1,24 @@
+doctype html
+html(lang='ru')
+    include ../../../components/pug/main/head
+    body
+        .container-fluid
+            .row
+                include ../../../components/pug/main/header
+                main.content
+                    - var pageName = 'Продажа недвижимости'
+                    include ../../../components/pug/sections/breadcrumbs
+
+                    section.owners
+                        .container
+                            .row
+                                .col-lg-12
+                                    .section-title Продать недвижимость
+                                    .section-subtitle
+                                        | Если вы планируете продать недвижимость, специалисты компании BitRealty помогут вам решить этот вопрос на максимально
+                                        br
+                                        | выгодных условиях.
+                                .col-lg-12
+
+
+                include ../../../components/pug/main/footer

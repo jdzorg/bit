@@ -6,9 +6,75 @@
 @import "components/s-in-numbers"
 @import "components/s-list"
 @import "components/s-form"
-//
-//.valuation
-//
+
+.valuation
+  padding:
+    top: 50px
+    bottom: 80px
+  &-title
+    margin:
+      top: 30px
+      bottom: 80px
+    font:
+      family: 'rubik-b', sans-serif
+      weight: bold
+    text-transform: uppercase
+  &-services
+    font:
+      family: 'rubik-l', sans-serif
+      weight: 100
+      size: 16px
+    & ul
+      padding-left: 30px
+      list-style: none
+    & li
+      position: relative
+      padding-bottom: 37px
+      &:before
+        position: absolute
+        display: inline-block
+        content: ''
+        width: 14px
+        height: 10px
+        top: 6px
+        left: -26px
+        background:
+          image: url(../img/ico-mark.png)
+          size: 100%
+          repeat: no-repeat
+  &-form
+    margin-left: 50px
+    padding: 32px 28px
+    box-shadow: 0 0 30px 10px #ececec
+    & span:first-child
+      display: block
+      margin-bottom: 30px
+      font:
+        family: 'rubik-b', sans-serif
+        weight: bold
+      text-transform: uppercase
+      text-align: center
+    & input, & textarea
+      width: 100%
+      margin-bottom: 16px
+      padding-left: 15px
+      border: 1px solid #7e858b
+      font-size: 14px
+      &::placeholder
+        font:
+          family: 'rubik-l', sans-serif
+          weight: 100
+          size: 14px
+    & input
+      height: 42px
+    & textarea
+      height: 92px
+      padding-top: 10px
+      resize: none
+    & .btn-default:hover
+      color: #000
+      border-color: #000
+
 //.process
 .pic-inspection
   background: url(../img/pic-inspection.png)no-repeat center/100%

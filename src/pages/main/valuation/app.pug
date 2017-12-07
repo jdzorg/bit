@@ -6,7 +6,7 @@ html(lang='ru')
             .row
                 include ../../../components/pug/main/header
                 main.content
-                    - var pageName = 'оценка недвижимости'
+                    - var pageName = 'Оценка недвижимости'
                     include ../../../components/pug/sections/breadcrumbs
 
                     section.valuation
@@ -23,13 +23,7 @@ html(lang='ru')
                                             li Проведение комплексной оценки данного объекта
                                             li Консультирование относительно целесообразности проведения операции с данным объектом недвижимости
                                 .col-lg-5
-                                    form(action="javascript://")
-                                        span Оставить заявку на оценку
-                                        iput(type="text" name="" placeholder="")
-                                        iput(type="tel" name="" placeholder="")
-                                        iput(type="email" name="" placeholder="")
-                                        textarea
-                                        button
+                                    #app
 
                     include ../../../components/pug/sections/innumbers
 

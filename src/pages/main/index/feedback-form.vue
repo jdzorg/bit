@@ -1,7 +1,7 @@
 <template lang="pug">
     transition(
-    name="thxmsg",
-    mode="out-in"
+      name="thxmsg",
+      mode="out-in"
     )
         bitForm(
           v-if="!isSent",

@@ -59,93 +59,12 @@
 </template>
 <script>
   import Wpapi from '../../../../node_modules/wpapi'
+  import { sendMethods } from 'assets/js/global'
 
-  const sendMethods = {
-    type: 'GET',
-    wpEndPoint: 'posts',
-    wp: new Wpapi({
+  sendMethods.wp = new Wpapi({
 //      endpoint: window.WP_API_Settings.root
-      endpoint: 'http://bitrealt.com.ua/wp-json'
-    }),
-    url: 'http://bitrealt.com.ua/wp-content/themes/bitrealty-theme/form-handler.php',
-    errormsg: {
-      title: 'Произошла ошибка',
-      msg: 'При отправке произошла ошибка. Перезагрузить страницу и еще раз попробуйте отправить или обратитесь в администрацию сайта.'
-    },
-    nPromise(method) {
-      return new Promise((resolve, reject) => {
-        resolve(method);
-        reject(console.log(errors))
-      })
-    },
-    serialize(obj) {
-      return Object.keys(obj).map(function(prop) {
-        return [prop, obj[prop]].map(encodeURIComponent).join("=");
-      }).join("&");
-    },
-    nComment(args) {
-      /*
-      * wpargs = {
-      *   type: get/create,
-      *   endpoint: comments/posts/,
-      *   data: data to post/data to search(filter)
-      * }
-      */
-      const type = args.type || this.type;
-      const meth = args.endpoint || this.wpEndPoint;
-      const {email, name, text, phone} = args.userData;
-
-      return this.wp[meth]()[type]({
-        post: 2,
-        author_email: email,
-        author_name: name,
-        content: text,
-        author_url: phone.replace(/\s/g, '')
-      })
-        .then(res => {
-          return {
-            title: 'Ваш отзыв отправлен',
-            msg: 'Ваш отзыв появится на сайте как только его одобрит модератор'
-          }
-        })
-        .catch(rej => {
-          console.log(rej);
-          return this.errormsg;
-        });
-    },
-    nFeedback(args) {
-      /*
-       * mailargs = {
-       *    url: ...,
-       *    type: POST
-       *   formName: like feedback,
-       *   data: data to send by mail
-       * }
-       */
-      const self = this;
-      const url = args.url || this.url;
-      const data = args.userData;
-      data.formName = args.formName;
-      const options = {
-        method: args.type || self.type,
-        body: self.serialize(data),
-        mode: 'cors'
-      };
-
-      return fetch(url, options)
-        .then(res => {
-          return {
-            title: 'Ваша заявка принята',
-            msg: 'В скором времени наш менеджер свяжется с Вами.'
-          }
-        })
-        .catch(rej => {
-          console.log(rej);
-          return this.errormsg;
-        });
-    }
-  };
-
+    endpoint: 'http://bitrealt.com.ua/wp-json'
+  });
 
   const regTemp = {
     name: /^[а-яА-Яa-zA-Z\sёЁїЇіІЄє]{2,20}$/,

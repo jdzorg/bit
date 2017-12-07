@@ -114,4 +114,88 @@ const seoTextBox = {
   }
 }
 
-export { menu, setHeight, scrollAnimate, seoTextBox }
+const sendMethods = {
+  type: 'GET',
+  wpEndPoint: 'posts',
+  wp: {},
+  url: 'http://bitrealt.com.ua/wp-content/themes/bitrealty-theme/form-handler.php',
+  errormsg: {
+    title: 'Произошла ошибка',
+    msg: 'При отправке произошла ошибка. Перезагрузить страницу и еще раз попробуйте отправить или обратитесь в администрацию сайта.'
+  },
+  nPromise (method) {
+    return new Promise((resolve, reject) => {
+      resolve(method)
+      reject((er) => { console.log(er) })
+    })
+  },
+  serialize (obj) {
+    return Object.keys(obj).map((prop) => {
+      return [prop, obj[prop]].map(encodeURIComponent).join('=')
+    }).join('&')
+  },
+  nComment (args) {
+    /*
+    * wpargs = {
+    *   type: get/create,
+    *   endpoint: comments/posts/,
+    *   data: data to post/data to search(filter)
+    * }
+    */
+    const type = args.type || this.type
+    const meth = args.endpoint || this.wpEndPoint
+    const { email, name, text, phone } = args.userData
+    /*eslint camelcase: ["error", {properties: "never"}]*/
+    return this.wp[meth]()[type]({
+      post: 2,
+      author_email: email,
+      author_name: name,
+      content: text,
+      author_url: phone.replace(/\s/g, '')
+    })
+      .then(res => {
+        return {
+          title: 'Ваш отзыв отправлен',
+          msg: 'Ваш отзыв появится на сайте как только его одобрит модератор'
+        }
+      })
+      .catch(rej => {
+        console.log(rej)
+        return this.errormsg
+      })
+  },
+  nFeedback (args) {
+    /*
+     * mailargs = {
+     *    url: ...,
+     *    type: POST
+     *   formName: like feedback,
+     *   data: data to send by mail
+     * }
+     */
+    debugger
+    const self = this
+    const url = args.url || this.url
+    const data = args.userData
+    data.formName = args.formName
+    const options = {
+      method: args.type || self.type,
+      body: self.serialize(data),
+      mode: 'cors'
+    }
+
+    return fetch(url, options)
+      .then(res => {
+        return {
+          title: 'Ваша заявка принята',
+          msg: 'В скором времени наш менеджер свяжется с Вами.'
+        }
+      })
+      .catch(rej => {
+        console.log(rej)
+        return this.errormsg
+      })
+  }
+}
+
+export { menu, setHeight, scrollAnimate, seoTextBox, sendMethods }

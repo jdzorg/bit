@@ -5,6 +5,7 @@
 </template>
 <script>
     export default {
+      name: 'Msg',
       props: {
         finalMSG: {
           type: Object,
