@@ -34,6 +34,7 @@
 
 <script>
     export default {
+      functional: true,
       props: {
         sets: Array,
         trans: Number,

@@ -1,34 +1,41 @@
 <template lang="pug">
     .house-fields
         fieldset.address
-            input(type="text" name="form.region" placeholder="Город / Область" style="width:225px")
-            input(type="text" name="form.street" placeholder="Улица" style="width:380px")
-            input(type="text" name="form.build" placeholder="№ дома" style="width:165px")
+            ValidateInput(name="region", v-model="form.region", validate="alpha_spaces", placeholder="Город / Область", width="225px")
+            ValidateInput(name="street", v-model="form.street", validate="alpha_spaces", placeholder="Улица", width="380px")
+            ValidateInput(name="build", v-model="form.build", validate="buildNum", placeholder="№ дома", width="165px")
         fieldset.params
-            input(type="text" name="form.rooms" placeholder="Количество комнат" style="width:225px")
-            input(type="text" name="form.houseSize" placeholder="Общая площадь" style="width:180px")
+            ValidateInput(type="number", validate="numeric", name="rooms", v-model="form.rooms", placeholder="Количество комнат", width="225px")
+            ValidateInput(type="number", validate="numeric", name="houseSize", v-model="form.houseSize", placeholder="Общая площадь", width="180px")
             .sep
-            input(type="text" name="form.liveSize" placeholder="Жилая площадь" style="width:180px")
+            ValidateInput(type="number", validate="numeric", name="liveSize", v-model="form.liveSize", placeholder="Жилая площадь", width="180px")
             .unit
-            input(type="text" name="form.floors" placeholder="Всего этажей" style="width:180px")
+            ValidateInput(type="number", validate="numeric", name="floors", v-model="form.floors", placeholder="Всего этажей", width="180px")
         fieldset.price
-            input(type="number" name="form.price" placeholder="Цена" style="width:225px")
-            select(name="form.currency")
+            ValidateInput(type="number", validate="numeric", name="price", v-model="form.price", placeholder="Цена", width="225px")
+            select(name="currency", v-model="form.currency")
                 option(value="uah") грн
                 option(value="usd") usd
                 option(value="btc") btc
         fieldset.description
-            textarea(placeholder="Описание" name="form.desc")
+            textarea(placeholder="Описание", v-validate="'text'", name="desc", v-model="form.desc")
+            InvalidFiled(v-show="errors.has('desc')") В поле присутствуют запрещенные знаки
         fieldset.photo
-            input(type="file" name="form.photo" id="addImg")
+            input(type="file" name="photo" id="addImg")
             label(for="addImg")
                 span.ico-add-photo
                 span Прикрепить фото
 </template>
 
 <script>
+  import InvalidFiled from './elements/invalid-filed'
+  import ValidateInput from './elements/input'
+
   export default {
     name: "House",
+    components: {
+      InvalidFiled, ValidateInput
+    },
     data() {
       return {
         form: {

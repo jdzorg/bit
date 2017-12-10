@@ -1,10 +1,10 @@
 <template lang="pug">
     .stead-fields
         fieldset.address
-            input(type="text" name="form.region" placeholder="Город / Область" style="width:225px")
-            input(type="text" name="form.street" placeholder="Улица" style="width:380px")
+            ValidateInput(name="region", v-model="form.region", validate="alpha_spaces", placeholder="Город / Область", width="225px")
+            ValidateInput(name="street", v-model="form.street", validate="alpha_spaces", placeholder="Улица", width="380px")
         fieldset
-            select(name="form.purpose")
+            select(name="form.purpose" style="width:425px")
                 option(disabled value="") Целевое назначение
                 option(value="Ведение товарного сельского производства") Ведение товарного сельского производства
                 option(value="Жилая застройка и коммерческое использование") Жилая застройка и коммерческое использование
@@ -15,17 +15,18 @@
                 option(value="Садоводство") Садоводство
                 option(value="Сельское хозяйство") Сельское хозяйство
         fieldset.params
-            input(type="text" name="form.areaSize" placeholder="Площадь" style="width:145px")
+            ValidateInput(type="number", name="areaSize", validate="numeric", v-model="form.areaSize", placeholder="Площадь", width="145px")
             select(name="form.sizeUnit")
                 option(value="СОТ.") СОТ.
                 option(value="ГА.") ГА.
-            input(type="number" name="form.price" placeholder="Цена" style="width:145px")
+            ValidateInput(type="number", validate="numeric", name="price", v-model="form.price", placeholder="Цена", width="145px")
             select(name="form.currency")
                 option(value="uah") грн
                 option(value="usd") usd
                 option(value="btc") btc
         fieldset.description
-            textarea(placeholder="Описание" name="form.desc")
+            textarea(placeholder="Описание", v-validate="'text'", name="desc", v-model="form.desc")
+            InvalidFiled(v-show="errors.has('desc')") В поле присутствуют запрещенные знаки
         fieldset.photo
             input(type="file" name="form.photo" id="addImg")
             label(for="addImg")
@@ -34,8 +35,14 @@
 </template>
 
 <script>
+  import InvalidFiled from './elements/invalid-filed'
+  import ValidateInput from './elements/input'
+
   export default {
     name: "Stead",
+    components: {
+      InvalidFiled, ValidateInput
+    },
     data() {
       return {
         form: {

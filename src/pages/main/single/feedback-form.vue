@@ -3,7 +3,7 @@
     name="thxmsg",
     mode="out-in"
     )
-        bitForm(
+        FeedbackForm(
           v-if="!isSent",
           key="form",
           :title="formHead.title",
@@ -11,7 +11,7 @@
           :btnName="formHead.btn",
           :sendArgs="args"
         )
-        fMSG(
+        Msg(
           v-else,
           :finalMSG="msg",
           key="msg"
@@ -19,12 +19,12 @@
 </template>
 <style lang="sass"></style>
 <script>
-  import fMSG from 'components/vue/form/msg.vue'
-  import bitForm from 'components/vue/form/form.vue'
+  import Msg from 'components/vue/form/msg.vue'
+  import FeedbackForm from 'components/vue/form/form.vue'
 
   export default {
     components: {
-      fMSG, bitForm
+      Msg, FeedbackForm
     },
     data() {
       return{

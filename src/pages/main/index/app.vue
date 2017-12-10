@@ -1,7 +1,7 @@
 <template lang="pug">
     div
         .col-lg-12.reviews-wrapper
-            sControl(
+            Control(
                 @next="nextReview",
                 @prev="prevReview"
                 v-show="reviews.length > 2"
@@ -12,24 +12,40 @@
                 name="trans-slider"
                 mode="out-in"
             )
-                sItem(
-                    v-for="(review, index) in curReviews",
+                Review(
+                    v-for="review in curReviews",
                     :key="review.id",
                     :review="review"
                 )
         .col-lg-12.text-center.reviews-btn
             button.btn.btn-default.btn-transparent(@click="handlerPopUp") Оставте и Вы свой отклик!
-        bitPopup(
-          v-show="showPop",
-          @close="handlerPopUp"
-        )
+        Popup(v-show="showPop", @close="handlerPopUp")
+            transition(
+              name="thxmsg",
+              mode="out-in"
+            )
+                FeedbackForm(
+                  v-if="!isSent",
+                  key="form",
+                  :title="formHead.title",
+                  :subTitle="formHead.subTitle",
+                  :btnName="formHead.btn",
+                  :sendArgs="args"
+                )
+                Msg(
+                  v-else,
+                  :finalMSG="msg",
+                  key="msg"
+                )
 
 </template>
 
 <script>
-    import sControl from 'components/vue/review-slider/control'
-    import sItem from 'components/vue/review-slider/item'
-    import bitPopup from 'components/vue/popups/popup.vue'
+    import Control from 'components/vue/review-slider/control'
+    import Review from 'components/vue/review-slider/item'
+    import Popup from 'components/vue/popups/popup.vue'
+    import Msg from 'components/vue/form/msg.vue'
+    import FeedbackForm from 'components/vue/form/form.vue'
 
     import Wpapi from '../../../../node_modules/wpapi'
 
@@ -40,15 +56,30 @@
 
     export default {
       components: {
-        sControl, sItem, bitPopup
+        Control, Review, Popup, FeedbackForm, Msg
       },
       data () {
         return {
+          isSent: false,
           showPop: false,
           prev: 0,
           next: 0,
           curReviews: [],
-          reviews: []
+          reviews: [],
+          formHead: {
+            title: 'Оставте свой отклик',
+            subTitle: 'Напишите отклик, поделитесь мнением которое сложилось у<br> Вас при сотруднечестве с нашей компанией.',
+            btn: 'Отправить'
+          },
+          args: {
+            meth: 'nComment',
+            type: 'create',
+            endpoint: 'comments'
+          },
+          msg: {
+            title: '',
+            msg: ''
+          },
         }
       },
       methods: {
@@ -86,7 +117,7 @@
         },
         handlerPopUp() {
           this.showPop = !this.showPop;
-            document.body.style.overflow = this.showPop ? 'hidden' : '';
+          document.body.style.overflow = this.showPop ? 'hidden' : '';
         }
       },
       mounted() {

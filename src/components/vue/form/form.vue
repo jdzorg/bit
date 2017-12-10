@@ -74,6 +74,7 @@
   };
 
   export default {
+    name: 'FeedbackForm',
     props: {
       sendArgs: {
         type: Object,

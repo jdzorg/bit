@@ -1,9 +1,11 @@
 import Vue from 'vue'
 // import ElementUI from 'element-ui'
 import App from './app.vue'
-import Feedback from './feedback-form.vue'
-import 'assets/css/index.sass'
 import { menu, setHeight, scrollAnimate } from 'assets/js/global'
+import 'assets/css/index.sass'
+import Feedback from './feedback-form.vue'
+import PopupHead from 'components/vue/popups/popup-head'
+import PopupMain from 'components/vue/popups/popup-main'
 
 menu.init()
 setHeight.set()
@@ -18,3 +20,18 @@ new Vue({
   el: '#appform',
   render: h => h(Feedback)
 })
+
+new Vue({
+  el: '#consultationHead',
+  render: h => h(PopupHead)
+})
+
+new Vue({
+  el: '#consultationMain',
+  render: h => h(PopupMain)
+})
+
+// new Vue({
+//   el: '#consultationMeet',
+//   render: h => h(Feedback)
+// })
