@@ -67,7 +67,7 @@
       return {
         showPop: false,
         isRulesAgree: false,
-        realtyType: 'Flat',
+        realtyType: window.realtType,
         args: {
           formName: 'Форма - продажа недвижимости',
           type: 'POST',
@@ -88,6 +88,7 @@
           const sm = sendMethods;
           const response = sm.nPromise(sm.nFeedback(this.args));
           response.then((res) => {
+            debugger;
             this.msg.title = res.title;
             this.msg.msg = res.msg;
             this.showPop = true;

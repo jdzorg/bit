@@ -61,6 +61,7 @@
         outline-color: red
     .fa-warning
         position: absolute
+        width: 145px
         bottom: -28px
         left: 0
         font-size: 12px

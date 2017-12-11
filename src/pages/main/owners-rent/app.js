@@ -1,10 +1,11 @@
 import Vue from 'vue'
 // import ElementUI from 'element-ui'
-import App from './app.vue'
-import 'assets/css/owners.sass'
-import { menu, seoTextBox } from 'assets/js/global'
 import VeeValidate from 'vee-validate'
 import { Validator } from 'vee-validate'
+import App from './app.vue'
+import PopupHead from 'components/vue/popups/popup-head'
+import { menu, seoTextBox } from 'assets/js/global'
+import 'assets/css/owners.sass'
 
 Vue.use(VeeValidate)
 
@@ -33,4 +34,9 @@ Validator.extend('buildNum', buildNum)
 new Vue({
   el: '#app',
   render: h => h(App)
+})
+
+new Vue({
+  el: '#consultationHead',
+  render: h => h(PopupHead)
 })

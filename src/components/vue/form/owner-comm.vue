@@ -64,7 +64,6 @@
     },
     methods: {
       addIMG(e) {
-        debugger;
         this.form.photo = e.target.files;
       }
     }

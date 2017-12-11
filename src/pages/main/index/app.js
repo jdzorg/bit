@@ -6,6 +6,7 @@ import 'assets/css/index.sass'
 import Feedback from './feedback-form.vue'
 import PopupHead from 'components/vue/popups/popup-head'
 import PopupMain from 'components/vue/popups/popup-main'
+import PopupMeet from 'components/vue/popups/popup-mmeet'
 
 menu.init()
 setHeight.set()
@@ -31,7 +32,7 @@ new Vue({
   render: h => h(PopupMain)
 })
 
-// new Vue({
-//   el: '#consultationMeet',
-//   render: h => h(Feedback)
-// })
+new Vue({
+  el: '#meet',
+  render: h => h(PopupMeet)
+})

@@ -119,6 +119,7 @@ const sendMethods = {
   wpEndPoint: 'posts',
   wp: {},
   url: 'http://bitrealt.com.ua/wp-content/themes/bitrealty-theme/form-handler.php',
+  fileUploadUrl: 'http://bitrealt.com.ua/wp-content/themes/bitrealty-theme/upload-photo.php',
   errormsg: {
     title: 'Произошла ошибка',
     msg: 'При отправке произошла ошибка. Перезагрузить страницу и еще раз попробуйте отправить или обратитесь в администрацию сайта.'
@@ -173,28 +174,60 @@ const sendMethods = {
      *   data: data to send by mail
      * }
      */
-    debugger
     const self = this
     const url = args.url || this.url
     const data = args.userData
     data.formName = args.formName
-    const options = {
-      method: args.type || self.type,
-      body: self.serialize(data),
-      mode: 'cors'
-    }
+    if (data.realtyData.photo.length !== 0) {
+      var files = data.realtyData.photo
+      var photo = new FormData()
+      for (var i = 0; i < files.length; i++) {
+        photo.append('photo', files[i])
+      }
+      delete data.realtyData.photo
 
-    return fetch(url, options)
-      .then(res => {
-        return {
-          title: 'Ваша заявка принята',
-          msg: 'В скором времени наш менеджер свяжется с Вами.'
-        }
-      })
-      .catch(rej => {
-        console.log(rej)
-        return this.errormsg
-      })
+      return fetch(this.fileUploadUrl, { method: 'POST', body: photo })
+        .then(resp => {
+          const options = {
+            method: args.type || self.type,
+            body: self.serialize(data),
+            mode: 'cors'
+          }
+          return fetch(url, options)
+            .then(res => {
+              return {
+                title: 'Ваша заявка принята',
+                msg: 'В скором времени наш менеджер свяжется с Вами.'
+              }
+            })
+            .catch(rej => {
+              console.log(rej)
+              return this.errormsg
+            })
+        })
+        .catch(rej => {
+          console.log(rej)
+          return this.errormsg
+        })
+    } else {
+      const options = {
+        method: args.type || self.type,
+        body: self.serialize(data),
+        mode: 'cors'
+      }
+
+      return fetch(url, options)
+        .then(res => {
+          return {
+            title: 'Ваша заявка принята',
+            msg: 'В скором времени наш менеджер свяжется с Вами.'
+          }
+        })
+        .catch(rej => {
+          console.log(rej)
+          return this.errormsg
+        })
+    }
   }
 }
 

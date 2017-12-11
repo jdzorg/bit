@@ -172,47 +172,53 @@ const config = {
       excludeChunks: exceptChunk('main/index'),
       template: './src/pages/main/index/app.pug'
     }),
-    // new HtmlWebpackPlugin({
-    //   filename: 'main/single.html',
-    //   chunks: 'main/single',
-    //   excludeChunks: exceptChunk('main/single'),
-    //   template: './src/pages/main/single/app.pug'
-    // }),
+    new HtmlWebpackPlugin({
+      filename: 'main/single.html',
+      chunks: 'main/single',
+      excludeChunks: exceptChunk('main/single'),
+      template: './src/pages/main/single/app.pug'
+    }),
     new HtmlWebpackPlugin({
       filename: 'rent/house.html',
       chunks: 'rent/house',
       excludeChunks: exceptChunk('rent/house'),
       template: './src/pages/rent/house/app.pug'
     }),
-    // new HtmlWebpackPlugin({
-    //   filename: 'rent/flat.html',
-    //   chunks: 'rent/flat',
-    //   excludeChunks: exceptChunk('rent/flat'),
-    //   template: './src/pages/rent/flat/app.pug'
-    // }),
-    // new HtmlWebpackPlugin({
-    //   filename: 'rent/corp.html',
-    //   chunks: 'rent/corp',
-    //   excludeChunks: exceptChunk('rent/corp'),
-    //   template: './src/pages/rent/corp/app.pug'
-    // }),
-    // new HtmlWebpackPlugin({
-    //   filename: 'sale/stead.html',
-    //   chunks: 'sale/stead',
-    //   excludeChunks: exceptChunk('sale/stead'),
-    //   template: './src/pages/sale/stead/app.pug'
-    // }),
-    // new HtmlWebpackPlugin({
-    //   filename: 'main/valuation.html',
-    //   chunks: 'main/valuation',
-    //   excludeChunks: exceptChunk('main/valuation'),
-    //   template: './src/pages/main/valuation/app.pug'
-    // })
     new HtmlWebpackPlugin({
-      filename: 'main/owners.html',
-      chunks: 'main/owners',
-      excludeChunks: exceptChunk('main/owners'),
-      template: './src/pages/main/owners/app.pug'
+      filename: 'rent/flat.html',
+      chunks: 'rent/flat',
+      excludeChunks: exceptChunk('rent/flat'),
+      template: './src/pages/rent/flat/app.pug'
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'rent/corp.html',
+      chunks: 'rent/corp',
+      excludeChunks: exceptChunk('rent/corp'),
+      template: './src/pages/rent/corp/app.pug'
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'sale/stead.html',
+      chunks: 'sale/stead',
+      excludeChunks: exceptChunk('sale/stead'),
+      template: './src/pages/sale/stead/app.pug'
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'main/valuation.html',
+      chunks: 'main/valuation',
+      excludeChunks: exceptChunk('main/valuation'),
+      template: './src/pages/main/valuation/app.pug'
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'main/owners-sale.html',
+      chunks: 'main/owners-sale',
+      excludeChunks: exceptChunk('main/owners-sale'),
+      template: './src/pages/main/owners-sale/app.pug'
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'main/owners-rent.html',
+      chunks: 'main/owners-rent',
+      excludeChunks: exceptChunk('main/owners-rent'),
+      template: './src/pages/main/owners-rent/app.pug'
     })
   ],
   devServer: {
@@ -228,7 +234,7 @@ const config = {
       }
     },
     open: true,
-    openPage: 'main/owners.html'
+    openPage: 'main/owners-sale.html'
       // contentBase: [ PathToTheFolderWhereYourHTMLsLives ],
       // watchContentBase: true
   },

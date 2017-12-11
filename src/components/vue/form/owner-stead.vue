@@ -4,7 +4,7 @@
             ValidateInput(name="region", v-model="form.region", validate="alpha_spaces", placeholder="Город / Область", width="225px")
             ValidateInput(name="street", v-model="form.street", validate="alpha_spaces", placeholder="Улица", width="380px")
         fieldset
-            select(name="form.purpose" style="width:425px")
+            select(name="purpose", v-model="form.purpose", style="width:425px")
                 option(disabled value="") Целевое назначение
                 option(value="Ведение товарного сельского производства") Ведение товарного сельского производства
                 option(value="Жилая застройка и коммерческое использование") Жилая застройка и коммерческое использование
@@ -16,11 +16,11 @@
                 option(value="Сельское хозяйство") Сельское хозяйство
         fieldset.params
             ValidateInput(type="number", name="areaSize", validate="numeric", v-model="form.areaSize", placeholder="Площадь", width="145px")
-            select(name="form.sizeUnit")
-                option(value="СОТ.") СОТ.
-                option(value="ГА.") ГА.
+            select(name="sizeUnit", v-model="form.sizeUnit")
+                option(value="СОТ") СОТ.
+                option(value="ГА") ГА.
             ValidateInput(type="number", validate="numeric", name="price", v-model="form.price", placeholder="Цена", width="145px")
-            select(name="form.currency")
+            select(name="currency", v-model="form.currency")
                 option(value="uah") грн
                 option(value="usd") usd
                 option(value="btc") btc
@@ -50,7 +50,7 @@
           street: '',
           purpose: '',
           areaSize: '',
-          sizeUnit: '',
+          sizeUnit: 'СОТ',
           price: '',
           currency: 'uah',
           desc: '',
