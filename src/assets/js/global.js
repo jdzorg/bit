@@ -3,6 +3,7 @@ var menu = {
   navObj: {},
   hiddenNav: [],
   curId: '',
+  curLi: '',
   init () {
     this.menu = document.querySelector('.navbar-nav')
     this.hiddenNav = document.querySelectorAll('.hidden-nav')
@@ -21,12 +22,15 @@ var menu = {
       }
       this.curId = target.getAttribute('href')
       if (this.navObj.hasOwnProperty(this.curId)) {
+        this.curLi = target.parentNode
+        this.curLi.classList.add('active')
         this.navObj[this.curId].classList.add('active')
         this.navObj[this.curId].addEventListener('mouseleave', this.closeNav.bind(this))
       }
     }
   },
   closeNav () {
+    this.curLi.classList.remove('active')
     this.navObj[this.curId].classList.remove('active')
     this.navObj[this.curId].removeEventListener('mouseleave', this.closeNav)
   }

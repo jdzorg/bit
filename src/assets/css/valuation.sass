@@ -5,7 +5,6 @@
 @import "components/s-breadcrumbs"
 @import "components/s-in-numbers"
 @import "components/s-list"
-@import "components/s-form"
 
 .valuation
   padding:
@@ -54,6 +53,11 @@
         weight: bold
       text-transform: uppercase
       text-align: center
+    & .input-wrapper
+      display: block
+      width: 100%
+      & .fa-warning
+        bottom: 0
     & input, & textarea
       width: 100%
       margin-bottom: 16px
@@ -76,6 +80,12 @@
       border-color: #000
 
 //.process
+
+.advantages-wrapper
+  display: flex
+  align-items: center
+  height: 80px
+
 .pic-inspection
   background: url(../img/pic-inspection.png)no-repeat center/100%
 .pic-dataanalise

@@ -8,7 +8,7 @@
                 span.miniatures-code(v-if="min.bit_code") {{ min.bit_code }}
                 .clearfix
                 span.miniatures-price(v-if="min.bit_price_uah || min.bit_price_usd") {{ min.bit_price_uah + ' грн. /  ' + min.bit_price_usd +' $'}}
-                button.btn.btn-simple узнать цену в криптовалюте
+                button.btn.btn-simple(@click.prevent="$emit('popBit')") узнать цену в криптовалюте
                 .miniatures-features
                     .rooms(v-if="sets.indexOf('rooms') !== -1 && min.bit_rooms")
                         i
@@ -30,10 +30,12 @@
                         P
                             span {{ min.bit_floors }}
                             span этаж
+
 </template>
 
 <script>
     export default {
+      name: 'minItem',
       props: {
         sets: Array,
         trans: Number,

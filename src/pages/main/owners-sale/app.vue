@@ -65,9 +65,15 @@
     },
     data() {
       return {
+        realtyTypeLang: {
+          'Flat': 'Квартира',
+          'House': 'Дом',
+          'Stead': 'Земельный участок',
+          'Comm': 'Коммерческая недвижимость'
+        },
         showPop: false,
         isRulesAgree: false,
-        realtyType: window.realtType,
+        realtyType: window.realtType || 'Flat',
         args: {
           formName: 'Форма - продажа недвижимости',
           type: 'POST',
@@ -84,6 +90,7 @@
         this.$validator.validateAll().then((result) => {
           debugger;
           if(!result)return;
+          this.args.formName += ` (${this.realtyTypeLang[this.realtyType]})`;
           this.args.userData['realtyData'] = this.$refs[this.realtyType]._data.form;
           const sm = sendMethods;
           const response = sm.nPromise(sm.nFeedback(this.args));

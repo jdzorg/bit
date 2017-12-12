@@ -19,7 +19,7 @@
                 )
         .col-lg-12.text-center.reviews-btn
             button.btn.btn-default.btn-transparent(@click="handlerPopUp") Оставте и Вы свой отклик!
-        Popup(v-show="showPop", @close="handlerPopUp")
+        Popup(v-show="showPop", @close="handlerPopUp", bgClass="review")
             transition(
               name="thxmsg",
               mode="out-in"

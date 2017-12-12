@@ -5,6 +5,7 @@
     )
         FeedbackForm(
           v-if="!isSent",
+          :isMail="false",
           key="form",
           :title="formHead.title",
           :subTitle="formHead.subTitle",

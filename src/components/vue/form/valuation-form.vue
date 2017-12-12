@@ -1,36 +1,9 @@
 <template lang="pug">
-    form.text-center.valuation-form(
-      action="javascript://",
-      @submit.prevent="$emit('sendApp', form)"
-    )
+    form.text-center.valuation-form(@submit.prevent="$emit('sendApp', form)")
         span Оставить заявку на оценку
-        input(
-          type="text",
-          name="client",
-          v-model="form.client",
-          placeholder="Имя *",
-          v-validate="'required|alpha_spaces'",
-          :class="{'is-danger': errors.has('client')}"
-        )
-        InvalidFiled(v-show="errors.has('client')") Неправильно введено имя
-        input(
-          type="tel",
-          name="phone",
-          v-model.lazy="form.phone",
-          placeholder="Телефон *",
-          v-validate="'required|phone'",
-          :class="{'is-danger': errors.has('phone')}"
-        )
-        InvalidFiled(v-show="errors.has('phone')") Неправильно введен телефон
-        input(
-          type="email",
-          name="email",
-          placeholder="Email",
-          v-model.lazy="form.email",
-          v-validate="'email'",
-          :class="{'is-danger': errors.has('email')}"
-        )
-        InvalidFiled(v-show="errors.has('email')") Неправильно введен email
+        ValidateInput(type="text", name="client", placeholder="Имя *", v-model="form.client", validate="required|alpha_spaces", width="100%")
+        ValidateInput(type="tel", name="phone", placeholder="Телефон *", v-model="form.phone", validate="required|phone", width="100%")
+        ValidateInput(type="email", name="email", placeholder="Email", v-model="form.email", validate="email", width="100%")
         textarea(
           name="msg",
           placeholder="Опишите объект",
@@ -43,12 +16,13 @@
 </template>
 
 <script>
+  import ValidateInput from 'components/vue/form/elements/input'
   import InvalidFiled from './elements/invalid-filed'
 
   export default {
     name: "ValuationForm",
     components: {
-      InvalidFiled
+      InvalidFiled, ValidateInput
     },
     data() {
       return {

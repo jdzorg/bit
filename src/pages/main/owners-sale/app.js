@@ -17,7 +17,7 @@ const phone = (value) => {
 }
 
 const text = (value) => {
-  const pat = /^[а-яА-Яa-zA-Z0-9ёЁїЇіІЄє\.\,'"\-\+\?\!\s]{0,}$/
+  const pat = /^[а-яА-Яa-zA-Z0-9ёЁїЇіІЄє\.\,'"\-\+\?\!\(\)\s]{0,}$/
   return pat.test(value)
 }
 

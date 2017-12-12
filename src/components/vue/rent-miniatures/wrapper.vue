@@ -15,7 +15,7 @@
                           mode="out-in",
                           appear
                         )
-                            .msg(v-show="isMin", :key="111")
+                            .msg(v-show="isMin", key="111")
                                 span
                                     | Извините по выбранным параметрам ничего не найдено
                                 <!--button.btn.btn-simple(@click="") Сбросить фильтр-->
@@ -24,19 +24,77 @@
                               :trans="index",
                               :key="index",
                               :min="item",
-                              :sets="settings.features"
+                              :sets="settings.features",
+                              @popBit="handlerPopUp"
                             )
-
+                            .col-lg-12(v-if="isPaging", key="paging")
+                                .pagination
+                                    span.pagePrev(v-if="curPage > 1", @click="switchPage(-1)") &#60; Пред
+                                    span.pageNext(v-if="curPage < totalPage", @click="switchPage(1)") След &#62;
+        Popup(v-show="showPop", @close="handlerPopUp", bgClass="bitcoin")
+            Bitcoin(
+              v-if="!isSent",
+              key="form",
+              :title="formHead.title",
+              :subTitle="formHead.subTitle",
+              :btnName="formHead.btn",
+              :sendArgs="args"
+            )
+            Msg(
+              v-else,
+              :finalMSG="msg",
+              key="msg"
+            )
 
 </template>
 
+<style lang="sass">
+    .pagination
+        display: flex
+        flex-direction: row
+        justify-content: center
+        & span
+            display: flex
+            justify-content: center
+            align-items: center
+            width: 72px
+            height: 42px
+            border: 1px solid #7e858b
+            font:
+                family: 'rubik-l', sans-serif
+                weight: 100
+                size: 14px
+            color: #7e858b
+            cursor: pointer
+            transition: .3s ease
+            &:hover
+                background-color: #88caec
+                color: #fff
+
+    .miniature-trans
+        &-enter-active, &-leave-to
+            transition: .5s ease
+        &-enter, &-leave-to
+            opacity: 0
+        &-enter, &-leave-to
+            transform: translateY(30px)
+        .msg
+            text-align: center
+            & > span
+                display: block
+                margin-top: 50px
+</style>
+
 <script>
-    import minItem from './item.vue'
     import rentFilter from '../filters/filter.vue'
+    import minItem from './item.vue'
+    import Popup from '../popups/popup'
+    import Bitcoin from '../form/bitcoin'
+    import Msg from '../form/msg'
 
     export default {
       components: {
-        minItem, rentFilter
+        minItem, rentFilter, Popup, Bitcoin, Msg
       },
       props: {
         wpapi: Object,
@@ -47,7 +105,26 @@
           isMin: false,
           districts: [],
           termsAttr: {},
-          minData: []
+          minData: [],
+          isPaging: false,
+          curPage: 1,
+          totalPage: '',
+          showPop: false,
+          args: {
+            formName: 'Форма - Цена в криптовалюте',
+            meth: 'nFeedback',
+            type: 'POST'
+          },
+          isSent: false,
+          formHead: {
+            title: 'Хотите узнать цену в криптовалюте?',
+            subTitle: 'Оставьте свои контактные данные и наш менеджер проконсультирует по <br>Вашему вопросу наша помощь и мы свяжемся с вами в ближайшее время.',
+            btn: 'Отправить'
+          },
+          msg: {
+            title: '',
+            msg: ''
+          }
         }
       },
       methods: {
@@ -57,17 +134,27 @@
             .orderby('date')
             .embed()
             .perPage(9)
-            .page(1)
+            .page(this.curPage)
             .then(resp => {
-              debugger;
               if(resp.length > 0) {
                 this.isMin = false;
+                this.renderPaging(resp._paging);
                 this.parseItems(resp);
               } else {
                 this.isMin = true;
                 this.minData = [];
              }
           });
+        },
+        renderPaging(pageData) {
+          if(pageData.totalPages > 1) {
+            this.isPaging = true;
+            this.totalPage = pageData.totalPages;
+          }
+        },
+        switchPage(page) {
+          this.curPage += page;
+          this.getItems();
         },
         getFilteredItems(filters) {
           /*
@@ -220,6 +307,10 @@
             }
           }
           this.minData = cPosts;
+        },
+        handlerPopUp() {
+          this.showPop = !this.showPop;
+          document.body.style.overflow = this.showPop ? 'hidden' : '';
         }
       },
       created() {
@@ -234,17 +325,3 @@
     }
 </script>
 
-<style lang="sass">
-    .miniature-trans
-        &-enter-active, &-leave-to
-            transition: .5s ease
-        &-enter, &-leave-to
-            opacity: 0
-        &-enter, &-leave-to
-            transform: translateY(30px)
-    .msg
-        text-align: center
-        & > span
-            display: block
-            margin-top: 50px
-</style>

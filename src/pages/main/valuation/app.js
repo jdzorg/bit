@@ -1,11 +1,11 @@
 import Vue from 'vue'
-// import ElementUI from 'element-ui'
 import App from './app.vue'
-import Feedback from './feedback-form.vue'
-import 'assets/css/valuation.sass'
-import { menu, scrollAnimate } from 'assets/js/global'
 import VeeValidate from 'vee-validate'
 import { Validator } from 'vee-validate'
+import Feedback from './feedback-form.vue'
+import PopupHead from 'components/vue/popups/popup-head'
+import { menu, scrollAnimate } from 'assets/js/global'
+import 'assets/css/valuation.sass'
 
 Vue.use(VeeValidate)
 
@@ -18,7 +18,7 @@ const phone = (value) => {
 }
 
 const text = (value) => {
-  const pat = /^[а-яА-Яa-zA-Z0-9ёЁїЇіІЄє\.\,'"\-\+\?\!\s]{0,}$/
+  const pat = /^[а-яА-Яa-zA-Z0-9ёЁїЇіІЄє\.\,'"\-\+\?\!\(\)\s]{0,}$/
   return pat.test(value)
 }
 
@@ -33,4 +33,9 @@ new Vue({
 new Vue({
   el: '#appform',
   render: h => h(Feedback)
+})
+
+new Vue({
+  el: '#consultationHead',
+  render: h => h(PopupHead)
 })

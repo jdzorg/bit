@@ -9,14 +9,15 @@
             @change="validation($event)"
             )
                 .input-group
-                    input.pull-left(
+                    input.form-full-width(
                     type='text',
                     placeholder='Имя *',
                     required="required",
                     data-type="name",
                     v-model.trim="userData.name"
                     )
-                    input.pull-right(
+                .input-group
+                    input.form-full-width(
                     type='tel',
                     placeholder='Телефон *',
                     required="required",
@@ -31,30 +32,20 @@
                     data-type="email",
                     v-model.trim="userData.email"
                     )
-                .input-group
-                    textarea.form-full-width(
-                    name='',
-                    id='',
-                    cols='30',
-                    rows='10',
-                    placeholder='Текст',
-                    data-type="text",
-                    v-model.trim="userData.text",
-                    )
                 .input-group.text-center
-                    button.btn.btn-default {{ btnName }}
+                    button.btn.btn-default(style="margin-top:40px") {{ btnName }}
                 transition-group(
-                 tag="p"
-                 name="error-trans",
-                 mode="in-out"
+                tag="p"
+                name="error-trans",
+                mode="in-out"
                 )
                     span.errorMSG(
-                     v-show="isValid",
-                     :key="0"
+                    v-show="isValid",
+                    :key="0"
                     ) Некоторые из полей неверно заполнены
                     span.errorMSG(
-                     v-show="isEmpty",
-                     :key="1"
+                    v-show="isEmpty",
+                    :key="1"
                     ) Некоторые из полей неверно заполнены
 </template>
 <script>
@@ -74,7 +65,7 @@
   };
 
   export default {
-    name: 'FeedbackForm',
+    name: 'Bitcoin',
     props: {
       isMail: {
         type: Boolean,
@@ -161,13 +152,13 @@
         &-enter, &-leave-to
             opacity: 0
             transform: translateY(60px)
-    .thxmsg
-        &-enter-active, &-leave-to
-            transition: .5s ease
-        &-enter, &-leave-to
-            opacity: 0
-        &-enter
-            transform: translateY(30px)
-        &-leave-to
-            transform: translateY(-30px)
+        .thxmsg
+            &-enter-active, &-leave-to
+                transition: .5s ease
+            &-enter, &-leave-to
+                opacity: 0
+            &-enter
+                transform: translateY(30px)
+            &-leave-to
+                transform: translateY(-30px)
 </style>

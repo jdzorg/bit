@@ -2,7 +2,7 @@
     transition(
       name="popup-trans"
     )
-        .popup(:style="setPopUpHeight")
+        .popup(:style="setPopUpHeight", :class="bgClass")
             .popup-container.review-send
                 .container
                     .row
@@ -15,6 +15,12 @@
 <script>
   export default {
     name: 'Popup',
+    props: {
+      bgClass: {
+        type: String,
+        default: 'consult'
+      }
+    },
     computed: {
       setPopUpHeight() {
         return `height: ${document.documentElement.clientHeight}px`;

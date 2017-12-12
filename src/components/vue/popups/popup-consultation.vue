@@ -1,19 +1,19 @@
 <template lang="pug">
     div
-        button.btn.btn-default.btn-transparent(@click="handlerPopUp") Заказать консультацию
+        button.btn.btn-default(@click="handlerPopUp") Заказать консультацию
         Popup(v-show="showPop", @close="handlerPopUp")
             FeedbackForm(
-            v-if="!isSent",
-            key="form",
-            :title="formHead.title",
-            :subTitle="formHead.subTitle",
-            :btnName="formHead.btn",
-            :sendArgs="args"
+              v-if="!isSent",
+              key="form",
+              :title="formHead.title",
+              :subTitle="formHead.subTitle",
+              :btnName="formHead.btn",
+              :sendArgs="args"
             )
             Msg(
-            v-else,
-            :finalMSG="msg",
-            key="msg"
+              v-else,
+              :finalMSG="msg",
+              key="msg"
             )
 </template>
 
@@ -23,7 +23,7 @@
   import Msg from '../form/msg'
 
   export default {
-    name: "PopupConsultation",
+    name: "PopupConsult",
     components: {
       Popup, FeedbackForm, Msg
     },

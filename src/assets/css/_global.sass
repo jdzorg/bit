@@ -117,6 +117,59 @@ a.btn
     flex-direction: column
     align-items: baseline
 
+
+//form section
+
+.form
+  width: 785px
+  margin: 20px auto 0
+  & .section-title, & .section-subtitle
+    text-align: center !important
+  &-full-width
+    width: 100% !important
+  & input, & textarea
+    background-color: transparent
+    font:
+      family: 'rubik-l', sans-serif
+      weight: 100
+      size: 16px
+    color: $body-bg
+    &::placeholder
+      color: $body-bg
+  & input
+    width: 48%
+    padding:
+      top: 20px
+      left: 3px
+      bottom: 5px
+    border:
+      top: none
+      left: none
+      right: none
+      bottom-width: 1px
+    &.error
+      outline-color: rgba(255, 0, 0, 0.62)
+      border-bottom: 2px solid rgba(255, 0, 0, 0.62)
+  & textarea
+    height: 110px
+    margin:
+      top: 45px
+      bottom: 45px
+    padding: 10px
+    border: 1px solid $body-bg
+    resize: none
+    &.error
+      border: 2px solid rgba(255, 0, 0, 0.62)
+  & .input-group
+    width: 100%
+  & .errorMSG
+    margin-top: 10px
+    text-align: center
+    color: red
+  & p
+    margin-top: 10px
+    text-align: center
+
 // popup
 
 .popup
@@ -128,11 +181,24 @@ a.btn
   display: flex
   flex-direction: column
   justify-content: center
-  background:
-    image: url(../../assets/img/pop-review.png)
-    position: center
-    repeat: no-repeat
-    size: 100% 100%
+  &.consult
+    background:
+      image: url(../../assets/img/pop-feedback.png)
+      position: center
+      repeat: no-repeat
+      size: 100% 100%
+  &.review
+    background:
+      image: url(../../assets/img/pop-review.png)
+      position: center
+      repeat: no-repeat
+      size: 100% 100%
+  &.bitcoin
+    background:
+      image: url(../../assets/img/pop-bitcoin.png)
+      position: center
+      repeat: no-repeat
+      size: 100% 100%
   &-container, & .row
     position: relative
     height: 454px

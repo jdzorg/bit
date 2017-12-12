@@ -234,7 +234,7 @@ const config = {
       }
     },
     open: true,
-    openPage: 'main/owners-sale.html'
+    openPage: 'main/valuation.html'
       // contentBase: [ PathToTheFolderWhereYourHTMLsLives ],
       // watchContentBase: true
   },

@@ -6,7 +6,7 @@ import 'assets/css/index.sass'
 import Feedback from './feedback-form.vue'
 import PopupHead from 'components/vue/popups/popup-head'
 import PopupMain from 'components/vue/popups/popup-main'
-import PopupMeet from 'components/vue/popups/popup-mmeet'
+import PopupMeet from 'components/vue/popups/popup-meet'
 
 menu.init()
 setHeight.set()
