@@ -95,8 +95,7 @@
         userData: {
           name: '',
           email: '',
-          phone: '',
-          text: ''
+          phone: ''
         }
       }
     },

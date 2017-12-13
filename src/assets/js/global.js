@@ -16,9 +16,10 @@ var menu = {
   menuHandler (e) {
     e.preventDefault()
     var target = e.target
-    if (target.nodeName === 'A') {
+    if (target.classList.contains('itemSubNav')) {
       if (this.curId !== '') {
         this.navObj[this.curId].classList.remove('active')
+        this.curLi.classList.remove('active')
       }
       this.curId = target.getAttribute('href')
       if (this.navObj.hasOwnProperty(this.curId)) {
@@ -122,8 +123,8 @@ const sendMethods = {
   type: 'GET',
   wpEndPoint: 'posts',
   wp: {},
-  url: 'http://bitrealt.com.ua/wp-content/themes/bitrealty-theme/form-handler.php',
-  fileUploadUrl: 'http://bitrealt.com.ua/wp-content/themes/bitrealty-theme/upload-photo.php',
+  url: 'http://bitrealt.com.ua/wp-content/themes/bitrealty-theme/form-handlers/form-handler.php',
+  fileUploadUrl: 'http://bitrealt.com.ua/wp-content/themes/bitrealty-theme/form-handlers/owners-form-handler.php',
   errormsg: {
     title: 'Произошла ошибка',
     msg: 'При отправке произошла ошибка. Перезагрузить страницу и еще раз попробуйте отправить или обратитесь в администрацию сайта.'

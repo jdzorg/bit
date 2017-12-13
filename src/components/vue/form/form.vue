@@ -101,6 +101,7 @@
       return {
         isValid: false,
         isEmpty: false,
+        isAllValid: 0,
         userData: {
           name: '',
           email: '',
@@ -118,7 +119,7 @@
           count += this.userData[i].replace(/\s/g, '').length > 0 ? 0 : 1;
         }
 
-        if(count > 0) {
+        if(count > 0 || this.isAllValid > 0) {
           this.$parent.isEmpty = true;
           return false;
         }
@@ -138,11 +139,14 @@
           type = el.dataset.type;
 
         if(regTemp[type].test(val)) {
-          if(el.classList.contains('error'))
+          if(el.classList.contains('error')) {
             el.classList.remove('error');
+            this.isAllValid -= 1;
+          }
         } else {
           if(!el.classList.contains('error'))
             el.classList.add('error');
+          this.isAllValid += 1;
         }
         this.onOffErrorMSG(e.currentTarget);
       },
