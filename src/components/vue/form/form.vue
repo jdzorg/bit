@@ -112,6 +112,7 @@
     },
     methods: {
       sendForm() {
+        const self = this;
         let count = 0;
         const sm = sendMethods;
 
@@ -125,12 +126,11 @@
         }
         this.sendArgs.userData = this.userData;
         const response = sm.nPromise(sm[this.sendArgs.meth](this.sendArgs));
-        response.then((res) => {
-          this.$parent.msg.title = res.title;
-          this.$parent.msg.msg = res.msg;
-          this.$parent.isEmpty = false;
-          this.$parent.isSent = true;
-        });
+        response
+          .then(outputMSG => {
+            self.$emit('setMsg', outputMSG);
+            self.isEmpty = false;
+          });
       },
 
       validation(e) {

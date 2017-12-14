@@ -9,7 +9,9 @@
                         .close(@click="$emit('close')")
                             span
                             span
-                        slot
+                        transition(name="thxmsg",
+                        mode="out-in")
+                            slot
 </template>
 
 <script>

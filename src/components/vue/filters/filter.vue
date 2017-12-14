@@ -6,7 +6,7 @@
         )
             .filter-col-1
                 fieldset
-                    .group-attr.btn-radio(v-if="page === 'flat' || page === 'house'")
+                    .group-attr.btn-radio(v-if="clearNamePage === 'flat' || clearNamePage === 'house'")
                         span.desc-fields Комнаты:
                         input(id="room_1" type="radio" v-model="form.rooms" value="1")
                         label(for="room_1") 1
@@ -18,7 +18,7 @@
                         label(for="room_4") 4
                         input(id="room_5" type="radio" v-model="form.rooms" value="5+")
                         label(for="room_5") 5+
-                    .group-attr.btn-radio.type(v-else-if="page === 'com_prop'")
+                    .group-attr.btn-radio.type(v-else-if="clearNamePage === 'com_prop'")
                         span.desc-fields Тип:
                         input(id="propType_1" type="radio" v-model="form.propType" value="жилой")
                         label(for="propType_1") жилой
@@ -30,7 +30,7 @@
                                 | админ.
                                 br
                                 | здание
-                    .group-attr.btn-radio.use-for(v-else-if="page === 'stead'")
+                    .group-attr.btn-radio.use-for(v-else-if="clearNamePage === 'stead'")
                         span.desc-fields Назначение:
                         input(id="useFor_1" type="radio" v-model="form.useFor" value="develop")
                         label(for="useFor_1") Застройка
@@ -60,14 +60,14 @@
                 )
                     .filter-hidden(v-if="isFilterMore")
                         fieldset
-                            span(v-if="page === 'stead' || page === 'house' || page === 'com_prop'")
-                                .group-attr.radio(v-if="page === 'stead' || page === 'house'")
+                            span(v-if="clearNamePage === 'stead' || clearNamePage === 'house' || clearNamePage === 'com_prop'")
+                                .group-attr.radio(v-if="clearNamePage === 'stead' || clearNamePage === 'house'")
                                     span.desc-fields Область:
                                         input( id="region_1", type="radio", v-model="form.tax.region", value="kiev")
                                         label(for="region_1") Киев
                                         input( id="region_2", type="radio", v-model="form.tax.region", value="kievskaya-oblast")
                                         label(for="region_2") Киевская область
-                                .group-attr.btn-radio(v-else-if="page === 'com_prop'")
+                                .group-attr.btn-radio(v-else-if="clearNamePage === 'com_prop'")
                                     span.desc-fields Комнаты:
                                     input(id="cRoom_1" type="radio" v-model="form.rooms" value="1")
                                     label(for="cRoom_1") 1
@@ -86,12 +86,12 @@
                                     v-for="(item, i) in terms",
                                     v-if="item.parent === 6",
                                     :value="item.slug") {{ item.name }}
-                            .group-attr(v-if="page === 'house' || page === 'com_prop'")
-                                input(type="number", :placeholder="page === 'house' ? 'Этажей' : 'Этаж'", v-model="form.floors")
-                            .group-attr(v-if="page === 'house'")
+                            .group-attr(v-if="clearNamePage === 'house' || clearNamePage === 'com_prop'")
+                                input(type="number", :placeholder="clearNamePage === 'house' ? 'Этажей' : 'Этаж'", v-model="form.floors")
+                            .group-attr(v-if="clearNamePage === 'house'")
                                 input(type="text" placeholder="Площадь участка" v-model="form.size_area")
                                 span.desc-fields сот.
-                            .group-attr(v-if="page === 'flat' || page === 'com_prop'")
+                            .group-attr(v-if="clearNamePage === 'flat' || clearNamePage === 'com_prop'")
                                 select(v-model="form.tax.subway")
                                     option(disabled value="") Метро
                                     option(
@@ -147,6 +147,11 @@ export default {
   methods: {
     toggleAddFilter() {
       this.isFilterMore = !this.isFilterMore
+    }
+  },
+  computed: {
+    clearNamePage() {
+     return this.page.replace('_s', '');
     }
   }
 }

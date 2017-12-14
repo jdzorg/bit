@@ -111,7 +111,7 @@ const seoTextBox = {
   onOpenText () {
     this.isOpened = !this.isOpened
     if (this.isOpened) {
-      this.text.style.height = this.maxHeight + 'px'
+      this.text.style.height = (this.maxHeight + 50) + 'px'
     } else {
       this.text.style.height = this.minHeight + 'px'
     }
@@ -183,19 +183,22 @@ const sendMethods = {
     const url = args.url || this.url
     const data = args.userData
     data.formName = args.formName
-    if (data.realtyData.photo.length !== 0) {
+    if (data.hasOwnProperty('realtyData') && data.realtyData.hasOwnProperty('photo')) {
       var files = data.realtyData.photo
-      var photo = new FormData()
+      var photoData = new FormData()
       for (var i = 0; i < files.length; i++) {
-        photo.append('photo', files[i])
+        photoData.append(i, files[i])
       }
-      delete data.realtyData.photo
+      photoData.append('file_upload', '1')
+      // delete data.realtyData.photo
 
-      return fetch(this.fileUploadUrl, { method: 'POST', body: photo })
-        .then(resp => {
+      return fetch(this.fileUploadUrl, { method: 'POST', body: photoData })
+        .then(resp => resp.json())
+        .then(path => {
+          data.realtyData.photo = path.files
           const options = {
             method: args.type || self.type,
-            body: self.serialize(data),
+            body: JSON.stringify(data),
             mode: 'cors'
           }
           return fetch(url, options)
@@ -217,7 +220,7 @@ const sendMethods = {
     } else {
       const options = {
         method: args.type || self.type,
-        body: self.serialize(data),
+        body: JSON.stringify(data),
         mode: 'cors'
       }
 

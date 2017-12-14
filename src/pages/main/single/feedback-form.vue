@@ -10,7 +10,8 @@
           :title="formHead.title",
           :subTitle="formHead.subTitle",
           :btnName="formHead.btn",
-          :sendArgs="args"
+          :sendArgs="args",
+          @setMsg="setOutputMSG"
         )
         Msg(
           v-else,
@@ -46,5 +47,13 @@
         },
       }
     },
+    methods: {
+      setOutputMSG(outputMsg) {
+        const { msg, title } = outputMsg;
+        this.msg.msg = msg;
+        this.msg.title = title;
+        this.isSent = true;
+      }
+    }
   }
 </script>

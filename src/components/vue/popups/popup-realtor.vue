@@ -6,17 +6,18 @@
             | РИЭЛТОРОМ
         Popup(v-show="showPop", @close="handlerPopUp")
             FeedbackForm(
-            v-if="!isSent",
-            key="form",
-            :title="formHead.title",
-            :subTitle="formHead.subTitle",
-            :btnName="formHead.btn",
-            :sendArgs="args"
+              v-if="!isSent",
+              key="form",
+              :title="formHead.title",
+              :subTitle="formHead.subTitle",
+              :btnName="formHead.btn",
+              :sendArgs="args",
+              @setMsg="setOutputMSG"
             )
             Msg(
-            v-else,
-            :finalMSG="msg",
-            key="msg"
+              v-else,
+              :finalMSG="msg",
+              key="msg"
             )
 </template>
 
@@ -54,6 +55,12 @@
       handlerPopUp() {
         this.showPop = !this.showPop;
         document.body.style.overflow = this.showPop ? 'hidden' : '';
+      },
+      setOutputMSG(outputMsg) {
+        const { msg, title } = outputMsg;
+        this.msg.msg = msg;
+        this.msg.title = title;
+        this.isSent = true;
       }
     }
   }

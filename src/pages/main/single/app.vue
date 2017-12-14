@@ -13,15 +13,15 @@
 <script>
     // import Wrapper from 'components/vue/single-slider/wrapper'
     import Control from 'components/vue/review-slider/control'
-    import img1 from 'assets/img/s1.jpg'
-    import img2 from 'assets/img/s2.jpg'
-    import img3 from 'assets/img/s3.jpg'
-
-    const singlePageGallery = [
-      img1,
-      img2,
-      img3
-    ];
+    // import img1 from 'assets/img/s1.jpg'
+    // import img2 from 'assets/img/s2.jpg'
+    // import img3 from 'assets/img/s3.jpg'
+    //
+    // const singlePageGallery = [
+    //   img1,
+    //   img2,
+    //   img3
+    // ];
 
   export default {
     name: "app",
@@ -32,8 +32,8 @@
       return {
         curImgId: '',
         curIMG: '',
-        // gallery: singleProductParam.singlePageGallery
-        gallery: singlePageGallery
+        gallery: singleProductParam.singlePageGallery
+        // gallery: singlePageGallery
       }
     },
     methods: {
