@@ -45,15 +45,15 @@
                     .group-attr.btn-radio
                         input(id="cur_1" type="radio" v-model="form.currency" value="uah")
                         label(for="cur_1")
-                            span грн
+                            span ГРН
                         input(id="cur_2" type="radio" v-model="form.currency" value="usd")
                         label(for="cur_2")
-                            span usd
+                            span USD
                     .group-attr
                         input(type="number" v-model="form.area_from" placeholder="Площадь от")
                         span.desc-fields -
                         input(type="number" v-model="form.area_to" placeholder="Площадь до")
-                        span.desc-fields км.м
+                        span.desc-fields {{clearNamePage === 'stead' ? 'сот.' : 'м²'}}
                 transition(
                   name="filter-advanced",
                   mode="in-out"

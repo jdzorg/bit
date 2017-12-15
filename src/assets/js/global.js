@@ -49,9 +49,12 @@ var setHeight = {
 
 var scrollAnimate = {
   elements: '',
+  nums: '',
+  numsDone: 0,
   isScrolling: false,
   init () {
     this.elements = document.querySelectorAll('.animate')
+    this.nums = document.querySelectorAll('.num')
     document.addEventListener('scroll', this.scrollHandler.bind(this))
     document.addEventListener('DOMContentLoaded', this.scrolling.bind(this), false)
   },
@@ -74,6 +77,26 @@ var scrollAnimate = {
         listItem.classList.remove('active')
       }
     }
+    // if (this.numsDone !== this.nums.length) {
+    //   for (var y = 0; y < this.nums.length; y++) {
+    //     if (this.isFullyVisible(this.nums[y])) {
+    //       this.countNum(this.nums[y])
+    //       this.numsDone += 1
+    //     }
+    //   }
+    // }
+  },
+  countNum (el) {
+    var num = parseInt(el.innerText)
+    var min = 0
+    var time = Math.ceil(6000 / num)
+    var int = setInterval(() => {
+      if (min !== num) {
+        el.innerText = ++min
+      } else {
+        clearInterval(int)
+      }
+    }, time)
   },
   isPartiallyVisible (el) {
     var elementBoundary = el.getBoundingClientRect()

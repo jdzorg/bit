@@ -27,8 +27,7 @@
                 .input-group(v-if="isMail")
                     input.form-full-width(
                     type='email',
-                    placeholder='Email *',
-                    required="required",
+                    placeholder='Email',
                     data-type="email",
                     v-model.trim="userData.email"
                     )
