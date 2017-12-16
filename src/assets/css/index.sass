@@ -1,9 +1,13 @@
 @import "bootstrap"
+@import "global"
 @import "header"
 @import "footer"
+@import "components/s-do-action"
+@import "components/s-list"
+@import "components/s-in-numbers"
 
 //page index
-// home screen - full screen image
+// house screen - full screen image
 
 .homescreen
   position: relative
@@ -17,14 +21,19 @@
     margin-bottom: 25px
     text-transform: uppercase
   & small
-    font-family: 'rubik-l', sans-serif
-    font-size: $font-size-base
+    font:
+      family: 'rubik-l', sans-serif
+      weight: 100
+      size: $font-size-base
   &-content
+    display: flex
+    justify-content: center
+    align-items: center
     position: absolute
-    width: 710px
-    top: 50%
-    left: 50%
-    transform: translateX(-50%) translateY(-50%)
+    width: 100%
+    height: 100%
+    top: 0
+    left: 0
     text-align: center
   & button
     margin-top: 25px
@@ -39,6 +48,8 @@
 //services section
 
 .services
+  padding-bottom: 0
+  overflow: hidden
   &-wrapper
     margin-top: 40px
   &-service:nth-child(even) &-box
@@ -57,7 +68,7 @@
     box-shadow: 0 0 80px #e8e8e8
     overflow: hidden
     &_bg
-      background-color: #f6f8fd
+      background-color: $barnd-light
     &:hover .services-hidden
       opacity: 1
       & a
@@ -68,13 +79,15 @@
     margin: 0 auto 45px
   &-name
     margin-bottom: 15px
-    font-family: 'rubik-b', sans-serif
-    font-weight: bold
+    font:
+      family: 'rubik-b', sans-serif
+      weight: bold
     text-transform: uppercase
   &-list
-    font-family: 'rubik-l', sans-serif
-    font-weight: 100
-    font-size: 16px
+    font:
+      family: 'rubik-l', sans-serif
+      weight: 100
+      size: 16px
   &-hidden
     position: absolute
     z-index: 2
@@ -99,9 +112,10 @@
       padding:
         top: 15px
         bottom: 15px
-      font-family: 'rubik-l', sans-serif
-      font-size: 20px
-      font-weight: 100
+      font:
+        family: 'rubik-l', sans-serif
+        weight: 100
+        size: 20px
       text-transform: uppercase
       color: $body-bg
       transform: translateY(-300px)
@@ -120,36 +134,8 @@
   background: url(../img/pic-owners.png)no-repeat center/100%
 
 //advantages section
-
-.advantages
-  padding-bottom: 70px
-  &-list
-    margin: 0
-    padding: 0
-    list-style: none
-    & p
-      margin:
-        top: 10px
-        bottom: 0
-      font-family: 'rubik-l', sans-serif
-      font-size: 14px
-      font-weight: 100
-    & > li.container
-      padding:
-        top: 40px
-        bottom: 40px
-        left: 30px
-        right: 30px
-    & .pic
-      display: block
-      margin: 0 30px
-    & .left
-      float: left
-    & .right
-      float: right
-  &-name
-    font-weight: bold
-
+.advantages-wrapper
+  max-width: 690px
 
 .pic-rangeofservices
     background: url(../img/pic-rangeofservices.png)no-repeat center/100%
@@ -162,8 +148,97 @@
 .pic-innovation
     background: url(../img/pic-innovation.png)no-repeat center/100%
 
-.divider
-  width: 100%
-  height: 1px
-  overflow: hidden
-  background-color: #bdc3d5
+//about company section
+.about
+  background-color: $barnd-light
+
+//reviews section
+.reviews
+  &-wrapper
+    position: relative
+    width: 100%
+    margin-top: 50px
+  &-trans
+    position: relative
+    display: flex
+    flex-direction: row
+    justify-content: center
+    width: 100%
+  /*overflow: hidden*/
+  & .control
+    position: absolute
+    z-index: 2
+    width: 100%
+    height: 42px
+    top: 50%
+    left: 0
+    transform: translateY(-50%)
+    & button
+      position: absolute
+      top: 0
+      width: 42px
+      height: 42px
+      background:
+        color: transparent
+        image: url(../../assets/img/ico-controll-arrow-left.png)
+        repeat: no-repeat
+        size: 100% 100%
+        position: center
+      transition: .3s ease
+      border: none
+      &:hover
+        background-color: #88caec
+    .next
+      right: 0
+      transform: scale(-1, 1)
+    .prev
+      left: 0
+
+  &-container
+    display: flex
+    flex-direction: row
+    align-items: center
+    width: 40%
+    padding: 30px 25px
+    box-shadow: 0 0 20px 14px #fbfbfb
+    background-color: #fff
+    &:first-child
+      margin-right: 15px
+    &:last-child
+      margin-left: 15px
+  &-author
+    padding-left: 3px
+    font:
+      family: 'rubik-b', sans-serif
+      weight: bold
+      size: 16px
+    color: #88caec
+  &-review
+    margin-top: 10px
+    font:
+      family: 'rubik-l', sans-serif
+      weight: 100
+      size: 14px
+  &-btn > button.btn
+    margin-top: 50px
+    color: #000
+    border-color: #000
+
+  /*.reviews-trans*/
+  .trans-slider
+    &-item, &-move
+      transition: .6s ease
+    &-leave-active
+      position: absolute
+    &-enter-active
+      transition-delay: .3s
+    &-enter, &-leave-to
+      opacity: 0
+
+//feedback section
+.feedback
+  background:
+    image: url(../img/feedback.png)
+    position: center
+    repeat: no-repeat
+    size: 100% 100%

@@ -1,0 +1,110 @@
+.filter
+  padding-top: 57px
+  &-add-toggle
+    padding:
+      top: 10px
+      bottom: 20px
+    & hr
+      margin:
+        top: -10px
+        bottom: 0
+      border-bottom: 1px solid #bdc3d5
+  & form
+    & button.btn:hover
+      color: #000
+      border-color: #000
+  &-col-1, &-col-2
+    float: left
+  &-col-1
+    width: 87%
+  &-col-2
+    width: 13%
+  & .desc-fields
+    display: inline-flex
+    font-size: 16px
+  & fieldset
+    display: block
+    margin-bottom: 30px
+  & .group-attr
+    display: inline-flex
+    align-items: center
+  & label
+    margin-bottom: 0
+  & input[type="number"]
+    width: 120px
+  & select
+    width: 255px
+  & input[type="number"], input[type="text"], & select
+    height: 42px
+    margin:
+      right: 4px
+      left: 4px
+    padding-left: 11px
+    border: 1px solid #7e858b
+    color: #7e858b
+    font-size: 14px
+  & input[type="radio"]
+    display: none
+  & .btn-radio
+    &.type label
+      width: 88px !important
+      font-size: 14px
+    &.use-for
+      position: relative
+      & label
+        width: 100px !important
+        font-size: 14px
+      & span
+        position: absolute
+        top: -25px
+        left: 3px
+
+    & input[type="radio"]:checked + label
+      background-color: #88caec
+      color: #fff
+    & label
+      display: inline-flex
+      justify-content: center
+      align-items: center
+      width: 42px
+      height: 42px
+      margin:
+        right: 4px
+        left: 4px
+        bottom: 0
+      background-color: #eeeff0
+      font-weight: 500
+      cursor: pointer
+      transition: .3s ease
+      &:hover
+        background-color: #88caec
+        color: #fff
+  & .radio
+    & label
+      position: relative
+      max-height: 17px
+      min-height: 17px
+      margin-left: 25px
+      margin-right: 4px
+      padding-left: 25px
+      font:
+        family: 'rubik-l', sans-serif
+        weight: 100
+        size: 14px
+      color: #7e858b
+      &:before
+        content: ""
+        position: absolute
+        display: block
+        height: 17px
+        width: 17px
+        top: 0
+        left: 0
+        border: 1px solid #393a3d
+        border-radius: 50%
+        background-color: transparent
+        transition: 1s ease
+    & input[type="radio"]:checked + label
+      color: #393a3d
+      &:before
+        background-color: #000

@@ -1,0 +1,103 @@
+@import "bootstrap"
+@import "global"
+@import "header"
+@import "footer"
+@import "components/s-breadcrumbs"
+@import "components/s-in-numbers"
+@import "components/s-list"
+
+.valuation
+  padding:
+    top: 50px
+    bottom: 80px
+  &-title
+    margin:
+      top: 30px
+      bottom: 80px
+    font:
+      family: 'rubik-b', sans-serif
+      weight: bold
+    text-transform: uppercase
+  &-services
+    font:
+      family: 'rubik-l', sans-serif
+      weight: 100
+      size: 16px
+    & ul
+      padding-left: 30px
+      list-style: none
+    & li
+      position: relative
+      padding-bottom: 37px
+      &:before
+        position: absolute
+        display: inline-block
+        content: ''
+        width: 14px
+        height: 10px
+        top: 6px
+        left: -26px
+        background:
+          image: url(../img/ico-mark.png)
+          size: 100%
+          repeat: no-repeat
+  &-form
+    margin-left: 50px
+    padding: 32px 28px
+    box-shadow: 0 0 30px 10px #ececec
+    & span:first-child
+      display: block
+      margin-bottom: 30px
+      font:
+        family: 'rubik-b', sans-serif
+        weight: bold
+      text-transform: uppercase
+      text-align: center
+    & .input-wrapper
+      display: block
+      width: 100%
+      & .fa-warning
+        bottom: 0
+    & input, & textarea
+      width: 100%
+      margin-bottom: 16px
+      padding-left: 15px
+      border: 1px solid #7e858b
+      font-size: 14px
+      &::placeholder
+        font:
+          family: 'rubik-l', sans-serif
+          weight: 100
+          size: 14px
+    & input
+      height: 42px
+    & textarea
+      height: 92px
+      padding-top: 10px
+      resize: none
+    & .btn-default:hover
+      color: #000
+      border-color: #000
+
+//.process
+
+.advantages-wrapper
+  display: flex
+  align-items: center
+  height: 80px
+
+.pic-inspection
+  background: url(../img/pic-inspection.png)no-repeat center/100%
+.pic-dataanalise
+  background: url(../img/pic-dataanalise.png)no-repeat center/100%
+.pic-compvaluation
+  background: url(../img/pic-compvaluation.png)no-repeat center/100%
+.pic-result
+  background: url(../img/pic-result.png)no-repeat center/100%
+
+.feedback
+  background:
+    image: url(../img/feedback.png)
+    position: center
+    repeat: no-repeat
+    size: 100% 100%

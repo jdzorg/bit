@@ -1,0 +1,66 @@
+doctype html
+html(lang='ru')
+    include ../../../components/pug/main/head
+    body
+        .container-fluid
+            .row
+                include ../../../components/pug/main/header
+                main.content
+                    - var pageName = 'Оценка недвижимости'
+                    include ../../../components/pug/sections/breadcrumbs
+
+                    section.valuation
+                        .container
+                            .row
+                                .col-lg-7
+                                    .valuation-title
+                                        | Мы предоставляем нашим Клиентам
+                                        br
+                                        | комплекс услуг по оценке объекта недвижимости
+                                    .valuation-services
+                                        ul
+                                            li Консультирование по текущей стоимости разных типов объектов недвижимости с последующим оформлением необходимых документов
+                                            li Проведение комплексной оценки данного объекта
+                                            li Консультирование относительно целесообразности проведения операции с данным объектом недвижимости
+                                .col-lg-5
+                                    #app
+
+                    include ../../../components/pug/sections/innumbers
+
+                    section.section-padding.list.process
+                        .container
+                            .row
+                                .col-lg-12
+                                    span.section-title Как происходит процесс оценки
+                                    span.section-subtitle
+                                        | Мы проведем для Вас оценку рыночной, потребительской,
+                                        br
+                                        | инвестиционной либо страховой стоимости любого объекта недвижимости
+                        ul.list-wrapper
+                            li.container.animate.animate-left
+                                span.pic.pic-inspection.pull-left
+                                .advantages-wrapper.pull-left
+                                    span.advantages-name 1. Предварительный осмотр объекта
+
+                            li.list-divider
+                            li.container.animate.animate-right
+                                span.pic.pic-dataanalise.pull-right
+                                .advantages-wrapper.pull-right
+                                    span.advantages-name 2. Сбор и анализ данных об объекте
+                            li.list-divider
+                            li.container.animate.animate-left
+                                span.pic.pic-compvaluation.pull-left
+                                .advantages-wrapper.pull-left
+                                    span.advantages-name 3. Комплексная оценка объекта по различным критериям
+                            li.list-divider
+                            li.container.animate.animate-right
+                                span.pic.pic-result.pull-right
+                                .advantages-wrapper.pull-right
+                                    span.advantages-name 4. Составление общих результатов оценки
+
+                    - var formTitle = 'Оставить заявку на оценку'
+                    - var formSubTitleF = 'Будем рады стать Вам полезными от первого звонка в агентство'
+                    - var formSubTitleS = 'до полного оформления сделки.'
+                    - var formBtnName = 'Отправить сообщение'
+                    include  ../../../components/pug/sections/footer-form
+                include ../../../components/pug/main/footer

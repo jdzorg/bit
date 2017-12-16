@@ -1,0 +1,106 @@
+//
+   Created by jdzor on 05.11.2017.
+
+header.header
+    h1.site-title.sr-only(itemprop='name') Site for trade realty for cryptocurrency.
+    .brand-bg.menu-wrapper
+        .container
+            .row
+                a.header-logo(href="/main/index.html")
+                    img(src='../../../assets/img/logo.png', alt='logo')
+                nav.header-nav(role='navigation')
+                    ul.nav.navbar-nav
+                        li
+                            a.itemSubNav(href='#rent')
+                                | аренда
+                                span.nav-caret
+                        li
+                            a.itemSubNav(href='#sale')
+                                | продажа
+                                span.nav-caret
+                        li
+                            a.itemSubNav(href='#owners')
+                                | владельцам
+                                span.nav-caret
+                        li
+                            a(href='#') оценка недвижимости
+                .header-contacts
+                    .phone +38 (067) 507-22-34
+                    #consultationHead
+    .submenu-wrapper
+        #rent.hidden-nav.bit-dropdown-menu
+            ul.container
+                li
+                    a(href='/rent/flat.html')
+                        span.flat
+                        | Квартира
+                li.bit-dropdown-menu-devider
+                li
+                    a(href='/rent/house.html')
+                        span.house
+                        | Дом
+                li.bit-dropdown-menu-devider
+                li
+                    a(href='/rent/corp.html')
+                        span.comm(style="margin-top:22px")
+                        | Коммерческая
+                        br
+                        | недвижимость
+                li.submenu-title
+                    span.ico.ico-rent
+                    span Сдать в аренду
+                    span.bg
+        #sale.hidden-nav.bit-dropdown-menu
+            ul.container
+                li
+                    a(href='#')
+                        span.flat
+                        | Квартира
+                li.bit-dropdown-menu-devider
+                li
+                    a(href='#')
+                        span.house
+                        | Дом
+                li.bit-dropdown-menu-devider
+                li
+                    a(href='#')
+                        span.comm(style="margin-top:22px")
+                        | Коммерческая
+                        br
+                        | недвижимость
+                li.bit-dropdown-menu-devider
+                li
+                    a(href='/sale/stead.html')
+                        span.stead(style="margin-top:22px")
+                        | Земельный
+                        br
+                        | участок
+                li.submenu-title
+                    span.ico.ico-sale(style="margin-top:28px")
+                    span
+                        | Продать
+                        br
+                        | недвижимость
+                    span.bg
+        #owners.hidden-nav.bit-dropdown-menu-usual
+            .usual-wrapper.container
+                .row
+                    ul.col-lg-6
+                        li.submenu-title продажа
+                        li
+                            a(href='#') Квартира
+                        li
+                            a(href='#') Дом
+                        li
+                            a(href='#') Коммерческая недвижимость
+                        li
+                            a(href='#') Земельный участок
+                    ul.col-lg-6
+                        li.submenu-title аренда
+                        li
+                            a(href='#') Квартира
+                        li
+                            a(href='#') Дом
+                        li
+                            a(href='#') Коммерческая недвижимость
+                        li.bg

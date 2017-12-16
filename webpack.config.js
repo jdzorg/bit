@@ -9,6 +9,14 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 
+const entries = {}
+const chunks = []
+glob.sync('./src/pages/**/app.js').forEach(path => {
+  const chunk = path.split('./src/pages/')[1].split('/app.js')[0]
+  entries[chunk] = path
+  chunks.push(chunk)
+})
+
 const extractCSS = new ExtractTextPlugin({
   filename: 'assets/css/[name].css',
   allChunks: true
@@ -18,13 +26,13 @@ const extractSASS = new ExtractTextPlugin({
   allChunks: true
 })
 
-const entries = {}
-const chunks = []
-glob.sync('./src/pages/**/app.js').forEach(path => {
-  const chunk = path.split('./src/pages/')[1].split('/app.js')[0]
-  entries[chunk] = path
-  chunks.push(chunk)
-})
+function exceptChunk(exception) {
+  return chunks.map(chank => {
+    if (chank !== exception) {
+      return chank
+    }
+  })
+}
 
 const config = {
   entry: entries,
@@ -34,7 +42,7 @@ const config = {
     publicPath: '/'
   },
   resolve: {
-    extensions: ['.js', '.vue'],
+    extensions: ['.js', '.vue', '.json'],
     alias: {
       assets: join(__dirname, '/src/assets'),
       components: join(__dirname, '/src/components'),
@@ -43,6 +51,15 @@ const config = {
   },
   module: {
     rules: [
+      {
+        test: /\.(js|vue)$/,
+        loader: 'eslint-loader',
+        enforce: 'pre',
+        include: [resolve(__dirname, 'src'), resolve(__dirname, 'test')],
+        options: {
+          formatter: require('eslint-friendly-formatter')
+        }
+      },
       {
         test: /\.vue$/,
         loader: 'vue-loader',
@@ -60,10 +77,7 @@ const config = {
               use: ['css-loader', 'postcss-loader'],
               fallback: 'style-loader'
             }))
-            // pug: ['pug-html-loader'].concat(ExtractTextPlugin.extract({
-            //     // use: ['html-loader'],
-            //     fallback: 'html-loader'
-            // })),
+
           }
         }
       },
@@ -86,10 +100,13 @@ const config = {
           fallback: 'style-loader'
         }))
       },
-      // {
-      //   test: /\.pug$/,
-      //     loaders:['html-loader', 'pug-html-loader']
-      // },
+      {
+        test: /\.pug$/,
+        use: [
+            {loader: 'html-loader'},
+            {loader: 'pug-html-loader'}
+        ]
+      },
       {
         test: /\.html$/,
         use: [{
@@ -101,7 +118,7 @@ const config = {
         }]
       },
       {
-        test: /\.(png|jpg|jpeg|gif|eot|ttf|woff|woff2|svg|svgz)(\?.+)?$/,
+        test: /\.(png|jpe?g|gif|svg|svgz)(\?.+)?$/,
         exclude: /favicon\.png$/,
         use: [{
           loader: 'url-loader',
@@ -109,20 +126,100 @@ const config = {
             limit: 10000,
             name: 'assets/img/[name].[hash:7].[ext]'
           }
+        },
+        {
+          loader: 'img-loader'
         }]
+      },
+      // {
+      //   test: /\.(jpe?g|png|gif|svg|svgz)$/i,
+      //   use: [
+      //     'url-loader?limit=10000',
+      //     'img-loader'
+      //   ]
+      // },
+      {
+        test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+          name: 'assets/font/[name].[hash:7].[ext]'
+        }
+      },
+      {
+        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+          name: 'assets/fonts/[name].[hash:7].[ext]'
+        }
       }
     ]
   },
   plugins: [
     new webpack.optimize.ModuleConcatenationPlugin(),
-    new CommonsChunkPlugin({
+    new webpack.optimize.CommonsChunkPlugin({
       name: 'vendors',
       filename: 'assets/js/vendors.js',
       chunks: chunks,
       minChunks: chunks.length
     }),
     extractSASS,
-    extractCSS
+    extractCSS,
+    new HtmlWebpackPlugin({
+      filename: 'main/index.html',
+      chunks: 'main/index',
+      excludeChunks: exceptChunk('main/index'),
+      template: './src/pages/main/index/app.pug'
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'main/single.html',
+      chunks: 'main/single',
+      excludeChunks: exceptChunk('main/single'),
+      template: './src/pages/main/single/app.pug'
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'rent/house.html',
+      chunks: 'rent/house',
+      excludeChunks: exceptChunk('rent/house'),
+      template: './src/pages/rent/house/app.pug'
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'rent/flat.html',
+      chunks: 'rent/flat',
+      excludeChunks: exceptChunk('rent/flat'),
+      template: './src/pages/rent/flat/app.pug'
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'rent/corp.html',
+      chunks: 'rent/corp',
+      excludeChunks: exceptChunk('rent/corp'),
+      template: './src/pages/rent/corp/app.pug'
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'sale/stead.html',
+      chunks: 'sale/stead',
+      excludeChunks: exceptChunk('sale/stead'),
+      template: './src/pages/sale/stead/app.pug'
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'main/valuation.html',
+      chunks: 'main/valuation',
+      excludeChunks: exceptChunk('main/valuation'),
+      template: './src/pages/main/valuation/app.pug'
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'main/owners-sale.html',
+      chunks: 'main/owners-sale',
+      excludeChunks: exceptChunk('main/owners-sale'),
+      template: './src/pages/main/owners-sale/app.pug'
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'main/owners-rent.html',
+      chunks: 'main/owners-rent',
+      excludeChunks: exceptChunk('main/owners-rent'),
+      template: './src/pages/main/owners-rent/app.pug'
+    })
   ],
   devServer: {
     host: '127.0.0.1',
@@ -137,7 +234,9 @@ const config = {
       }
     },
     open: true,
-    openPage: 'index.html'
+    openPage: 'main/valuation.html'
+      // contentBase: [ PathToTheFolderWhereYourHTMLsLives ],
+      // watchContentBase: true
   },
   devtool: '#eval-source-map'
 }

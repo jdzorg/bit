@@ -1,0 +1,165 @@
+doctype html
+html(lang='ru')
+    include ../../../components/pug/main/head
+    body
+        .container-fluid
+            .row
+                include ../../../components/pug/main/header
+                main.content
+                    - var pageName = 'Аренда квартиры'
+                    include ../../../components/pug/sections/breadcrumbs
+
+                    section.single-head
+                        .container
+                            .row
+                                .col-lg-6
+                                    .single-head-title Аренда трехкомнатной квартиры Героев Сталинграда просп. 6а в Киеве
+                                    span.single-head-district Оболонский район
+                                    span.single-head-code К-25348
+                                .col-lg-3
+                                    .single-head-price 45 400 грн. / 1700 $
+                                    span#bitcoinPrice
+                                .col-lg-3
+                                    span#consultationRealtor
+
+                    section.single-body
+                        .container
+                            .row
+                                #app
+                                .col-lg-6.characteristics
+                                    .wrapper
+                                        .params-main
+                                            .rooms
+                                                i
+                                                span 3
+                                                span комн.
+                                            .size-home
+                                                i
+                                                span 104
+                                                span кв.м.
+                                            .floors
+                                                i
+                                                span 10/24
+                                                span этаж
+                                            .subway
+                                                i
+                                                span 15
+                                                span мин. до метро
+                                        .separatoe
+                                        .params-add
+                                            table
+                                                tbody
+                                                    tr
+                                                        td.name Улица
+                                                        td.val Героев Сталинграда просп., 6а
+                                                    tr
+                                                        td.name
+                                                            | Площадь
+                                                            br
+                                                            span (общая/жилая/кухня)
+                                                        td.val 104/63,1/14 кв.м.
+                                                    tr
+                                                        td.name Стены
+                                                        td.val Кирпич
+                            .row
+                                .col-lg-6.description
+                                    .wrapper
+                                        p
+                                            | Элитная квартира, очень теплая и тихая, изысканный и качественный дизайнерский ремонт,
+                                            | 2 спальни - меблируются под арендатора, кухня Италия, микроволновая печь, стиральная
+                                            | и посудомоечная машина, посуда, 2 санузла, душевая кабина, ванна, сантехника Италия и
+                                            | Германия. Большая гардеробная. В квартире дубовый паркет 22 мм, во всех комнатах
+                                            | кондиционеры Мitsubishi, счетчики на воду и отопление. Натяжной потолок, вид центра и
+                                            | озера Вербное, 3 лифта, место в подземном паркинге.
+                                .col-lg-6#map
+                    section.section-padding.similar
+                        .container
+                            .row
+                                .col-lg-12
+                                    span.section-title Похожие объекты
+                                    span.section-subtitle Тут собраны объекты которые могут Вас заинтерисовать
+                                .col-lg-4
+                                    a.miniatures-item(:href="min.link", data-id="min.id")
+                                        img(:src="min.featured_media")
+                                        .miniatures-caption
+                                            span.miniatures-addres 4-ком. квартира, ул. Тимошенко Маршала, 21корп.3, Киев
+                                            span.miniatures-district Оболонский райо
+                                            span.miniatures-code К-25348
+                                            .clearfix
+                                            span.miniatures-price 45 400 грн. / 1700 $
+                                            button.btn.btn-simple узнать цену в криптовалюте
+                                            .miniatures-features
+                                                .rooms
+                                                    i
+                                                    P
+                                                        span 4
+                                                        span комнат
+                                                .size-home
+                                                    i
+                                                    P
+                                                        span 163
+                                                        span кв.м.
+                                                .floors
+                                                    i
+                                                    P
+                                                        span 10/24
+                                                        span этаж
+                                .col-lg-4
+                                    a.miniatures-item(:href="min.link", data-id="min.id")
+                                        img(:src="min.featured_media")
+                                        .miniatures-caption
+                                            span.miniatures-addres 4-ком. квартира, ул. Тимошенко Маршала, 21корп.3, Киев
+                                            span.miniatures-district Оболонский райо
+                                            span.miniatures-code К-25348
+                                            .clearfix
+                                            span.miniatures-price 45 400 грн. / 1700 $
+                                            button.btn.btn-simple узнать цену в криптовалюте
+                                            .miniatures-features
+                                                .rooms
+                                                    i
+                                                    P
+                                                        span 4
+                                                        span комнат
+                                                .size-home
+                                                    i
+                                                    P
+                                                        span 163
+                                                        span кв.м.
+                                                .floors
+                                                    i
+                                                    P
+                                                        span 10/24
+                                                        span этаж
+                                .col-lg-4
+                                    a.miniatures-item(:href="min.link", data-id="min.id")
+                                        img(:src="min.featured_media")
+                                        .miniatures-caption
+                                            span.miniatures-addres 4-ком. квартира, ул. Тимошенко Маршала, 21корп.3, Киев
+                                            span.miniatures-district Оболонский райо
+                                            span.miniatures-code К-25348
+                                            .clearfix
+                                            span.miniatures-price 45 400 грн. / 1700 $
+                                            button.btn.btn-simple узнать цену в криптовалюте
+                                            .miniatures-features
+                                                .rooms
+                                                    i
+                                                    P
+                                                        span 4
+                                                        span комнат
+                                                .size-home
+                                                    i
+                                                    P
+                                                        span 163
+                                                        span кв.м.
+                                                .floors
+                                                    i
+                                                    P
+                                                        span 10/24
+                                                        span этаж
+                    - var formTitle = 'Связаться с риэлтором'
+                    - var formSubTitleF = 'Будем рады стать Вам полезными от первого звонка в агентство'
+                    - var formSubTitleS = 'до полного оформления сделки.'
+                    - var formBtnName = 'Отправить сообщение'
+                    include  ../../../components/pug/sections/footer-form
+                include ../../../components/pug/main/footer
+                //script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAditakykKP1N5H2dOHIUvcEINURyKgaJ0&callback=initMap')

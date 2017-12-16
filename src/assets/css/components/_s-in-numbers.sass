@@ -1,0 +1,26 @@
+//company in numbers section
+
+.innumbers
+  background:
+    image: url(../img/innumbers.png)
+    position: center
+    repeat: no-repeat
+    size: 100% 100%
+  &-top
+    margin: 100px 0
+  &-top, &-bottom
+    text-align: center
+  &-top > &-numbers
+    font:
+      family: 'rubik-b', sans-serif
+      weight: bold
+      size: 60px
+    & > .num
+      padding-right: 15px
+  &-top > &-text
+    font-size: 21px
+  &-numbers
+    font-size: 48px
+    color: #88caec
+  &-text
+    color: $body-bg
