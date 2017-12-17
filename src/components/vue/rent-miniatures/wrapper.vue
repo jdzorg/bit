@@ -19,14 +19,15 @@
                                 span
                                     | Извините по выбранным параметрам ничего не найдено
                                 <!--button.btn.btn-simple(@click="") Сбросить фильтр-->
-                            minItem(
-                              v-for="(item, index) in minData",
-                              :trans="index",
-                              :key="index",
-                              :min="item",
-                              :sets="settings.features",
-                              @popBit="handlerPopUp"
-                            )
+                            template(v-for="(item, index) in minData")
+                                minItem(
+                                  :trans="index",
+                                  :key="index",
+                                  :min="item",
+                                  :sets="settings.features",
+                                  @popBit="handlerPopUp"
+                                )
+                                .clearfix(v-if="(index + 1) % 3 === 0", key="clear")
                             .col-lg-12(v-if="isPaging", key="paging")
                                 .pagination
                                     span.pagePrev(v-if="curPage > 1", @click="switchPage(-1)") &#60; Пред
@@ -191,7 +192,7 @@
             ite++;
           }
 
-          if(page === 'comProp') {
+          if(page === 'com_prop') {
             queryStr +=`&filter[meta_query][relation]=AND
                           &filter[meta_query][${ite}][key]=_bit_apart_type
                           &filter[meta_query][${ite}][value]=${propType}
@@ -245,10 +246,13 @@
           }
 
           if(floors !== '') {
-            queryStr += `&filter[meta_query][${ite}][key]=_floors
+            let comp = '<=';
+            if(floors.toLocaleLowerCase() === 'цоколь') {
+              comp = '=';
+            }
+            queryStr += `&filter[meta_query][${ite}][key]=_bit_floors
                          &filter[meta_query][${ite}][value]=${floors}
-                         &filter[meta_query][${ite}][type]=NUMERIC
-                         &filter[meta_query][${ite}][compare]=<=`;
+                         &filter[meta_query][${ite}][compare]=${comp}`;
             ite++;
           }
 

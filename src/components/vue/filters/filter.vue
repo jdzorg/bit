@@ -20,11 +20,11 @@
                         label(for="room_5") 5+
                     .group-attr.btn-radio.type(v-else-if="clearNamePage === 'com_prop'")
                         span.desc-fields Тип:
-                        input(id="propType_1" type="radio" v-model="form.propType" value="жилой")
+                        input(id="propType_1" type="radio" v-model="form.propType" value="resident")
                         label(for="propType_1") жилой
-                        input(id="propType_2" type="radio" v-model="form.propType" value="нежилой")
+                        input(id="propType_2" type="radio" v-model="form.propType" value="nonresident")
                         label(for="propType_2") нежилой
-                        input(id="propType_3" type="radio" v-model="form.propType" value="админ.здание")
+                        input(id="propType_3" type="radio" v-model="form.propType" value="admin")
                         label(for="propType_3")
                             span
                                 | админ.
@@ -87,7 +87,7 @@
                                     v-if="item.parent === 6",
                                     :value="item.slug") {{ item.name }}
                             .group-attr(v-if="clearNamePage === 'house' || clearNamePage === 'com_prop'")
-                                input(type="number", :placeholder="clearNamePage === 'house' ? 'Этажей' : 'Этаж'", v-model="form.floors")
+                                input(type="text", :placeholder="clearNamePage === 'house' ? 'Этажей' : 'Этаж'", v-model="form.floors", style="width:120px")
                             .group-attr(v-if="clearNamePage === 'house'")
                                 input(type="text" placeholder="Площадь участка" v-model="form.size_area")
                                 span.desc-fields сот.
@@ -124,7 +124,7 @@ export default {
     return {
       form: {
         rooms: 2,
-        propType: 'нежилой',
+        propType: 'resident',
         useFor: 'osg',
         currency: 'uah',
         price_from: '',

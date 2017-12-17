@@ -8,9 +8,10 @@ import { menu, seoTextBox } from 'assets/js/global'
 import 'assets/css/owners.sass'
 
 Vue.use(VeeValidate)
-
-menu.init()
-seoTextBox.init()
+window.addEventListener('load', function () {
+  menu.init()
+  seoTextBox.init()
+})
 
 const phone = (value) => {
   const pat = /^(\+3)?(8\s?)?(\(?0)?[\-\(\)\d\s]{9,13}$/

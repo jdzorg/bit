@@ -6,7 +6,6 @@
   import rentMinView from 'components/vue/rent-miniatures/wrapper.vue'
   import Wpapi from '../../../../node_modules/wpapi'
 
-
   //all pages has own endpoint for rest api and for pages has different filter fields
   //wp set into js some global params (root: site link to rest api, pageURI: page name)
 

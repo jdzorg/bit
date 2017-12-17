@@ -5,9 +5,11 @@ import PopupConsult from 'components/vue/popups/popup-consultation'
 import { menu, setHeight, seoTextBox } from 'assets/js/global'
 import 'assets/css/rent.sass'
 
-menu.init()
-setHeight.set()
-seoTextBox.init()
+window.addEventListener('load', function () {
+  menu.init()
+  setHeight.set()
+  seoTextBox.init()
+})
 
 new Vue({
   el: '#app',

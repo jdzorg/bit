@@ -234,7 +234,7 @@ const config = {
       }
     },
     open: true,
-    openPage: 'main/valuation.html'
+    openPage: 'main/index.html'
       // contentBase: [ PathToTheFolderWhereYourHTMLsLives ],
       // watchContentBase: true
   },

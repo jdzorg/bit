@@ -1,6 +1,6 @@
 <template lang="pug">
-    .col-lg-4(:style="'transition-delay: .' + (trans * 3) + 's ease'")
-        a.miniatures-item(:href="min.link", data-id="min.id")
+    .col-lg-4(:style="'transition-delay: ' + trans * 0.2 + 's'")
+        a.miniatures-item(:href="min.link")
             img(:src="min.featured_media")
             .miniatures-caption
                 span.miniatures-addres(v-text="min.title.rendered")
@@ -30,7 +30,6 @@
                         P
                             span {{ min.bit_floors }}
                             span этаж
-
 </template>
 
 <script>

@@ -7,8 +7,10 @@ import PopupRealtor from 'components/vue/popups/popup-realtor'
 import PopupBitcoin from 'components/vue/popups/popup-bitcoin'
 import 'assets/css/single.sass'
 
-menu.init()
-setHeight.set()
+window.addEventListener('load', function () {
+  menu.init()
+  setHeight.set()
+})
 
 new Vue({
   el: '#app',

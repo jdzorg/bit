@@ -1,3 +1,5 @@
+import Countup from 'countup.js'
+
 var menu = {
   menu: '',
   navObj: {},
@@ -14,9 +16,9 @@ var menu = {
     }
   },
   menuHandler (e) {
-    e.preventDefault()
     var target = e.target
     if (target.classList.contains('itemSubNav')) {
+      e.preventDefault()
       if (this.curId !== '') {
         this.navObj[this.curId].classList.remove('active')
         this.curLi.classList.remove('active')
@@ -77,26 +79,20 @@ var scrollAnimate = {
         listItem.classList.remove('active')
       }
     }
-    // if (this.numsDone !== this.nums.length) {
-    //   for (var y = 0; y < this.nums.length; y++) {
-    //     if (this.isFullyVisible(this.nums[y])) {
-    //       this.countNum(this.nums[y])
-    //       this.numsDone += 1
-    //     }
-    //   }
-    // }
-  },
-  countNum (el) {
-    var num = parseInt(el.innerText)
-    var min = 0
-    var time = Math.ceil(6000 / num)
-    var int = setInterval(() => {
-      if (min !== num) {
-        el.innerText = ++min
-      } else {
-        clearInterval(int)
+    if (this.numsDone !== this.nums.length) {
+      for (var y = 0; y < this.nums.length; y++) {
+        if (this.isFullyVisible(this.nums[y])) {
+          var el = this.nums[y]
+          var to = parseInt(el.dataset.num)
+          if (to !== 0) {
+            el.dataset.num = '0'
+            var count = new Countup(el, 0, to, 0, 1.5)
+            count.start()
+            this.numsDone += 1
+          }
+        }
       }
-    }, time)
+    }
   },
   isPartiallyVisible (el) {
     var elementBoundary = el.getBoundingClientRect()

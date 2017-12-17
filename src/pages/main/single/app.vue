@@ -17,11 +17,11 @@
     import img2 from 'assets/img/s2.jpg'
     import img3 from 'assets/img/s3.jpg'
 
-    const singlePageGallery = [
-      img1,
-      img2,
-      img3
-    ];
+    // const singlePageGallery = [
+    //   img1,
+    //   img2,
+    //   img3
+    // ];
 
   export default {
     name: "app",
@@ -32,8 +32,8 @@
       return {
         curImgId: '',
         curIMG: '',
-        // gallery: singleProductParam.singlePageGallery
-        gallery: singlePageGallery
+        gallery: singleProductParam.singlePageGallery
+        // gallery: singlePageGallery
       }
     },
     methods: {
@@ -56,7 +56,7 @@
 <style lang="sass">
     .slider
         position: relative
-        height: 473px
+        height: 485px
         & .control
             position: absolute
             z-index: 2
@@ -82,7 +82,7 @@
         &-wrapper
             position: relative
             z-index: 1
-            height: 473px
+            height: 485px
             margin:
                 left: -15px
                 right: -15px

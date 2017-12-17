@@ -30,11 +30,6 @@
                 ValidateInput(name="name", placeholder="Имя *", v-model="args.userData.name", validate="required|alpha_spaces")
                 ValidateInput(type="tel", name="phone", placeholder="Телефон *", v-model="args.userData.phone", validate="required|phone")
                 ValidateInput(type="email", name="email", placeholder="Email", v-model="args.userData.email", validate="email")
-                br
-                input(type="checkbox", name="rules", id="rules", v-validate="'required'")
-                label(for="rules")
-                    | Я согласен с правилами
-                    a(href="#") обработки персональных данных
             fieldset.send
                 button.btn.btn-default Отправить
         Popup(@close="handlerPopUp", v-show="showPop")

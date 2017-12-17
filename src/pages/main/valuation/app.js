@@ -9,8 +9,10 @@ import 'assets/css/valuation.sass'
 
 Vue.use(VeeValidate)
 
-menu.init()
-scrollAnimate.init()
+window.addEventListener('load', function () {
+  menu.init()
+  scrollAnimate.init()
+})
 
 const phone = (value) => {
   const pat = /^(\+3)?(8\s?)?(\(?0)?[\-\(\)\d\s]{9,13}$/

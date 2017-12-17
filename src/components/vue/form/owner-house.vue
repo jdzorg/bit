@@ -14,9 +14,8 @@
         fieldset.price
             ValidateInput(type="number", validate="numeric", name="price", v-model="form.price", placeholder="Цена", width="225px")
             select(name="currency", v-model="form.currency")
-                option(value="uah") грн
-                option(value="usd") usd
-                option(value="btc") btc
+                option(value="uah") ГРН
+                option(value="usd") USD
         fieldset.description
             textarea(placeholder="Описание", v-validate="'text'", name="desc", v-model="form.desc")
             InvalidFiled(v-show="errors.has('desc')") В поле присутствуют запрещенные знаки

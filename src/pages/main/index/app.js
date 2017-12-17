@@ -8,9 +8,11 @@ import PopupHead from 'components/vue/popups/popup-head'
 import PopupMain from 'components/vue/popups/popup-main'
 import PopupMeet from 'components/vue/popups/popup-meet'
 
-menu.init()
-setHeight.set()
-scrollAnimate.init()
+window.addEventListener('load', function () {
+  menu.init()
+  setHeight.set()
+  scrollAnimate.init()
+})
 
 new Vue({
   el: '#app',
