@@ -1,222 +1,363 @@
 .header
   position: relative
-  &-logo
-    float: left
-    display: block
-    margin-top: 11px
-    & > img
+  @media (min-width: $screen-lg-min)
+    &-logo
+      float: left
       display: block
-  &-nav
-    & ul.nav
-      margin:
-        top: 20px
-        left: 15px
-      & > li > a
-        font-family: 'rubik-l', sans-serif
-        font-size: 16px
-        color: $body-bg
-        text-transform: uppercase
-        &:hover, &:focus, &.active
-          background-color: transparent
-          font-weight: bold
-      & > li.active .nav-caret
-        transform: scale(1, -1)
-  &-contacts
-    float: right
-    .phone
-      margin-bottom: 3px
-      text-align: center
-      color: #88caec
-
-.nav-caret
-  display: inline-block
-  width: 12px
-  height: 10px
-  margin-left: 2px
-  background: url('../img/ico-nav-caret.png')no-repeat center/100%
-  transition: .3s ease
-
-.menu-wrapper
-  position: relative
-  z-index: 5
-  width: 100%
-  height: 100%
-  padding: 23px 0 25px
-.submenu-wrapper
-  position: absolute
-  z-index: 4
-  width: 100%
-  height: 100%
-  top: 0
-  left: 0
-
-.bit-dropdown-menu
-  position: absolute
-  top: 100%
-  width: 100%
-  left: 0
-  z-index: 1
-  opacity: 0
-  overflow: hidden
-  background-color: #f6f8fd
-  transition: .3s ease
-  transform: translateY(-100%)
-  & > ul
-    display: flex
-    justify-content: space-between
-    padding:
-      left: 0
-      right: 0
-      top: 33px
-      bottom: 33px
-    margin-bottom: 0
-    list-style: none
-    & > li
-      display: block
-      //width: 25%
-      height: 190px
-      &.submenu-title
-        position: relative
-        display: flex !important
-        flex-direction: column
-        justify-content: center
-        align-items: center
-        width: 25%
-        height: 190px
+      margin-top: 11px
+      & > img
+        display: block
+    &-nav
+      & ul.nav
+        margin:
+          top: 20px
+          left: 15px
+        & > li > a
+          font-family: 'rubik-l', sans-serif
+          font-size: 16px
+          color: $body-bg
+          text-transform: uppercase
+          &:hover, &:focus, &.active
+            background-color: transparent
+            font-weight: bold
+        & > li.active .nav-caret
+          transform: scale(1, -1)
+    &-contacts
+      float: right
+      .phone
+        margin-bottom: 3px
         text-align: center
-        & > span
+        color: #88caec
+@media (min-width: $screen-lg-min)
+  .nav-caret
+    display: inline-block
+    width: 12px
+    height: 10px
+    margin-left: 2px
+    background: url('../img/ico-nav-caret.png')no-repeat center/100%
+    transition: .3s ease
+
+  .menu-wrapper
+    position: relative
+    z-index: 5
+    width: 100%
+    height: 100%
+    padding: 23px 0 25px
+  .submenu-wrapper
+    position: absolute
+    z-index: 4
+    width: 100%
+    height: 100%
+    top: 0
+    left: 0
+
+  .bit-dropdown-menu
+    position: absolute
+    top: 100%
+    width: 100%
+    left: 0
+    z-index: 1
+    opacity: 0
+    overflow: hidden
+    background-color: #f6f8fd
+    transition: .3s ease
+    transform: translateY(-100%)
+    & > ul
+      display: flex
+      justify-content: space-between
+      padding:
+        left: 0
+        right: 0
+        top: 33px
+        bottom: 33px
+      margin-bottom: 0
+      list-style: none
+      & > li
+        display: block
+        //width: 25%
+        height: 190px
+        &.submenu-title
           position: relative
-          z-index: 2
-          color: #6ec0eb
-          text-decoration: underline
-        & > .ico
-          position: relative
-          z-index: 2
-          display: block
-          width: 80px
-          height: 80px
-          margin-bottom: 23px
-        & > .bg
-          position: absolute
-          z-index: 1
-          display: block
-          width: 400%
-          height: 150%
-          top: -20%
-          left: 0
-          background-color: #e3e6ef
-      & > a
-        display: flex
-        flex-direction: column
-        justify-content: center
-        align-items: center
-        width: 100%
-        height: 100%
-        padding:
-          left: 20px
-          right: 20px
+          display: flex !important
+          flex-direction: column
+          justify-content: center
+          align-items: center
+          width: 25%
+          height: 190px
+          text-align: center
+          & > span
+            position: relative
+            z-index: 2
+            color: #6ec0eb
+            text-decoration: underline
+          & > .ico
+            position: relative
+            z-index: 2
+            display: block
+            width: 80px
+            height: 80px
+            margin-bottom: 23px
+          & > .bg
+            position: absolute
+            z-index: 1
+            display: block
+            width: 400%
+            height: 150%
+            top: -20%
+            left: 0
+            background-color: #e3e6ef
+        & > a
+          display: flex
+          flex-direction: column
+          justify-content: center
+          align-items: center
+          width: 100%
+          height: 100%
+          padding:
+            left: 20px
+            right: 20px
+          font:
+            family: 'rubik-l', sans-serif
+            weight: 100
+            size: 16px
+          text-align: center
+          & > span
+            display: block
+            width: 80px
+            height: 80px
+            margin-bottom: 23px
+    &-devider
+      width: 1px !important
+      height: 190px
+      overflow: hidden
+      background-color: #bdc3d5
+
+    &.active
+      opacity: 1
+      transform: translateY(0)
+
+  .flat
+    background:
+      image: url(../img/pic-nav-flat.png)
+      size: 100%
+      position: center
+      repeat: no-repeat
+  .house
+    background:
+      image: url(../img/pic-nav-house.png)
+      size: 100%
+      position: center
+      repeat: no-repeat
+  .comm
+    background:
+      image: url(../img/pic-nav-comm.png)
+      size: 100%
+      position: center
+      repeat: no-repeat
+  .ico-rent
+    background:
+      image: url(../img/pic-nav-rent.png)
+      size: 100%
+      position: center
+      repeat: no-repeat
+  .stead
+    background:
+      image: url(../img/pic-nav-stead.png)
+      size: 100%
+      position: center
+      repeat: no-repeat
+  .ico-sale
+    background:
+      image: url(../img/pic-nav-sale.png)
+      size: 100%
+      position: center
+      repeat: no-repeat
+
+  .bit-dropdown-menu-usual
+    position: absolute
+    top: 100%
+    width: 100%
+    left: 0
+    z-index: 1
+    opacity: 0
+    overflow: hidden
+    background-color: #f6f8fd
+    transition: .3s ease
+    transform: translateY(-100%)
+    & .usual-wrapper
+      padding:
+        top: 30px
+        bottom: 30px
+    & ul
+      list-style: none
+      padding: 0
+      margin: 0
+      &:last-child
+        padding-left: 50px
+      & > li
+        position: relative
+        z-index: 2
+        padding-bottom: 5px
         font:
           family: 'rubik-l', sans-serif
           weight: 100
           size: 16px
-        text-align: center
-        & > span
-          display: block
-          width: 80px
-          height: 80px
-          margin-bottom: 23px
-  &-devider
-    width: 1px !important
-    height: 190px
-    overflow: hidden
-    background-color: #bdc3d5
+        &.submenu-title
+          padding-bottom: 20px
+          font:
+            family: 'rubik', sans-serif
+            weight: 500
+            size: 18px
+          text-transform: uppercase
+      & > .bg
+        position: absolute
+        z-index: 1
+        display: block
+        width: 400%
+        height: 250%
+        top: -50%
+        left: 0
+        background-color: #e3e6ef
+    &.active
+      opacity: 1
+      transform: translateY(0)
 
-  &.active
-    opacity: 1
-    transform: translateY(0)
+/*----- mobile nav -----*/
 
-.flat
-  background:
-    image: url(../img/pic-nav-flat.png)
-    size: 100%
-    position: center
-    repeat: no-repeat
-.house
-  background:
-    image: url(../img/pic-nav-house.png)
-    size: 100%
-    position: center
-    repeat: no-repeat
-.comm
-  background:
-    image: url(../img/pic-nav-comm.png)
-    size: 100%
-    position: center
-    repeat: no-repeat
-.ico-rent
-  background:
-    image: url(../img/pic-nav-rent.png)
-    size: 100%
-    position: center
-    repeat: no-repeat
-.stead
-  background:
-    image: url(../img/pic-nav-stead.png)
-    size: 100%
-    position: center
-    repeat: no-repeat
-.ico-sale
-  background:
-    image: url(../img/pic-nav-sale.png)
-    size: 100%
-    position: center
-    repeat: no-repeat
-
-.bit-dropdown-menu-usual
-  position: absolute
-  top: 100%
-  width: 100%
-  left: 0
-  z-index: 1
-  opacity: 0
-  overflow: hidden
-  background-color: #f6f8fd
-  transition: .3s ease
-  transform: translateY(-100%)
-  & .usual-wrapper
-    padding:
-      top: 30px
-      bottom: 30px
-  & ul
-    list-style: none
+//@media (min-width: $screen-md-min) and (max-width: $screen-md-max)
+.navmob
+  text-align: center
+  &-toggle
+    position: relative
+    float: right
+    margin-right: 15px
+    padding: 9px 10px
+    margin-top: 8px
+    margin-bottom: 8px
+    background-color: transparent
+    background-image: none
+    border: 1px solid transparent
+    &.active span:first-of-type
+      transform: translateY(450%) rotate(-40deg)
+    &.active span:last-of-type
+      transform: translateY(-450%) rotate(40deg)
+    &.active .active-hide
+      opacity: 0
+    & .icon-bar
+      display: block
+      width: 24px
+      height: 2px
+      border-radius: 1px
+      background-color: #fff
+      transition: .3s ease
+    & .icon-bar+.icon-bar
+      margin-top: 7px
+  & .sr-only
+    position: absolute
+    width: 1px
+    height: 1px
+    margin: -1px
     padding: 0
+    overflow: hidden
+    clip: rect(0,0,0,0)
+    border: 0
+  &-brand
+    display: block
+    float: left
+    padding: 15px
+    & img
+      width: 103px
+      height: 27px
+  &-phone
+    display: inline-block
+    padding-top: 20px
+    color: $btn-default-bg
+    &:hover
+      color: #fff
+  &-collapse
+    display: block
+    position: absolute
+    z-index: 2
+    width: 100%
+    top: -100%
+    left: 0
+    background-color: #f6f8fd
+    overflow-x: visible
+    border-top: 1px solid transparent
+    box-shadow: 0 12px 13px -2px rgba(0, 0, 0, .40)
+    -webkit-overflow-scrolling: touch
+    opacity: 0
+    visibility: hidden
+    transition: .3s ease
+    &.on
+      top: 57px
+      opacity: 1
+      visibility: visible
+  &-nav
+    list-style: none
     margin: 0
-    &:last-child
-      padding-left: 50px
+    padding: 0
+    font:
+      family: 'rubik-l', sans-serif
+      weight: 100
     & > li
       position: relative
-      z-index: 2
-      padding-bottom: 5px
-      font:
-        family: 'rubik-l', sans-serif
-        weight: 100
-        size: 16px
-      &.submenu-title
-        padding-bottom: 20px
-        font:
-          family: 'rubik', sans-serif
-          weight: 500
-          size: 18px
-        text-transform: uppercase
-    & > .bg
-      position: absolute
-      z-index: 1
-      display: block
-      width: 400%
-      height: 250%
-      top: -50%
-      left: 0
       background-color: #e3e6ef
-  &.active
-    opacity: 1
-    transform: translateY(0)
+      font-size: 14px
+      -ms-text-align-last: right
+      text-align: left
+      text-transform: uppercase
+      cursor: pointer
+      & > span, & > a
+        display: block
+        padding: 11px 21px
+      &.open
+        & .navmob-caret
+          transform: rotate(0)
+        & .navmob-dropdown
+          display: block
+          position: static
+          float: none
+          width: auto
+          margin-top: 0
+          background-color: #f6f8fd
+          border: 0
+          box-shadow: none
+  &-caret
+    display: block
+    float: right
+    width: 16px
+    height: 8px
+    margin-top: 6px
+    padding: 0 !important
+    background:
+      image: url(../../assets/img/ico-caret-mob.png)
+      repeat: no-repeat
+      size: 100%
+      position: center
+    transform: rotate(-90deg)
+    transition: .3s ease
+  &-devider
+    width: 100%
+    height: 1px
+    padding: 0 !important
+    &.devider-light
+      background-color: #f6f8fd
+    &.devider-dark
+      background-color: #e3e6ef
+  &-dropdown
+    position: absolute
+    z-index: 1000
+    display: none
+    top: 100%
+    left: 0
+    padding: 0
+    list-style: none
+    font-size: 12px
+    text-align: left
+    background-clip: padding-box
+    & > li > a
+      display: block
+      padding: 11px 42px
+      text-transform: capitalize
+

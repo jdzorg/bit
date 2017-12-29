@@ -118,12 +118,12 @@ const config = {
         }]
       },
       {
-        test: /\.(png|jpe?g|gif|svg|svgz)(\?.+)?$/,
+        test: /\.(png|jpe?g|gif|svg)(\?.+)?$/,
         exclude: /favicon\.png$/,
         use: [{
           loader: 'url-loader',
           options: {
-            limit: 10000,
+            limit: 2500,
             name: 'assets/img/[name].[hash:7].[ext]'
           }
         },
@@ -143,7 +143,7 @@ const config = {
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name: 'assets/font/[name].[hash:7].[ext]'
+          name: 'assets/media/[name].[hash:7].[ext]'
         }
       },
       {

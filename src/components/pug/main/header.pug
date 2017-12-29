@@ -6,9 +6,9 @@ header.header
     .brand-bg.menu-wrapper
         .container
             .row
-                a.header-logo(href="/main/index.html")
+                a.visible-lg.header-logo(href="/main/index.html")
                     img(src='../../../assets/img/logo.png', alt='logo')
-                nav.header-nav(role='navigation')
+                nav.visible-lg.header-nav(role='navigation')
                     ul.nav.navbar-nav
                         li
                             a.itemSubNav(href='#rent')
@@ -24,45 +24,59 @@ header.header
                                 span.nav-caret
                         li
                             a(href='#') оценка недвижимости
-                .header-contacts
+                .visible-lg.header-contacts
                     .phone +38 (067) 507-22-34
                     #consultationHead
-                nav.navbar.navbar-default(role="navigation")
+                nav.hidden-lg.navmob(role="navigation")
                     .container-fluid
-                        .navbar-header
-                            button.navbar-toggle(type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1")
-                                span.sr-only Toggle navigation
+                        .row
+                            button.navmob-toggle(type="button")
+                                .sr-only Toggle navigation
                                 span.icon-bar
+                                span.icon-bar.active-hide
                                 span.icon-bar
-                                span.icon-bar
-                            a.navbar-brand(href="#") Brand
-                        #bs-example-navbar-collapse-1.collapse.navbar-collapse
-                            ul.nav.navbar-nav
-                                li.active
-                                    a(href="#") Аренда
-                                    ul.dropdown-menu
+                            a.navmob-brand(href="#")
+                                img(src='../../../assets/img/logo.svg',  alt='logo')
+                            a.navmob-phone(href="tel: +380675072234") +38 (067) 507-22-34
+                        .navmob-collapse
+                            ul.navmob-nav
+                                li.tog
+                                    span Аренда
+                                        span.navmob-caret
+                                    ul.navmob-dropdown
                                         li
                                             a(href="#") Квартира
+                                        li.navmob-devider.devider-dark
                                         li
                                             a(href="#") Дом
+                                        li.navmob-devider.devider-dark
                                         li
                                             a(href="#") Коммерческая недвижимость
-                                li
-                                    a(href="#") Продажа
-                                    ul.dropdown-menu
+                                li.navmob-devider.devider-light
+                                li.tog
+                                    span Продажа
+                                        span.navmob-caret
+                                    ul.navmob-dropdown
                                         li
                                             a(href="#") Квартира
+                                        li.navmob-devider.devider-dark
                                         li
                                             a(href="#") Дом
+                                        li.navmob-devider.devider-dark
                                         li
                                             a(href="#") Коммерческая недвижимость
+                                        li.navmob-devider.devider-dark
                                         li
                                             a(href="#") Земельный участок
+                                li.navmob-devider.devider-light
                                 li
                                     a(href="#") Владельцам
+                                li.navmob-devider.devider-light
                                 li
                                     a(href="#") Оценка недвижимости
-    .submenu-wrapper
+                                //li#consult
+
+    .visible-lg.submenu-wrapper
         #rent.hidden-nav.bit-dropdown-menu
             ul.container
                 li

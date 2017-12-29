@@ -18,9 +18,13 @@
     width: 100%
     height: auto
   & h1
+    @media (max-width: $screen-sm-min)
+      font-size: 18px
     margin-bottom: 25px
     text-transform: uppercase
   & small
+    @media (max-width: $screen-sm-min)
+      font-size: 14px
     font:
       family: 'rubik-l', sans-serif
       weight: 100
@@ -36,14 +40,23 @@
     left: 0
     text-align: center
   & button
+    @media (max-width: $screen-sm-min)
+      font-size: 14px
     margin-top: 25px
     font-size: 18px
   &-ico-scrolldown
+    @media (max-width: $screen-sm-min)
+      width: 22px
+      height: 40px
+      margin-top: 30px
     display: inline-block
     width: 39px
     height: 74px
     margin-top: 75px
-    background: url(../img/ico-scroll.png)no-repeat center/100%
+    background:
+      image: url(../img/ico-scroll.svg)
+      repeat: no-repeat
+      size: contain
 
 //services section
 
@@ -52,15 +65,22 @@
   overflow: hidden
   &-wrapper
     margin-top: 40px
-  &-service:nth-child(even) &-box
-    margin-right: -15px
-  &-service:nth-child(odd) &-box
-    margin-left: -15px
+  @media (max-width: $screen-md-min)
+    &-service
+      padding:
+        left: 0
+        right: 0
+  @media (min-width: $screen-md-min)
+    &-service:nth-child(even) &-box
+      margin-right: -15px
+    &-service:nth-child(odd) &-box
+      margin-left: -15px
   &-box
     position: relative
-    margin:
-      top: 13px
-      bottom: 13px
+    @media (min-width: $screen-md-min)
+      margin:
+        top: 13px
+        bottom: 13px
     padding:
       top: 50px
       bottom: 50px
@@ -69,7 +89,7 @@
     overflow: hidden
     &_bg
       background-color: $barnd-light
-    &:hover .services-hidden
+    &:hover .services-hidden, &:focus .services-hidden
       opacity: 1
       & a
         transform: translateY(0)
@@ -155,7 +175,21 @@
 
 //reviews section
 .reviews
+  @media (max-width: $screen-sm-max)
+    padding-top: 30px
+    padding-bottom: 0
+    background-color: #f6f8fd
+    border-top: 1px solid #bdc3d5
+    &-header
+      margin-top: -30px
+      padding:
+        top: 20px
+        bottom: 20px
   &-wrapper
+    @media (max-width: $screen-sm-max)
+      padding:
+        left: 0
+        right: 0
     position: relative
     width: 100%
     margin-top: 50px
@@ -203,10 +237,20 @@
     padding: 30px 25px
     box-shadow: 0 0 20px 14px #fbfbfb
     background-color: #fff
-    &:first-child
-      margin-right: 15px
-    &:last-child
-      margin-left: 15px
+    @media (max-width: $screen-xs-max)
+      width: 100%
+      &:first-child
+        position: absolute
+        opacity: 0
+        visibility: hidden
+    @media (min-width: $screen-xs-max)
+      &:first-child
+        margin-right: 15px
+      &:last-child
+        margin-left: 15px
+  @media (max-width: $screen-xs-max)
+    &-content
+      text-align: center
   &-author
     padding-left: 3px
     font:

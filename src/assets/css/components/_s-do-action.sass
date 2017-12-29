@@ -1,9 +1,12 @@
 // section with do action button
 .call-form-section
+  @media (max-width: $screen-md-min)
+    text-align: center
   padding:
     top: 65px
     bottom: 65px
   & button
     margin-top: 20px
   & .section-title, & .section-subtitle
-    text-align: left
+    @media (min-width: $screen-md-min)
+      text-align: left

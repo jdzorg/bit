@@ -17,7 +17,8 @@
                     :key="review.id",
                     :review="review"
                 )
-        .col-lg-12.text-center.reviews-btn
+            Review-dots(:dots="reviews.length")
+        .hidden-xs.col-lg-12.text-center.reviews-btn
             button.btn.btn-default.btn-transparent(@click="handlerPopUp") Оставте и Вы свой отклик!
         Popup(v-show="showPop", @close="handlerPopUp", bgClass="review")
             transition(
@@ -47,6 +48,7 @@
     import Popup from 'components/vue/popups/popup.vue'
     import Msg from 'components/vue/form/msg.vue'
     import FeedbackForm from 'components/vue/form/form.vue'
+    import ReviewDots from 'components/vue/review-slider/review-dots'
 
     import Wpapi from '../../../../node_modules/wpapi'
 
@@ -57,7 +59,7 @@
 
     export default {
       components: {
-        Control, Review, Popup, FeedbackForm, Msg
+        Control, Review, Popup, FeedbackForm, Msg, ReviewDots
       },
       data () {
         return {

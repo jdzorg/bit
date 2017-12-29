@@ -2,17 +2,39 @@ import Countup from 'countup.js'
 
 var menu = {
   menu: '',
+  mobMenuBtn: '',
+  mobMenu: '',
   navObj: {},
   hiddenNav: [],
   curId: '',
   curLi: '',
   init () {
-    this.menu = document.querySelector('.navbar-nav')
-    this.hiddenNav = document.querySelectorAll('.hidden-nav')
-    this.menu.addEventListener('click', this.menuHandler.bind(this))
+    if (document.querySelector('.header-nav')) {
+      this.menu = document.querySelector('.navbar-nav')
+      this.hiddenNav = document.querySelectorAll('.hidden-nav')
+      this.menu.addEventListener('click', this.menuHandler.bind(this))
 
-    for (let i = 0; i < this.hiddenNav.length; i++) {
-      this.navObj['#' + this.hiddenNav[i].id] = this.hiddenNav[i]
+      for (let i = 0; i < this.hiddenNav.length; i++) {
+        this.navObj['#' + this.hiddenNav[i].id] = this.hiddenNav[i]
+      }
+    }
+    if (document.querySelector('.navmob')) {
+      this.mobMenuBtn = document.querySelector('.navmob-toggle')
+      this.mobMenu = document.querySelector('.navmob-collapse')
+
+      this.mobMenuBtn.addEventListener('click', this.mobBtnToggler.bind(this))
+    }
+  },
+  mobBtnToggler (e) {
+    this.mobMenuBtn.classList.toggle('active')
+    this.mobMenu.classList.toggle('on')
+    this.mobMenu.addEventListener('click', this.mobMenuToggler)
+  },
+  mobMenuToggler (e) {
+    var target = e.target
+    if (target.parentElement.classList.contains('tog')) {
+      e.preventDefault()
+      target.parentElement.classList.toggle('open')
     }
   },
   menuHandler (e) {

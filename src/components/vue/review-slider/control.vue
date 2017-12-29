@@ -1,5 +1,5 @@
 <template lang="pug">
-    .control
+    .hidden-xs.control
         button.next(@click="$emit('next')")
         button.prev(@click="$emit('prev')")
 </template>
