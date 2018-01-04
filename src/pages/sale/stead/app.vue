@@ -7,8 +7,8 @@
 
   import Wpapi from '../../../../node_modules/wpapi'
 
-  const endPoint = 'com_prop';
-  const features = ['rooms', 'apartmentSize', 'floors'];
+  const endPoint = 'stead';
+  const features = ['areaSize'];
 
   const wp = new Wpapi({
     // endpoint: root

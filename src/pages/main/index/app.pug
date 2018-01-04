@@ -13,7 +13,7 @@ html(lang='ru')
                             //source(media="(max-width: 762px)" srcset="../../../assets/img/front-page-main_762.png")
                             //source(media="(max-width: 480px)" srcset="../../../assets/img/front-page-main_480.png")
                             //source(media="(max-width: 320px)" srcset="../../../assets/img/front-page-main_320.png")
-                        img(src='../../../assets/img/front-page-main.png', alt='bitrealty', title='Агенство недвижимости цифрового века')
+                        img(src='../../../assets/img/front-page-main_320.png', alt='bitrealty', title='Агенство недвижимости цифрового века')
                         .homescreen-content
                             .homescreen-wrapper
                                 h1
@@ -174,7 +174,6 @@ html(lang='ru')
                     - var sectionTitle = 'Приглашаем вас на встречу в наш офис'
                     - var subTitle = 'Мы пришлем за вами личного водителя на автомобиле бизнес-класса'
                     - var btnName = 'Записаться на встречу'
-                    - var hidden = true
                     include ../../../components/pug/sections/callform
                     include ../../../components/pug/sections/innumbers
 
@@ -188,7 +187,7 @@ html(lang='ru')
                                         br
                                         |почитайте отзывы о нас
                                 #app
-                    section.hidden-xs.setHeight.about
+                    section.hidden-xs.hidden-sm.setHeight.about
                         .col-lg-6.img-box
                             img(src='../../../assets/img/about.png', alt='about company' title='об компании bitrealty')
                         .col-lg-6.center-box

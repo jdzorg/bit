@@ -7,6 +7,11 @@
 
 .owners
   padding-top: 70px
+  @media (max-width: $screen-sm-min)
+    padding-top: 15px
+    & .section-title, & .section-subtitle
+      text-align: left
+      text-transform: initial
 
 .owners-form
   margin-top: 55px
@@ -14,10 +19,43 @@
     left: 60px
     right: 60px
   box-shadow: 0 4px 12px #ebebeb
+  @media (max-width: $screen-sm-min)
+    margin-top: 25px
+    padding:
+      left: 10px
+      right: 10px
+    border: 1px solid #ebf0fe
+    background-color: $barnd-light
+    & .realty-type
+      display: flex
+      margin:
+        left: -10px
+        right: -10px
   & .realty-form
     padding-bottom: 25px
     & fieldset
       margin-top: 24px
+  & .btn-form
+    @media (min-width: $screen-sm-max)
+      width: 225px
+    padding:
+      top: 12px
+      bottom: 12px
+    background-color: transparent
+    transition: .3s ease
+    border-radius: 0
+    font-size: 16px
+    text-transform: uppercase
+    @media (max-width: $screen-sm-min)
+      flex-grow: 1
+      padding:
+        left: 0
+        right: 0
+      font-size: 12px
+    &:hover, &.active
+      background-color: #88caec
+      color: #fff
+      box-shadow: none
   & input, & select
     height: 42px
     padding-left: 11px
@@ -75,20 +113,6 @@
       family: 'rubik-l', sans-serif
       weight: 100
       size: 14px
-  & .btn-form
-    width: 225px
-    padding:
-      top: 12px
-      bottom: 12px
-    background-color: transparent
-    transition: .3s ease
-    border-radius: 0
-    font-size: 16px
-    text-transform: uppercase
-    &:hover, &.active
-      background-color: #88caec
-      color: #fff
-      box-shadow: none
   & .address
     margin-top: 40px
   & .photo

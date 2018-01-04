@@ -38,11 +38,19 @@
                         label(for="useFor_2") ОСГ
                         input(id="useFor_3" type="radio" v-model="form.useFor" value="garden")
                         label(for="useFor_3") Садоводство
+                    .visible-xs.visible-sm.group-attr.cur-mob
+                        span.desc-fields-mob Цена:
+                        input(id="curm_1" type="radio" v-model="form.currency" value="uah")
+                        label(for="curm_1")
+                            span ГРН
+                        input(id="curm_2" type="radio" v-model="form.currency" value="usd")
+                        label(for="curm_2")
+                            span USD
                     .group-attr
                         input(type="number" v-model="form.price_from" placeholder="Цена от")
                         span.desc-fields -
                         input(type="number" v-model="form.price_to" placeholder="Цена до")
-                    .group-attr.btn-radio
+                    .hidden-xs.hidden-sm.group-attr.btn-radio
                         input(id="cur_1" type="radio" v-model="form.currency" value="uah")
                         label(for="cur_1")
                             span ГРН
@@ -50,10 +58,11 @@
                         label(for="cur_2")
                             span USD
                     .group-attr
+                        span.visible-xs.visible-sm.desc-fields Площадь (м²):
                         input(type="number" v-model="form.area_from" placeholder="Площадь от")
                         span.desc-fields -
                         input(type="number" v-model="form.area_to" placeholder="Площадь до")
-                        span.desc-fields {{clearNamePage === 'stead' ? 'сот.' : 'м²'}}
+                        span.hidden-xs.hidden-sm.desc-fields {{clearNamePage === 'stead' ? 'сот.' : 'м²'}}
                 transition(
                   name="filter-advanced",
                   mode="in-out"
@@ -63,10 +72,10 @@
                             span(v-if="clearNamePage === 'stead' || clearNamePage === 'house' || clearNamePage === 'com_prop'")
                                 .group-attr.radio(v-if="clearNamePage === 'stead' || clearNamePage === 'house'")
                                     span.desc-fields Область:
-                                        input( id="region_1", type="radio", v-model="form.tax.region", value="kiev")
-                                        label(for="region_1") Киев
-                                        input( id="region_2", type="radio", v-model="form.tax.region", value="kievskaya-oblast")
-                                        label(for="region_2") Киевская область
+                                    input( id="region_1", type="radio", v-model="form.tax.region", value="kiev")
+                                    label(for="region_1") Киев
+                                    input( id="region_2", type="radio", v-model="form.tax.region", value="kievskaya-oblast")
+                                    label(for="region_2") Киевская область
                                 .group-attr.btn-radio(v-else-if="clearNamePage === 'com_prop'")
                                     span.desc-fields Комнаты:
                                     input(id="cRoom_1" type="radio" v-model="form.rooms" value="1")
@@ -89,8 +98,9 @@
                             .group-attr(v-if="clearNamePage === 'house' || clearNamePage === 'com_prop'")
                                 input(type="text", :placeholder="clearNamePage === 'house' ? 'Этажей' : 'Этаж'", v-model="form.floors", style="width:120px")
                             .group-attr(v-if="clearNamePage === 'house'")
+                                span.visible-xs.visible-sm.desc-fields Площадь участка (м²):
                                 input(type="text" placeholder="Площадь участка" v-model="form.size_area")
-                                span.desc-fields сот.
+                                span.hidden-xs.hidden-sm.desc-fields сот.
                             .group-attr(v-if="clearNamePage === 'flat' || clearNamePage === 'com_prop'")
                                 select(v-model="form.tax.subway")
                                     option(disabled value="") Метро
@@ -102,7 +112,10 @@
                 fieldset.text-right
                     button.btn.btn-default Подобрать
             .clearfix
-        .col-lg-12.text-center.filter-add-toggle
+            .visible-xs.visible-sm.col-lg-12.text-center.filter-add-toggle
+                button.btn.btn-simple(@click="toggleAddFilter", type="button")
+                    span {{ isFilterMore ? 'Скрыть расширеный фильтр' : 'Расширеный фильтр' }}
+        .hidden-xs.hidden-sm.col-lg-12.text-center.filter-add-toggle
             hr
             button.btn.btn-simple(@click="toggleAddFilter")
                 span {{ isFilterMore ? '&#8593;' : '&#8595' }}
@@ -164,6 +177,8 @@ export default {
             transition: .5s ease
             overflow: hidden
             height: 75px
+            @media (max-width: 993px)
+                height: 265px
         &-enter, &-leave-to
             height: 0
 </style>

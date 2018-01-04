@@ -16,7 +16,8 @@
         size: 14px
         weight: 100
     & > li.container
-      @media (max-width: $screen-sm-min)
+      @media (max-width: $screen-sm-max)
+        text-align: center
         padding:
           left: 10px
           right: 10px
@@ -26,8 +27,9 @@
         left: 30px
         right: 30px
     & .pic
-      @media (max-width: $screen-sm-min)
-        margin: 0 10px
+      @media (max-width: $screen-sm-max)
+        margin: 0 auto
+        float: inherit !important
       display: block
       margin: 0 30px
   &-name
@@ -49,6 +51,8 @@
       transform: translateX(0)
 
 .advantages-wrapper
-  @media (max-width: $screen-sm-min)
+  @media (max-width: $screen-sm-max)
+    float: inherit !important
     max-width: 300px
+    margin: 0 auto
   max-width: 690px

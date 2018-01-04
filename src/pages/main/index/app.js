@@ -2,6 +2,7 @@ import Vue from 'vue'
 // import ElementUI from 'element-ui'
 import App from './app.vue'
 import { menu, setHeight, scrollAnimate } from 'assets/js/global'
+import VueTouch from 'vue-touch'
 import 'assets/css/index.sass'
 import Feedback from './feedback-form.vue'
 import PopupHead from 'components/vue/popups/popup-head'
@@ -13,6 +14,12 @@ window.addEventListener('load', function () {
   setHeight.set()
   scrollAnimate.init()
 })
+
+Vue.use(VueTouch, { name: 'v-touch' })
+
+VueTouch.config.swipe = {
+  direction: 'horizontal'
+}
 
 new Vue({
   el: '#app',

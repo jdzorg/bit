@@ -1,5 +1,5 @@
 <template lang="pug">
-    .col-lg-4(:style="'transition-delay: ' + trans * 0.2 + 's'")
+    .col-xs-12.col-sm-6.col-md-6.col-lg-4(:style="'transition-delay: ' + trans * 0.2 + 's'")
         a.miniatures-item(:href="min.link")
             img(:src="min.featured_media")
             .miniatures-caption

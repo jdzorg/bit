@@ -1,6 +1,15 @@
 .filter
   padding-top: 57px
+  @media (max-width: $screen-sm-min)
+    &-hidden
+      & input[type="number"], input[type="text"], & select
+        width: 100% !important
   &-add-toggle
+    @media (max-width: $screen-sm-min)
+      margin:
+        left: -10px
+        right: -10px
+      padding: 0 !important
     padding:
       top: 10px
       bottom: 20px
@@ -10,23 +19,55 @@
         bottom: 0
       border-bottom: 1px solid #bdc3d5
   & form
+    @media (max-width: $screen-sm-min)
+      margin:
+        left: 15px
+        right: 15px
+        bottom: 30px
+      padding: 10px 10px 0 10px
+      border: 1px solid #bdc3d5
+      background-color: $barnd-light
+    @media (max-width: $screen-sm-min)
+      & button.btn-simple
+        width: 100%
+        padding:
+          top: 7px
+          bottom: 7px
+        background-color: #e5eaf6
+        border-radius: 0
     & button.btn:hover
       color: #000
       border-color: #000
   &-col-1, &-col-2
     float: left
   &-col-1
+    @media (max-width: $screen-sm-min)
+      width: 100%
     width: 87%
   &-col-2
+    @media (max-width: $screen-sm-min)
+      width: 100%
     width: 13%
   & .desc-fields
     display: inline-flex
     font-size: 16px
+    @media (max-width: $screen-sm-min)
+      &-mob, &:first-child
+        width: auto
+        margin-bottom: 10px
+        font-size: 14px
+      &:first-child
+        width: 100%
   & fieldset
     display: block
     margin-bottom: 30px
   & .group-attr
+    @media (max-width: $screen-sm-min)
+      justify-content: space-between
+      width: 100%
+      margin-bottom: 10px
     display: inline-flex
+    flex-wrap: wrap
     align-items: center
   & label
     margin-bottom: 0
@@ -35,6 +76,8 @@
   & select
     width: 255px
   & input[type="number"], input[type="text"], & select
+    @media (max-width: $screen-sm-min)
+      background-color: $barnd-light
     height: 42px
     margin:
       right: 4px
@@ -45,6 +88,14 @@
     font-size: 14px
   & input[type="radio"]
     display: none
+  @media (max-width: $screen-sm-min)
+    & .cur-mob
+      & label
+        font-size: 12px
+        padding-left: 10px
+      & input[type="radio"]:checked + label
+        text-decoration: underline
+        color: #88caec
   & .btn-radio
     &.type label
       width: 88px !important
@@ -54,11 +105,16 @@
       & label
         width: 100px !important
         font-size: 14px
-      & span
-        position: absolute
-        top: -25px
-        left: 3px
-
+      @media (min-width: $screen-sm-max)
+        & span
+          position: absolute
+          top: -25px
+          left: 3px
+    @media (max-width: $screen-sm-min)
+      &.type label, &.use-for label
+        width: 84px !important
+        margin: 0
+        font-size: 12px
     & input[type="radio"]:checked + label
       background-color: #88caec
       color: #fff
@@ -80,7 +136,16 @@
         background-color: #88caec
         color: #fff
   & .radio
+    @media (max-width: $screen-sm-min)
+      margin-bottom: 20px
+      padding:
+        left: 8px
+        right: 10px
     & label
+      @media (max-width: $screen-sm-min)
+        margin:
+          left: 0
+          right: 0
       position: relative
       max-height: 17px
       min-height: 17px

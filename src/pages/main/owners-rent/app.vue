@@ -1,6 +1,6 @@
 <template lang="pug">
     form.owners-form(@submit.prevent="sendForm")
-        fieldset.realty-type
+        .realty-type
             button.btn.btn-form(
               type="button",
               @click="switchForm($event)",
@@ -61,7 +61,7 @@
         },
         showPop: false,
         isRulesAgree: false,
-        realtyType: window.WP_API_Settings.realtType || 'Flat',
+        realtyType: 'Flat',//window.WP_API_Settings.realtType ||
         args: {
           formName: 'Форма - продажа недвижимости',
           type: 'POST',

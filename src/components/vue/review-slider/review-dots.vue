@@ -1,10 +1,11 @@
 <template lang="pug">
-    .visible-xs
+    .visible-xs.visible-sm
         .dots-wrapper
             span.dot(
-              v-for="dot in dots",
-              :class="{active: dot === current}",
-              :key="dot"
+              v-for="dot in reviews",
+              :class="{active: dot.id === curId}",
+              :key="dot.id",
+              :data-revId="dot.id"
             )
 </template>
 
@@ -12,17 +13,12 @@
   export default {
     name: "reviewDots",
     props: {
-      dots: {
+      reviews: {
+        type: Array
+      },
+      curId: {
         type: Number
       }
-    },
-    data(){
-      return {
-        current: 0
-      }
-    },
-    computed: {
-
     }
   }
 </script>
@@ -33,9 +29,7 @@
         justify-content: center
         width: 100%
         height: auto
-        margin:
-            top: 25px
-            bottom: 25px
+        margin-top: 25px
     .dot
         display: block
         width: 14px

@@ -1,11 +1,30 @@
 //section breadcrumbs
 .bitcrumb
+  @media (max-width: $screen-sm-max)
+    padding:
+      top: 13px
+      bottom: 13px
   padding:
     top: 34px
     bottom: 34px
   background-color: $barnd-light
   border-bottom: 1px solid #bdc3d5
+  @media (max-width: $screen-sm-max)
+    & h1
+      font-size: 14px
+  &-ico
+    float: left
+    width: 34px
+    height: 15px
+    margin-right: 10px
+    background:
+      image: url(../../assets/img/ico-breadcrumbs.png)
+      size: contain
+      repeat: no-repeat
   & .section-title
+    @media (max-width: $screen-sm-min)
+      max-width: 80%
+      text-align: left
     float: left
     margin:
       top: 0

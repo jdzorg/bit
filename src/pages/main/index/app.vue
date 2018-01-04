@@ -6,19 +6,30 @@
                 @prev="prevReview"
                 v-show="reviews.length > 2"
             )
-            transition-group(
-                class="reviews-trans"
-                tag="div"
-                name="trans-slider"
-                mode="out-in"
+            v-touch(
+                @swipeleft="nextMobReview",
+                @swiperight="prevReview",
+                @swipe="setCurRevId"
             )
-                Review(
-                    v-for="review in curReviews",
-                    :key="review.id",
-                    :review="review"
+                transition-group(
+                    class="reviews-trans"
+                    tag="div"
+                    name="trans-slider"
+                    mode="out-in"
                 )
-            Review-dots(:dots="reviews.length")
-        .hidden-xs.col-lg-12.text-center.reviews-btn
+
+                    Review(
+                        v-for="review in curReviews",
+                        :key="review.id",
+                        :review="review",
+                        :revId="review.id",
+                        @setCurId="setCurRevId"
+                    )
+            Review-dots(
+                :reviews="reviews",
+                :curId="curRevId"
+            )
+        .hidden-xs.hidden-sm.col-lg-12.text-center.reviews-btn
             button.btn.btn-default.btn-transparent(@click="handlerPopUp") Оставте и Вы свой отклик!
         Popup(v-show="showPop", @close="handlerPopUp", bgClass="review")
             transition(
@@ -67,6 +78,7 @@
           showPop: false,
           prev: 0,
           next: 0,
+          curRevId: 0,
           curReviews: [],
           reviews: [],
           formHead: {
@@ -106,6 +118,9 @@
           this.prev = 0;
           this.next = 1
         },
+        setCurRevId() {
+          this.curRevId = parseInt(document.querySelectorAll('.reviews-container.trans-slider-item')[0].dataset.index);
+        },
         prevReview() {
           this.next = this.prev;
           this.prev = this.prev <= 0 ? this.reviews.length - 1 : this.prev - 1;
@@ -118,6 +133,12 @@
           this.curReviews.shift();
           this.curReviews.push(this.reviews[this.next])
         },
+        nextMobReview() {
+          this.prev = this.next;
+          this.next = this.next >= (this.reviews.length - 1) ? 0 : this.next + 1;
+          this.curReviews.pop();
+          this.curReviews.unshift(this.reviews[this.next])
+        },
         handlerPopUp() {
           this.showPop = !this.showPop;
           document.body.style.overflow = this.showPop ? 'hidden' : '';
@@ -129,7 +150,6 @@
           this.isSent = true;
         },
       },
-
       mounted() {
         this.getReviews();
       }

@@ -230,7 +230,7 @@
   &-toggle
     position: relative
     float: right
-    margin-right: 15px
+    margin-right: 5px
     padding: 9px 10px
     margin-top: 8px
     margin-bottom: 8px
@@ -264,11 +264,13 @@
   &-brand
     display: block
     float: left
-    padding: 15px
+    padding: 15px 0 15px 15px
     & img
       width: 103px
       height: 27px
   &-phone
+    @media (max-width: $screen-sm-min)
+      font-size: 14px
     display: inline-block
     padding-top: 20px
     color: $btn-default-bg

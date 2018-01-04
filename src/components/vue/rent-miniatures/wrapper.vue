@@ -28,10 +28,11 @@
                                   @popBit="handlerPopUp"
                                 )
                                 .clearfix(v-if="(index + 1) % 3 === 0", key="clear")
-                            .col-lg-12(v-if="isPaging", key="paging")
-                                .pagination
-                                    span.pagePrev(v-if="curPage > 1", @click="switchPage(-1)") &#60; Пред
-                                    span.pageNext(v-if="curPage < totalPage", @click="switchPage(1)") След &#62;
+                    .row
+                        .col-lg-12(v-if="isPaging")
+                            .pagination
+                                span.pagePrev(v-if="curPage > 1", @click="switchPage(-1)") &#60; Пред
+                                span.pageNext(v-if="curPage < totalPage", @click="switchPage(1)") След &#62;
         Popup(v-show="showPop", @close="handlerPopUp", bgClass="bitcoin")
             Bitcoin(
               v-if="!isSent",

@@ -5,13 +5,14 @@
   "private": true,
   "scripts": {
     "del": "rm -rf dist",
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --inline --hot",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --inline --hot --host 0.0.0.0",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
     "countup.js": "^1.9.3",
     "vee-validate": "^2.0.0-rc.25",
     "vue": "^2.5.3",
+    "vue-touch": "^2.0.0-beta.4",
     "wpapi": "^1.1.2"
   },
   "devDependencies": {

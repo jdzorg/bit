@@ -1,10 +1,16 @@
 //section
 .section
   &-padding
+    @media (max-width: $screen-sm-max)
+      padding:
+        top: 30px
+        bottom: 30px
     padding:
       top: 110px
       bottom: 110px
   &-title
+    @media (max-width: $screen-sm-min)
+      font-size: 16px
     display: block
     margin-bottom: 10px
     text-align: center
@@ -12,6 +18,8 @@
     font-size: 24px
     text-transform: uppercase
   &-subtitle
+    @media (max-width: $screen-sm-min)
+      font-size: 14px
     display: block
     text-align: center
     font-family: 'rubik-l', sans-serif
@@ -121,7 +129,7 @@ a.btn
 //form section
 
 .form
-  width: 785px
+  max-width: 785px
   margin: 20px auto 0
   & .section-title, & .section-subtitle
     text-align: center !important
@@ -137,6 +145,9 @@ a.btn
     &::placeholder
       color: $body-bg
   & input
+    @media (max-width: $screen-sm-max)
+      float: inherit !important
+      width: 100%
     width: 48%
     padding:
       top: 20px
@@ -173,6 +184,11 @@ a.btn
 // popup
 
 .popup
+  @media (max-width: $screen-sm-max)
+    padding:
+      top: 75px
+      bottom: 25px
+  overflow: auto
   position: fixed
   z-index: 10000
   width: 100%
@@ -203,6 +219,8 @@ a.btn
     position: relative
     height: 454px
   & .close
+    @media (max-width: $screen-sm-max)
+      transform: translate(-12%, -100%)
     position: absolute
     width: 40px
     height: 40px

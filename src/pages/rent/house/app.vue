@@ -39,16 +39,16 @@
       features: ['areaSize']
     }
   };
-  var {root, pageURI} = window.WP_API_Settings;
-  pageURI = pageURI.replace(/\//g, '');
-  const {endPoint, features}= wpRestSettings[pageURI];
+  // var {root, pageURI} = window.WP_API_Settings;
+  // pageURI = pageURI.replace(/\//g, '');
+  // const {endPoint, features}= wpRestSettings[pageURI];
 
-  // const endPoint = 'house';
-  // const features = ['rooms', 'apartmentSize', 'areaSize'];
+  const endPoint = 'house';
+  const features = ['rooms', 'apartmentSize', 'areaSize'];
 
   const wp = new Wpapi({
-    endpoint: root
-    // endpoint: 'http://bitrealt.com.ua/wp-json'
+    // endpoint: root
+    endpoint: 'http://bitrealt.com.ua/wp-json'
   });
   wp.customPoint = wp.registerRoute('wp/v2', endPoint);
   //    wp.houseFilter = wp.registerRoute('wp/v2', 'house(?P<customQuery>)');
