@@ -52,6 +52,11 @@
 
 <style lang="sass">
     .input-wrapper
+        @media (max-width: 992px)
+            display: block
+            margin:
+                right: 0
+                bottom: 15px
         position: relative
         margin-right: 20px
         &:last-child

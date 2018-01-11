@@ -31,7 +31,7 @@
             textarea(placeholder="Описание", v-validate="'text'", name="desc", v-model="form.desc")
             InvalidFiled(v-show="errors.has('desc')") В поле присутствуют запрещенные знаки
         fieldset.photo
-            input(type="file", name="photo", @change="addIMG($event)", id="addImg", multiple="multiple")
+            input(type="file", name="photo", @change="addIMG($event)", id="addImg", multiple="multiple", accept="image/*")
             label(for="addImg")
                 span.ico-add-photo
                 span Прикрепить фото
