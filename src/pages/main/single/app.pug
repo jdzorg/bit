@@ -9,7 +9,7 @@ html(lang='ru')
                     - var pageName = 'Аренда квартиры'
                     include ../../../components/pug/sections/breadcrumbs
 
-                    section.single-head
+                    section.hidden-xs.hidden-sm.single-head
                         .container
                             .row
                                 .col-lg-6
@@ -28,6 +28,10 @@ html(lang='ru')
                                 #app
                                 .col-lg-6.characteristics
                                     .wrapper
+                                        .visible-xs.visible-sm.clearfix.single-mob-title
+                                            .single-head-title Аренда трехкомнатной квартиры Героев Сталинграда просп. 6а в Киеве
+                                            span.single-head-district Оболонский район
+                                            span.single-head-code К-25348
                                         .params-main
                                             .rooms
                                                 i
@@ -61,6 +65,11 @@ html(lang='ru')
                                                     tr
                                                         td.name Стены
                                                         td.val Кирпич
+                                        .visible-xs.visible-sm.separatoe
+                                        .visible-xs.visible-sm.single-mob-price
+                                            .single-head-price 45 400 грн. / 1700 $
+                                            span#bitcoinPriceMob
+                                            span#consultationRealtorMob
                             .row
                                 .col-lg-6.description
                                     .wrapper
@@ -71,8 +80,8 @@ html(lang='ru')
                                             | Германия. Большая гардеробная. В квартире дубовый паркет 22 мм, во всех комнатах
                                             | кондиционеры Мitsubishi, счетчики на воду и отопление. Натяжной потолок, вид центра и
                                             | озера Вербное, 3 лифта, место в подземном паркинге.
-                                .col-lg-6#map
-                    section.section-padding.similar
+                                .hidden-xs.hidden-sm.col-lg-6#map
+                    section.hidden-xs.hidden-sm.section-padding.similar
                         .container
                             .row
                                 .col-lg-12

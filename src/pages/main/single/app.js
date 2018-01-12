@@ -36,3 +36,13 @@ new Vue({
   el: '#bitcoinPrice',
   render: h => h(PopupBitcoin)
 })
+
+new Vue({
+  el: '#consultationRealtorMob',
+  render: h => h(PopupRealtor)
+})
+
+new Vue({
+  el: '#bitcoinPriceMob',
+  render: h => h(PopupBitcoin)
+})

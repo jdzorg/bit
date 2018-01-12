@@ -2,7 +2,7 @@
     div
         button.btn.btn-default(@click="handlerPopUp")
             | СВЯЗАТЬСЯ С
-            br
+            br.hidden-xs.hidden-sm
             | РИЭЛТОРОМ
         Popup(v-show="showPop", @close="handlerPopUp")
             FeedbackForm(

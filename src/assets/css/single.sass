@@ -29,12 +29,23 @@
   background-color: #f6f8fd
 
 .characteristics
+  @media (max-width: $screen-sm-min)
+    height: auto
+    padding:
+      top: 15px
+      bottom: 30px
   height: 485px
   padding:
     top: 65px
     bottom: 55px
   background-color: #f6f8fd
   & .wrapper
+    @media (max-width: $screen-sm-min)
+      margin:
+        left: -15px
+        right: -15px
+      padding-left: 0
+      background-color: #f0f4ff
     padding-left: 85px
 .params-main
   display: flex
@@ -43,6 +54,9 @@
   flex-wrap: wrap
   & .rooms, & .size-home,
   & .size-area, & .floors, & .subway
+    @media (max-width: $screen-sm-min)
+      font-size: 18px
+      padding-bottom: 25px
     display: flex
     align-items: baseline
     width: 50%
@@ -56,6 +70,8 @@
       display: block
       margin-right: 10px
     & span:last-child
+      @media (max-width: $screen-sm-min)
+        font-size: 10px
       padding-left: 10px
       font:
         family: 'rubik-l', sans-serif
@@ -63,42 +79,68 @@
         size: 12px
   & .rooms
     & i
+      @media (max-width: $screen-sm-min)
+        width: 15px
+        height: 22px
       width: 22px
       height: 32px
       background: url("../../assets/img/ico-single-rooms.png")no-repeat center/100%
   & .size-home
     & i
+      @media (max-width: $screen-sm-min)
+        width: 22px
+        height: 22px
       width: 32px
       height: 32px
       background: url("../../assets/img/ico-single-size-home.png")no-repeat center/100%
   & .size-area
     & i
+      @media (max-width: $screen-sm-min)
+        width: 20px
+        height: 20px
       width: 32px
       height: 32px
       background: url("../../assets/img/ico-single-size-area.png")no-repeat center/100%
   & .floors
     & i
+      @media (max-width: $screen-sm-min)
+        width: 15px
+        height: 20px
       width: 22px
       height: 28px
       background: url("../../assets/img/ico-single-floors.png")no-repeat center/100%
   & .subway
     & i
+      @media (max-width: $screen-sm-min)
+        width: 22px
+        height: 16px
       width: 32px
       height: 26px
       background: url("../../assets/img/ico-single-subway.png")no-repeat center/100%
 
 .separatoe
+  @media (max-width: $screen-sm-min)
+    margin-bottom: 20px
   width: 100%
   height: 1px
   background: #bdc3d5
   margin-bottom: 40px
 
 .params-add
+  @media (max-width: $screen-sm-min)
+    padding-bottom: 20px
   & table
     font:
       family: 'rubik-l', sans-serif
       weight: 100
     & td
+      @media (max-width: $screen-sm-min)
+        padding:
+          right: 20px
+          top: 6px
+          bottom: 6px
+        &:last-child
+          padding-right: 0
       padding:
         right: 40px
         top: 10px
@@ -110,8 +152,21 @@
         font-size: 9px
     & .val
       font-size: 16px
+    @media (max-width: $screen-sm-min)
+      & .val, & .name
+        font-size: 14px
+
+@media (max-width: $screen-sm-min)
+  .params-main, .params-add
+    padding:
+      left: 15px
+      right: 15px
 
 .description
+  @media (max-width: $screen-sm-min)
+    height: auto
+    padding-bottom: 20px
+    background-color: transparent
   height: 485px
   background-color: #f6f8fd
   & .wrapper
@@ -121,6 +176,9 @@
     width: 100%
     height: 100%
     & p
+      @media (max-width: $screen-sm-min)
+        width: 100%
+        font-size: 14px
       width: 80%
       font:
         family: 'rubik-l', sans-serif
@@ -135,3 +193,26 @@
     position: center
     repeat: no-repeat
     size: 100% 100%
+
+//mob version
+.single-mob
+  &-title
+    margin-bottom: 15px
+    padding:
+      left: 15px
+      right: 15px
+    & .single-head-title
+      margin-bottom: 10px
+      font:
+        size: 15px
+        weight: bold
+    & .single-head-code
+      float: right
+  &-price
+    padding-bottom: 40px
+    text-align: center
+    & .single-head-price
+      font-size: 16px
+      color: #ff551a
+    & .btn-simple, & .btn-default
+      font-size: 12px

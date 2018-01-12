@@ -72,7 +72,7 @@
   & label
     margin-bottom: 0
   & input[type="number"]
-    width: 120px
+    width: 45%
   & select
     width: 255px
   & input[type="number"], input[type="text"], & select
@@ -137,6 +137,7 @@
         color: #fff
   & .radio
     @media (max-width: $screen-sm-min)
+      justify-content: baseline
       margin-bottom: 20px
       padding:
         left: 8px
@@ -146,6 +147,8 @@
         margin:
           left: 0
           right: 0
+        &:last-child
+          margin-left: 20px
       position: relative
       max-height: 17px
       min-height: 17px

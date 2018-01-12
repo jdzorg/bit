@@ -7,10 +7,19 @@
 @import "components/s-list"
 
 .valuation
+  @media (max-width: $screen-sm-min)
+    padding:
+      top: 0
+      bottom: 0
+    background-color: #ecf0fc
   padding:
     top: 50px
     bottom: 80px
   &-title
+    @media (max-width: $screen-sm-min)
+      margin-bottom: 15px
+      text-transform: capitalize
+      font-size: 16px
     margin:
       top: 30px
       bottom: 80px
@@ -19,6 +28,8 @@
       weight: bold
     text-transform: uppercase
   &-services
+    @media (max-width: $screen-sm-min)
+      font-size: 14px
     font:
       family: 'rubik-l', sans-serif
       weight: 100
@@ -27,6 +38,8 @@
       padding-left: 30px
       list-style: none
     & li
+      @media (max-width: $screen-sm-min)
+        padding-bottom: 15px
       position: relative
       padding-bottom: 37px
       &:before
@@ -42,6 +55,10 @@
           size: 100%
           repeat: no-repeat
   &-form
+    @media (max-width: $screen-sm-min)
+      margin-left: 0
+      padding: 20px 0
+      box-shadow: none
     margin-left: 50px
     padding: 32px 28px
     box-shadow: 0 0 30px 10px #ececec
@@ -82,6 +99,8 @@
 //.process
 
 .advantages-wrapper
+  @media (max-width: $screen-sm-min)
+    height: auto
   height: 80px
 
 .pic-inspection
