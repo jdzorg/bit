@@ -1,6 +1,6 @@
 <template lang="pug">
     div
-        button.btn.btn-default(@click="handlerPopUp")
+        button.btn.btn-default(@click="handlerPopUp", :height="popHeight")
             | СВЯЗАТЬСЯ С
             br.hidden-xs.hidden-sm
             | РИЭЛТОРОМ
@@ -32,7 +32,8 @@
       Popup, FeedbackForm, Msg
     },
     data() {
-      return{
+      return {
+        popHeight: '',
         showPop: false,
         args: {
           formName: 'Форма - заказать консультацию(шапка))',
@@ -54,6 +55,7 @@
     methods: {
       handlerPopUp() {
         this.showPop = !this.showPop;
+        this.popHeight = `height: ${window.innerHeight}`;
         document.body.style.overflow = this.showPop ? 'hidden' : '';
       },
       setOutputMSG(outputMsg) {

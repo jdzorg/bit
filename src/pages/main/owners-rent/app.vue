@@ -61,7 +61,7 @@
         },
         showPop: false,
         isRulesAgree: false,
-        realtyType: 'Flat',//window.WP_API_Settings.realtType ||
+        realtyType: window.WP_API_Settings.hasOwnProperty('realtType') ? window.WP_API_Settings.realtType : 'Flat',
         args: {
           formName: 'Форма - продажа недвижимости',
           type: 'POST',

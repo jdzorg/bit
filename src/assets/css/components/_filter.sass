@@ -72,7 +72,9 @@
   & label
     margin-bottom: 0
   & input[type="number"]
-    width: 45%
+    @media (max-width: $screen-sm-min)
+      width: 45%
+    width: 120px
   & select
     width: 255px
   & input[type="number"], input[type="text"], & select

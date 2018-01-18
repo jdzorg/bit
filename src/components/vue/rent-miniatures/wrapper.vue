@@ -33,7 +33,7 @@
                             .pagination
                                 span.pagePrev(v-if="curPage > 1", @click="switchPage(-1)") &#60; Пред
                                 span.pageNext(v-if="curPage < totalPage", @click="switchPage(1)") След &#62;
-        Popup(v-show="showPop", @close="handlerPopUp", bgClass="bitcoin")
+        Popup(v-show="showPop", @close="handlerPopUp", bgClass="bitcoin", :height="popHeight")
             Bitcoin(
               v-if="!isSent",
               key="form",
@@ -104,6 +104,7 @@
       },
       data() {
         return {
+          popHeight: '',
           isMin: false,
           districts: [],
           termsAttr: {},
@@ -315,6 +316,7 @@
         },
         handlerPopUp() {
           this.showPop = !this.showPop;
+          this.popHeight = `height: ${window.innerHeight}px`;
           document.body.style.overflow = this.showPop ? 'hidden' : '';
         }
       },

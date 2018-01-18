@@ -126,6 +126,17 @@ a.btn
     align-items: baseline
 
 
+
+//feedback section
+.feedback
+  background-color: #182d3b
+  @media (min-width: $screen-sm-max)
+    background:
+      image: url(../img/feedback.png)
+      position: center
+      repeat: no-repeat
+      size: 100% 100%
+
 //form section
 
 .form
@@ -198,23 +209,29 @@ a.btn
   flex-direction: column
   justify-content: center
   &.consult
-    background:
-      image: url(../../assets/img/pop-feedback.png)
-      position: center
-      repeat: no-repeat
-      size: 100% 100%
+    background-color: #182d3b
+    @media (min-width: $screen-sm-max)
+      background:
+        image: url(../../assets/img/pop-feedback.png)
+        position: center
+        repeat: no-repeat
+        size: 100% 100%
   &.review
-    background:
-      image: url(../../assets/img/pop-review.png)
-      position: center
-      repeat: no-repeat
-      size: 100% 100%
+    background-color: #182d3b
+    @media (min-width: $screen-sm-max)
+      background:
+        image: url(../../assets/img/pop-review.png)
+        position: center
+        repeat: no-repeat
+        size: 100% 100%
   &.bitcoin
-    background:
-      image: url(../../assets/img/pop-bitcoin.png)
-      position: center
-      repeat: no-repeat
-      size: 100% 100%
+    background-color: #182d3b
+    @media (min-width: $screen-sm-max)
+      background:
+        image: url(../../assets/img/pop-bitcoin.png)
+        position: center
+        repeat: no-repeat
+        size: 100% 100%
   &-container, & .row
     position: relative
     height: 454px

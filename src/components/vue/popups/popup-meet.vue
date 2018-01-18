@@ -1,7 +1,7 @@
 <template lang="pug">
     div
         button.btn.btn-default(@click="handlerPopUp") Записаться на встречу
-        Popup(v-show="showPop", @close="handlerPopUp")
+        Popup(v-show="showPop", @close="handlerPopUp", :height="popHeight")
             FeedbackForm(
               v-if="!isSent",
               key="form",
@@ -29,7 +29,8 @@
       Popup, FeedbackForm, Msg
     },
     data() {
-      return{
+      return {
+        popHeight: '',
         showPop: false,
         args: {
           formName: 'Форма - заказать консультацию(шапка))',
@@ -51,6 +52,7 @@
     methods: {
       handlerPopUp() {
         this.showPop = !this.showPop;
+        this.popHeight = `height: ${window.innerHeight}`;
         document.body.style.overflow = this.showPop ? 'hidden' : '';
       },
       setOutputMSG(outputMsg) {

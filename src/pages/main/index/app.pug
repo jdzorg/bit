@@ -7,13 +7,7 @@ html(lang='ru')
                 include ../../../components/pug/main/header
                 main.content
                     section.brand-bg.homescreen
-                        //picture
-                            //source(media="(min-width: 993px)" srcset="../../../assets/img/front-page-main.png")
-                            //source(media="(max-width: 992px)" srcset="../../../assets/img/front-page-main_992.png")
-                            //source(media="(max-width: 762px)" srcset="../../../assets/img/front-page-main_762.png")
-                            //source(media="(max-width: 480px)" srcset="../../../assets/img/front-page-main_480.png")
-                            //source(media="(max-width: 320px)" srcset="../../../assets/img/front-page-main_320.png")
-                        img(src='../../../assets/img/front-page-main_320.png', alt='bitrealty', title='Агенство недвижимости цифрового века')
+                        img(src='../../../assets/img/front-page-main.png', srcset='../../../assets/img/front-page-main.png 1200w, ../../../assets/img/front-page-main_992.png 992w, ../../../assets/img/front-page-main_768.png 768w, ../../../assets/img/front-page-main_480.png 480w, ../../../assets/img/front-page-main_320.png 320w', sizes="100vw", alt='bitrealty', title='Агенство недвижимости цифрового века')
                         .homescreen-content
                             .homescreen-wrapper
                                 h1

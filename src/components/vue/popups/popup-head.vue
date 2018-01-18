@@ -1,7 +1,7 @@
 <template lang="pug">
     div
         button.btn.btn-default.btn-transparent(@click="handlerPopUp") Заказать консультацию
-        Popup(v-show="showPop", @close="handlerPopUp")
+        Popup(v-show="showPop", @close="handlerPopUp", :height="popHeight")
             FeedbackForm(
               v-if="!isSent",
               key="form",
@@ -30,6 +30,7 @@
     },
     data() {
       return{
+        popHeight: '',
         showPop: false,
         args: {
           formName: 'Форма - заказать консультацию',
@@ -51,6 +52,7 @@
     methods: {
       handlerPopUp() {
         this.showPop = !this.showPop;
+        this.popHeight = `height: ${window.innerHeight}`;
         document.body.style.overflow = this.showPop ? 'hidden' : '';
       },
       setOutputMSG(outputMsg) {
