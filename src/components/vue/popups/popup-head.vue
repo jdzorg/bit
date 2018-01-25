@@ -9,7 +9,8 @@
               :subTitle="formHead.subTitle",
               :btnName="formHead.btn",
               :sendArgs="args",
-              @setMsg="setOutputMSG"
+              @setMsg="setOutputMSG",
+              :link="false"
             )
             Msg(
               v-else,
@@ -52,7 +53,7 @@
     methods: {
       handlerPopUp() {
         this.showPop = !this.showPop;
-        this.popHeight = `height: ${window.innerHeight}`;
+        this.popHeight = `height: ${window.innerHeight}px`;
         document.body.style.overflow = this.showPop ? 'hidden' : '';
       },
       setOutputMSG(outputMsg) {

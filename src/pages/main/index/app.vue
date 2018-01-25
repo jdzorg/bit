@@ -31,7 +31,7 @@
             )
         .hidden-xs.hidden-sm.col-lg-12.text-center.reviews-btn
             button.btn.btn-default.btn-transparent(@click="handlerPopUp") Оставте и Вы свой отклик!
-        Popup(v-show="showPop", @close="handlerPopUp", bgClass="review")
+        Popup(v-show="showPop", @close="handlerPopUp", bgClass="review", :height="popHeight")
             transition(
               name="thxmsg",
               mode="out-in"
@@ -43,7 +43,8 @@
                   :subTitle="formHead.subTitle",
                   :btnName="formHead.btn",
                   :sendArgs="args",
-                  @setMsg="setOutputMSG"
+                  @setMsg="setOutputMSG",
+                  :link="false"
                 )
                 Msg(
                   v-else,
@@ -75,6 +76,7 @@
       data () {
         return {
           isSent: false,
+          popHeight: '',
           showPop: false,
           prev: 0,
           next: 0,
@@ -141,6 +143,7 @@
         },
         handlerPopUp() {
           this.showPop = !this.showPop;
+          this.popHeight = `height: ${window.innerHeight}px`;
           document.body.style.overflow = this.showPop ? 'hidden' : '';
         },
         setOutputMSG(outputMsg) {

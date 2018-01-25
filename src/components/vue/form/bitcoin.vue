@@ -85,6 +85,13 @@
       btnName: {
         type: String,
         required: true
+      },
+      link: {
+        type: Boolean,
+        default: false
+      },
+      pLink: {
+        type: String
       }
     },
     data() {
@@ -94,7 +101,8 @@
         userData: {
           name: '',
           email: '',
-          phone: ''
+          phone: '',
+          productLink: ''
         }
       }
     },
@@ -103,8 +111,16 @@
         let count = 0;
         const sm = sendMethods;
 
+        if(this.link) {
+          this.userData.productLink = window.location.toString();
+        } else {
+          this.userData.productLink = this.pLink;
+        }
+
         for(let i in this.userData) {
-          count += this.userData[i].replace(/\s/g, '').length > 0 ? 0 : 1;
+          if(i === 'name' || i === 'phone') {
+            count += this.userData[i].replace(/\s/g, '').length > 0 ? 0 : 1;
+          }
         }
 
         if(count > 0) {

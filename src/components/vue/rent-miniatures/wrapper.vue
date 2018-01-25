@@ -40,7 +40,8 @@
               :title="formHead.title",
               :subTitle="formHead.subTitle",
               :btnName="formHead.btn",
-              :sendArgs="args"
+              :sendArgs="args",
+              :pLink="productLink"
             )
             Msg(
               v-else,
@@ -113,6 +114,7 @@
           curPage: 1,
           totalPage: '',
           showPop: false,
+          productLink: '',
           args: {
             formName: 'Форма - Цена в криптовалюте',
             meth: 'nFeedback',
@@ -314,9 +316,15 @@
           }
           this.minData = cPosts;
         },
-        handlerPopUp() {
+        handlerPopUp(e) {
           this.showPop = !this.showPop;
           this.popHeight = `height: ${window.innerHeight}px`;
+          if(e) {
+            let linkElem = e.target.parentElement.parentElement;
+            if(linkElem.nodeName === 'A' && linkElem.getAttribute('href').length > 12) {
+              this.productLink = linkElem.getAttribute('href');
+            }
+          }
           document.body.style.overflow = this.showPop ? 'hidden' : '';
         }
       },

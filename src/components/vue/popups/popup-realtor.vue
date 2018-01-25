@@ -1,10 +1,10 @@
 <template lang="pug">
     div
-        button.btn.btn-default(@click="handlerPopUp", :height="popHeight")
+        button.btn.btn-default(@click="handlerPopUp")
             | СВЯЗАТЬСЯ С
             br.hidden-xs.hidden-sm
             | РИЭЛТОРОМ
-        Popup(v-show="showPop", @close="handlerPopUp")
+        Popup(v-show="showPop", @close="handlerPopUp", :height="popHeight")
             FeedbackForm(
               v-if="!isSent",
               key="form",
@@ -12,7 +12,8 @@
               :subTitle="formHead.subTitle",
               :btnName="formHead.btn",
               :sendArgs="args",
-              @setMsg="setOutputMSG"
+              @setMsg="setOutputMSG",
+              :link="true"
             )
             Msg(
               v-else,
@@ -55,7 +56,7 @@
     methods: {
       handlerPopUp() {
         this.showPop = !this.showPop;
-        this.popHeight = `height: ${window.innerHeight}`;
+        this.popHeight = `height: ${window.innerHeight}px`;
         document.body.style.overflow = this.showPop ? 'hidden' : '';
       },
       setOutputMSG(outputMsg) {
