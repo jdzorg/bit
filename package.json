@@ -12,6 +12,8 @@
     "countup.js": "^1.9.3",
     "vee-validate": "^2.0.0-rc.25",
     "vue": "^2.5.3",
+    "vue-image-lightbox": "^5.5.3",
+    "vue-lazyload": "^1.1.4",
     "vue-touch": "^2.0.0-beta.4",
     "wpapi": "^1.1.2"
   },

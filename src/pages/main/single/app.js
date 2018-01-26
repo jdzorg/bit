@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import App from './app.vue'
+import VueLazyLoad from 'vue-lazyload'
+import VueTouch from 'vue-touch'
 import Feedback from './feedback-form.vue'
 import { menu, setHeight } from 'assets/js/global'
 import PopupHead from 'components/vue/popups/popup-head'
@@ -11,6 +13,10 @@ window.addEventListener('load', function () {
   menu.init()
   setHeight.set()
 })
+
+Vue.use(VueLazyLoad)
+
+Vue.use(VueTouch, { name: 'v-touch' })
 
 new Vue({
   el: '#app',

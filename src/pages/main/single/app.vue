@@ -6,49 +6,70 @@
           v-show="gallery.length > 2"
         )
         .slider-wrapper
-            transition(name="wrapper")
-                img(:src="curIMG")
+            <!--transition(name="wrapper")-->
+            img(
+              :src="curIMG.img",
+              @click="openGallery(curIMG.id)"
+            )
+        Lightbox(
+          :images="gallery",
+          ref="lightbox",
+          :show-caption="false"
+        )
 </template>
 
 <script>
     // import Wrapper from 'components/vue/single-slider/wrapper'
     import Control from 'components/vue/review-slider/control'
-    // import img1 from 'assets/img/s1.jpg'
-    // import img2 from 'assets/img/s2.jpg'
-    // import img3 from 'assets/img/s3.jpg'
+    import Lightbox from 'vue-image-lightbox'
+    import img1 from 'assets/img/s1.jpg'
+    import img2 from 'assets/img/s2.jpg'
+    import img3 from 'assets/img/s3.jpg'
 
-    // const singlePageGallery = [
-    //   img1,
-    //   img2,
-    //   img3
-    // ];
+    const singlePageGallery = [
+      img1,
+      img2,
+      img3
+    ];
 
   export default {
     name: "app",
     components: {
-      Control
+      Control, Lightbox
     },
     data() {
       return {
         curImgId: '',
-        curIMG: '',
-        gallery: singleProductParam.singlePageGallery
-        // gallery: singlePageGallery
+        curIMG: {},
+        // gallery: singleProductParam.singlePageGallery
+        gallery: singlePageGallery
       }
     },
     methods: {
       nextIMG() {
         this.curImgId = (this.curImgId + 1) > (this.gallery.length - 1) ? 0 : this.curImgId + 1;
-        this.curIMG = this.gallery[this.curImgId];
+        this.curIMG = {
+          id: this.curImgId,
+          img: this.gallery[this.curImgId]
+        };
       },
       prevIMG() {
         this.curImgId = (this.curImgId - 1) < 0 ? (this.gallery.length - 1) : this.curImgId - 1;
-        this.curIMG = this.gallery[this.curImgId]
+        this.curIMG = {
+          id: this.curImgId,
+          img: this.gallery[this.curImgId]
+        };
+      },
+      openGallery(index) {
+        this.$refs.lightbox.showImage(index)
       }
     },
     mounted() {
-      this.curIMG = this.gallery[0];
       this.curImgId = 0;
+      this.curIMG = {
+        id: this.curImgId,
+        img: this.gallery[this.curImgId]
+      };
     }
   }
 </script>
