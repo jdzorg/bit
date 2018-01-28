@@ -110,7 +110,11 @@
                                     :value="item.slug") {{ item.name }}
             .filter-col-2
                 fieldset.text-right
-                    button.btn.btn-default Подобрать
+                    button.btn.btn-default.btn-get Подобрать
+                    button.btn.btn-default.btn-reset(
+                      type="button",
+                      @click="reset"
+                    ) X
             .clearfix
             .visible-xs.visible-sm.col-lg-12.text-center.filter-add-toggle
                 button.btn.btn-simple(@click="toggleAddFilter", type="button")
@@ -124,6 +128,25 @@
 </template>
 
 <script>
+
+  var originalForm = {
+    rooms: 2,
+      propType: 'resident',
+      useFor: 'osg',
+      currency: 'uah',
+      price_from: '',
+      price_to: '',
+      area_from: '',
+      area_to: '',
+      address: '',
+      floors: '',
+      size_area: '',
+      tax: {
+      region: 'kiev',
+        district: '',
+        subway: '',
+    }
+  }
 
 export default {
   props: {
@@ -160,6 +183,9 @@ export default {
   methods: {
     toggleAddFilter() {
       this.isFilterMore = !this.isFilterMore
+    },
+    reset() {
+      this.form = originalForm;
     }
   },
   computed: {

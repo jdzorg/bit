@@ -19,6 +19,10 @@
         bottom: 0
       border-bottom: 1px solid #bdc3d5
   & form
+    @media (min-width: $screen-md-min) and (max-width: $screen-lg-min)
+      padding:
+        left: 0
+        right: 0
     @media (max-width: $screen-sm-min)
       margin:
         left: 15px
@@ -39,15 +43,32 @@
       color: #000
       border-color: #000
   &-col-1, &-col-2
+    @media (min-width: $screen-md-min) and (max-width: $screen-lg-min)
+      float: inherit
     float: left
   &-col-1
-    @media (max-width: $screen-sm-min)
+    @media (max-width: $screen-lg-min)
       width: 100%
     width: 87%
   &-col-2
+    @media (max-width: $screen-lg-min)
+      width: 16%
+      margin: 0 auto
     @media (max-width: $screen-sm-min)
       width: 100%
     width: 13%
+    & button
+      margin-top: 4px
+  & .btn-get
+    float: left
+    padding: 8px
+  & .btn-reset
+    padding: 8px 13px
+    background-color: #88caec
+    border-color: #88caec
+    &:hover
+      background-color: transparent
+      border-color: #000
   & .desc-fields
     display: inline-flex
     font-size: 16px

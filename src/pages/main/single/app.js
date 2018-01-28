@@ -9,6 +9,8 @@ import PopupRealtor from 'components/vue/popups/popup-realtor'
 import PopupBitcoin from 'components/vue/popups/popup-bitcoin'
 import 'assets/css/single.sass'
 
+require('vue-image-lightbox/dist/vue-image-lightbox.min.css')
+
 window.addEventListener('load', function () {
   menu.init()
   setHeight.set()

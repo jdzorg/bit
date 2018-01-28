@@ -27,7 +27,8 @@
                                   :sets="settings.features",
                                   @popBit="handlerPopUp"
                                 )
-                                .clearfix(v-if="(index + 1) % 3 === 0", key="clear")
+                                .visible-lg.clearfix(v-if="(index + 1) % 3 === 0", key="clear")
+                                .visible-sm.visible-md.clearfix(v-if="(index + 1) % 2 === 0", key="clear")
                     .row
                         .col-lg-12(v-if="isPaging")
                             .pagination
@@ -278,6 +279,7 @@
           queryStr = queryStr.replace(/\s+|\n+|\r+/g, '');
 
           let url = `http://bitrealt.com.ua/wp-json/wp/v2/${this.settings.page}`;
+          this.curPage = 1;
           this.getItems(url+queryStr);
         },
         getTerms() {
